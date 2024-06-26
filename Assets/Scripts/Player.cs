@@ -36,19 +36,19 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (inInteraction == false)
+            switch (inInteraction)
             {
-                inInteraction = true;
-
-                PromptText.text = prompt;
-                PromptObject.SetActive(true);
-                Time.timeScale = 0.0f;
-            }
-            else
-            {
-                inInteraction = false;
-                PromptObject.SetActive(false);
-                Time.timeScale = 1.0f;
+                case false:
+                    inInteraction = true;
+                    PromptText.text = prompt;
+                    PromptObject.SetActive(true);
+                    Time.timeScale = 0.0f;
+                    break;
+                case true:
+                    inInteraction = false;
+                    PromptObject.SetActive(false);
+                    Time.timeScale = 1.0f;
+                    break;
             }
         }
 
@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        Debug.Log("Hi");
         CollidingObject = col.gameObject.name;
         
         prompt = CollidingObject switch
@@ -64,7 +63,5 @@ public class Player : MonoBehaviour
             "NPC" => "Hi! You must be new here!",
             _ => "Hmm... Nothing to see here!",
         };
-
-        
     }
 }
