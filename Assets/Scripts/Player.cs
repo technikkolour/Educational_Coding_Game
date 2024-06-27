@@ -7,12 +7,12 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    string CollidingObject;
     private bool inInteraction = false;
     private string prompt;
 
     public TMP_Text PromptText;
     public GameObject PromptObject;
-    string CollidingObject;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
             transform.Translate(speed * Time.deltaTime * UnityEngine.Vector2.down);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != "")
         {
             switch (inInteraction)
             {
@@ -63,5 +63,11 @@ public class Player : MonoBehaviour
             "NPC" => "Hi! You must be new here!",
             _ => "Hmm... Nothing to see here!",
         };
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        CollidingObject = "";
+        prompt = "";
     }
 }
