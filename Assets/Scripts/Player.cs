@@ -4,6 +4,7 @@ using System.Numerics;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Runtime.CompilerServices;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameManager manager;
         int speed = 5;
 
         if(Input.GetKey(KeyCode.D))
