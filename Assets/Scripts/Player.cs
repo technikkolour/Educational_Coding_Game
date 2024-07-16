@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
 
-    string CollidingObject;
+    private string CollidingObject;
     private bool inInteraction = false;
     private string prompt;
 
@@ -27,28 +27,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager manager;
-
+        // Includes both WASD and arrow key inputs;
         MovementDirection.x = Input.GetAxisRaw("Horizontal");
         MovementDirection.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != "")
-        {
-            switch (inInteraction)
-            {
-                case false:
-                    inInteraction = true;
-                    PromptText.text = prompt;
-                    PromptObject.SetActive(true);
-                    Time.timeScale = 0.0f;
-                    break;
-                case true:
-                    inInteraction = false;
-                    PromptObject.SetActive(false);
-                    Time.timeScale = 1.0f;
-                    break;
-            }
-        }
+        // The E key is reserved for interacting;
+        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != "") Interact();
 
     }
 
@@ -59,6 +43,7 @@ public class Player : MonoBehaviour
         RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.fixedDeltaTime);
     }
 
+    // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
     void OnTriggerStay2D(Collider2D col)
     {
         CollidingObject = col.gameObject.name;
@@ -70,9 +55,30 @@ public class Player : MonoBehaviour
         };
     }
 
+    // Reset the values once the player is no longer colliding with a trigger;
     void OnTriggerExit2D(Collider2D collision)
     {
         CollidingObject = "";
         prompt = "";
+    }
+
+    // Defines the behaviour of the player character when interacting with various objects and NPCs;
+    public void Interact() 
+    {
+        switch (inInteraction)
+        {
+            case false:
+                inInteraction = true;
+                PromptText.text = prompt;
+                PromptObject.SetActive(true);
+                Time.timeScale = 0.0f;
+                break;
+            case true:
+                inInteraction = false;
+                PromptObject.SetActive(false);
+                Time.timeScale = 1.0f;
+                break;
+        }
+        
     }
 }

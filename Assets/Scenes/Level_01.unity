@@ -3502,6 +3502,14 @@ PrefabInstance:
       value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 5374883557477227921, guid: a9ad6cdc9dbb9774e9f6812f2302051f, type: 3}
+      propertyPath: m_Size.x
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374883557477227921, guid: a9ad6cdc9dbb9774e9f6812f2302051f, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374883557477227921, guid: a9ad6cdc9dbb9774e9f6812f2302051f, type: 3}
       propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
