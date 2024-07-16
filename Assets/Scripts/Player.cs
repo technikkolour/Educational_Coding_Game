@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 public class Player : MonoBehaviour
 {
+    private UnityEngine.Vector2 MovementDirection;
+    private Rigidbody2D RBComponent;
+
     string CollidingObject;
     private bool inInteraction = false;
     private string prompt;
@@ -18,23 +21,16 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RBComponent = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         GameManager manager;
-        int speed = 5;
 
-        if(Input.GetKey(KeyCode.D))
-                transform.Translate(speed * Time.deltaTime * UnityEngine.Vector2.right);
-        if (Input.GetKey(KeyCode.A))
-            transform.Translate(speed * Time.deltaTime * UnityEngine.Vector2.left);
-        if (Input.GetKey(KeyCode.W))
-            transform.Translate(speed * Time.deltaTime * UnityEngine.Vector2.up);
-        if (Input.GetKey(KeyCode.S))
-            transform.Translate(speed * Time.deltaTime * UnityEngine.Vector2.down);
+        MovementDirection.x = Input.GetAxisRaw("Horizontal");
+        MovementDirection.y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.E) && CollidingObject != "")
         {
@@ -54,6 +50,13 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    // Called a set number or times, not depenent on framerate;
+    void FixedUpdate()
+    {
+        float speed = 7;
+        RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.fixedDeltaTime);
     }
 
     void OnTriggerStay2D(Collider2D col)

@@ -16,4 +16,9 @@ public class PuzzleManager : MonoBehaviour
         
     }
 
+    void Compiler()
+    {
+
+    }
+
 }
