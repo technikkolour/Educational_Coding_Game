@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    private GameManager GameManager;
+
     public GameObject MenuUI;
+
+    private void Start()
+    {
+       GameManager = FindObjectOfType<GameManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -13,14 +20,13 @@ public class PauseMenu : MonoBehaviour
             if (MenuUI.activeSelf == false)
             {
                 MenuUI.SetActive(true);
-                Time.timeScale = 0.0f;
+                GameManager.PauseGame();
             }
             else 
             {
                 MenuUI.SetActive(false);
-                Time.timeScale = 1.0f;
+                GameManager.UnpauseGame();
             }
     }
-
 
 }

@@ -10,8 +10,7 @@ public class Player : MonoBehaviour
 {
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
-
-    private string CollidingObject;
+    private Collider2D CollidingObject;
     private bool inInteraction = false;
     private string prompt;
 
@@ -32,8 +31,7 @@ public class Player : MonoBehaviour
         MovementDirection.y = Input.GetAxisRaw("Vertical");
 
         // The E key is reserved for interacting;
-        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != "") Interact();
-
+        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != null) Interact();
     }
 
     // Called a set number or times, not depenent on framerate;
@@ -46,11 +44,13 @@ public class Player : MonoBehaviour
     // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
     void OnTriggerStay2D(Collider2D col)
     {
-        CollidingObject = col.gameObject.name;
-        
-        prompt = CollidingObject switch
+        CollidingObject = col;
+        string CollidingObjectType = CollidingObject.name.Split("_")[1];
+
+
+        prompt = CollidingObjectType switch
         {
-            "NPC" => "Hi! You must be new here!",
+            "Message" => "Hi! You must be new here!",
             _ => "Hmm... Nothing to see here!",
         };
     }
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     // Reset the values once the player is no longer colliding with a trigger;
     void OnTriggerExit2D(Collider2D collision)
     {
-        CollidingObject = "";
+        CollidingObject = null;
         prompt = "";
     }
 
