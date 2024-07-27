@@ -104,4 +104,12 @@ public class Player : MonoBehaviour
     {
         JournalEntriesFound[EntryID - 1] = true;
     }
+
+    // Puzzle completion update function;
+    public void CompletedPuzzle(int PuzzleID, int attempts)
+    {
+        CompltetedPuzzles[PuzzleID - 1] = true;
+
+        if (attempts <= 3) Medals[PuzzleID - 1] += 1;
+    }
 }
