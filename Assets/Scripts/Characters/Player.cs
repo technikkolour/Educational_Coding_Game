@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private List<int> Medals = new List<int>() { 0, 0, 0 };
     private List<bool> CompltetedPuzzles = new List<bool>( Enumerable.Repeat(false, 10) );
     private List<bool> JournalEntriesFound = new List<bool>( Enumerable.Repeat(false, 15) );
-    private List<Item> Inventory = new List<Item>();
+    private List<Item> Inventory = new List<Item>(5);
 
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
@@ -48,27 +48,6 @@ public class Player : MonoBehaviour
         RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.fixedDeltaTime);
     }
 
-    // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
-    void OnTriggerStay2D(Collider2D col)
-    {
-        CollidingObject = col;
-        string CollidingObjectType = CollidingObject.name.Split("_")[1];
-
-
-        prompt = CollidingObjectType switch
-        {
-            "Message" => "Hi! You must be new here!",
-            _ => "Hmm... Nothing to see here!",
-        };
-    }
-
-    // Reset the values once the player is no longer colliding with a trigger;
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        CollidingObject = null;
-        prompt = "";
-    }
-
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
     public void Interact() 
     {
@@ -89,8 +68,40 @@ public class Player : MonoBehaviour
         
     }
 
+    // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
+    void OnTriggerStay2D(Collider2D col)
+    {
+        CollidingObject = col;
+        string CollidingObjectType = CollidingObject.name.Split("_")[1];
+
+
+        prompt = CollidingObjectType switch
+        {
+            "Message" => "Hi! You must be new here!",
+            _ => "Hmm... Nothing to see here!",
+        };
+    }
+
+    // Reset the values once the player is no longer colliding with a trigger;
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        CollidingObject = null;
+        prompt = "";
+    }    
+
+    // Inventory interaction functions;
     public void PickUpItem(Item Item)
     {
-        Inventory.Append(Item);
+        Inventory[Item.ItemID-1] = Item;
+    }
+    public void UseItem(int ItemID)
+    {
+        Inventory.RemoveAt(ItemID);
+    }
+
+    // Journal update function;
+    public void FoundEntry(int EntryID)
+    {
+        JournalEntriesFound[EntryID - 1] = true;
     }
 }

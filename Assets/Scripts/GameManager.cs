@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private List<string> TheoreticalCollection = new List<string>() { "" };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,5 +52,10 @@ public class GameManager : MonoBehaviour
     public void UnpauseGame()
     {
         Time.timeScale = 1.0f;
-    }    
+    }
+    
+    public string GetTheoreticalEntry(int EntryID)
+    {
+        return TheoreticalCollection[EntryID];
+    }
 }
