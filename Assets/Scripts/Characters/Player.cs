@@ -5,9 +5,16 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
+    // Progress Data;
+    private List<int> Medals = new List<int>() { 0, 0, 0 };
+    private List<bool> CompltetedPuzzles = new List<bool>( Enumerable.Repeat(false, 10) );
+    private List<bool> JournalEntriesFound = new List<bool>( Enumerable.Repeat(false, 15) );
+    private List<Item> Inventory = new List<Item>();
+
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
     private Collider2D CollidingObject;
@@ -80,5 +87,10 @@ public class Player : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void PickUpItem(Item Item)
+    {
+        Inventory.Append(Item);
     }
 }
