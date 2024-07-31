@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     // Progress Data;
     private List<int> Medals = new List<int>() { 0, 0, 0 };
     private List<bool> CompltetedPuzzles = new List<bool>( Enumerable.Repeat(false, 10) );
-    private List<bool> JournalEntriesFound = new List<bool>( Enumerable.Repeat(false, 15) );
+    private List<bool> JournalEntriesFound = new List<bool>( Enumerable.Repeat(false, 10) );
     private List<Item> Inventory = new List<Item>(5);
 
     private UnityEngine.Vector2 MovementDirection;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private string prompt;
 
     public TMP_Text PromptText;
-    public GameObject PromptObject;
+    public GameObject DialogueUI;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +41,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && CollidingObject != null) Interact();
     }
 
+    public List<bool> GetJournalEntriesFound()
+    {
+        return JournalEntriesFound;
+    }
+
+
     // Called a set number or times, not depenent on framerate;
     void FixedUpdate()
     {
@@ -56,12 +62,12 @@ public class Player : MonoBehaviour
             case false:
                 inInteraction = true;
                 PromptText.text = prompt;
-                PromptObject.SetActive(true);
+                DialogueUI.SetActive(true);
                 Time.timeScale = 0.0f;
                 break;
             case true:
                 inInteraction = false;
-                PromptObject.SetActive(false);
+                DialogueUI.SetActive(false);
                 Time.timeScale = 1.0f;
                 break;
         }

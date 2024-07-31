@@ -3329,10 +3329,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1848612395}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1813102957}
+        m_TargetAssemblyTypeName: Journal, Assembly-CSharp
+        m_MethodName: CloseJournal
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4437,7 +4437,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1581472504}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813102957}
+        m_TargetAssemblyTypeName: Journal, Assembly-CSharp
+        m_MethodName: Forward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1581472504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5188,6 +5200,7 @@ GameObject:
   - component: {fileID: 1813102955}
   - component: {fileID: 1813102954}
   - component: {fileID: 1813102953}
+  - component: {fileID: 1813102957}
   m_Layer: 5
   m_Name: JournalCanvas
   m_TagString: Untagged
@@ -5278,6 +5291,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1813102957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813102952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990e52cce9277fd4fbee85104fe54e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftTitle: {fileID: 316086195}
+  RightTitle: {fileID: 1676829229}
+  LeftText: {fileID: 168286491}
+  RightText: {fileID: 373999858}
+  JournalUI: {fileID: 1848612395}
+  BackwardButton: {fileID: 2101225020}
+  ForwardButton: {fileID: 1581472503}
 --- !u!1 &1824461708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,7 +5915,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2101225021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813102957}
+        m_TargetAssemblyTypeName: Journal, Assembly-CSharp
+        m_MethodName: Backward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2101225021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6086,6 +6130,22 @@ PrefabInstance:
       propertyPath: PromptObject
       value: 
       objectReference: {fileID: 686139985}
+    - target: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: JournalEntriesFound.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: JournalEntriesFound.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: JournalEntriesFound.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: JournalEntriesFound.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.44592428
