@@ -19,7 +19,7 @@ public class PuzzleManager : MonoBehaviour
         CurrentPuzzle = FindObjectOfType<Puzzle>();
     }
 
-    void SubmitSolution()
+    public void SubmitSolution()
     {
         bool Solution = CurrentPuzzle.VerifySolution();
         if (Solution)
