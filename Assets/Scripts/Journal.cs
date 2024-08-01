@@ -51,6 +51,7 @@ public class Journal : MonoBehaviour
         DisplayText();
     }
 
+    // Journal UI interaction functions;
     public void OpenJournal()
     {
         JournalUI.SetActive(true);
