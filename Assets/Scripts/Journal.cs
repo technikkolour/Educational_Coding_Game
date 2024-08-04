@@ -14,13 +14,14 @@ public class Journal : MonoBehaviour
         {1, new(){ "String", "Used to store text; a string represents a series of characters. It can be a name, an address, even a phone number!" } },
         {2, new(){ "Integer", "Used to store whole numbers, like the number of people present in a room." } },
         {3, new(){ "Float", "Used to store decimals, such as your height." } },
-        {4, new(){ "List", "They can store multiple values of the same type together. For example, they can be used for storing a student's grades (floats) or a list of the students enrolled in a class (strings)." } },
-        {5, new(){ "N-Dimensional Array", "Can be used to store multiple lists of values of the same type, such as the grades for all the students in a class." } },
-        {6, new(){ "If Statements", "UTell the program to perform some actions based on one or more conditions." } },
-        {7, new(){ "For", "A set of actions is performed for every time a value is updated. The starting and final values, as well as the step size, are defined." } },
-        {8, new(){ "While", "A set of actions is performed as long as a condition is true." } },
-        {9, new(){ "Functions", "They are independent portions of code. They can be used to tell the program to perform a set of actions at any point." } },
-        {10, new(){ "", "" } } };
+        {4, new(){ "Boolean", "Used to store true or false values." } },
+        {5, new(){ "List", "They can store multiple values of the same type together. For example, they can be used for storing a student's grades (floats) or a list of the students enrolled in a class (strings)." } },
+        {6, new(){ "N-Dimensional Array", "Can be used to store multiple lists of values of the same type, such as the grades for all the students in a class." } },
+        {7, new(){ "If Statements", "UTell the program to perform some actions based on one or more conditions." } },
+        {8, new(){ "For", "A set of actions is performed for every time a value is updated. The starting and final values, as well as the step size, are defined." } },
+        {9, new(){ "While", "A set of actions is performed as long as a condition is true." } },
+        {10, new(){ "Functions", "They are independent portions of code. They can be used to tell the program to perform a set of actions at any point." } },
+        {11, new(){ "", "" } } };
     private List<List<string>> Entries = new() { new() { "", "" }, new() { "", "" } };
 
     public TMP_Text LeftTitle, RightTitle;
