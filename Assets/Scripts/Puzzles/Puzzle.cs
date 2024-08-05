@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Puzzle : MonoBehaviour
 {
+    public string PuzzleType;
+    public int PuzzleID;
+
     private int Attempts = 0;
+    private string Prompt;
+    private string Solution;
     private bool Done = false;
     private int Prize_ItemID = 0;
-    private string Prompt;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +50,8 @@ public class Puzzle : MonoBehaviour
         Done = true;
     }
 
-    public virtual bool VerifySolution()
+    public bool VerifySolution(string ProposedSolution)
     {
-        return false;
+        return ProposedSolution == Solution;
     }
 }

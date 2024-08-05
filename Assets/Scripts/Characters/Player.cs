@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
     {
         CollidingObject = col;
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
-        string CollidingObjectType = CollidingObjectName[CollidingObjectName.Count - 1];
+        string CollidingObjectType = CollidingObjectName[^1];
 
         prompt = CollidingObjectType switch
         {
