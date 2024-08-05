@@ -78,8 +78,8 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
         CollidingObject = col;
-        string CollidingObjectType = CollidingObject.name.Split("_")[1];
-
+        List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
+        string CollidingObjectType = CollidingObjectName[CollidingObjectName.Count - 1];
 
         prompt = CollidingObjectType switch
         {
