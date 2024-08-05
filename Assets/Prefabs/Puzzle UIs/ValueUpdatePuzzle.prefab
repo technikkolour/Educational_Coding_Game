@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7341374141563817494}
   m_Layer: 0
-  m_Name: SimpleCodeModifyingPuzzle
+  m_Name: ValueUpdatePuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

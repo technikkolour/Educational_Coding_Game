@@ -607,7 +607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2273646388050599303}
   m_Layer: 0
-  m_Name: CodeEnteringPuzzle
+  m_Name: CodeBuildingPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

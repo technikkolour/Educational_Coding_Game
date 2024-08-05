@@ -10,10 +10,10 @@ using System.Linq;
 public class Player : MonoBehaviour
 {
     // Progress Data;
-    private List<int> Medals = new List<int>() { 0, 0, 0 };
-    private List<bool> CompltetedPuzzles = new List<bool>( Enumerable.Repeat(false, 10) );
-    private List<bool> JournalEntriesFound = new List<bool>( Enumerable.Repeat(false, 11) );
-    private List<Item> Inventory = new List<Item>(5);
+    private List<int> Medals = new() { 0, 0, 0 };
+    private List<bool> CompltetedPuzzles = new( Enumerable.Repeat(false, 10) );
+    private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
+    private List<Item> Inventory = new(5);
 
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
