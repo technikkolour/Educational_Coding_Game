@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 {
     // Progress Data;
     private List<int> Medals = new() { 0, 0, 0 };
-    private List<bool> CompltetedPuzzles = new( Enumerable.Repeat(false, 10) );
+    private List<bool> CompletedPuzzles = new( Enumerable.Repeat(false, 10) );
     private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
     private List<Item> Inventory = new(5);
 
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     // Puzzle completion update function;
     public void CompletedPuzzle(int PuzzleID, int attempts)
     {
-        CompltetedPuzzles[PuzzleID - 1] = true;
+        CompletedPuzzles[PuzzleID - 1] = true;
 
         if (attempts <= 3) Medals[PuzzleID - 1] += 1;
     }
