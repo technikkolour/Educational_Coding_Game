@@ -8,10 +8,13 @@ public class PuzzleManager : MonoBehaviour
     private Player Player;
     private Puzzle CurrentPuzzle;
 
+    public GameObject ErrorMessage;
+    public string ProposedSolution;
+
     // The sets are structured in the order: Prompt, Options (or Lines of Code), Solution;
     private Dictionary<int, List<List<string>>> MultipleChoice = new(){
-        { 0, new(){ new(){"Would the number 3 be considered an integer (int)?"}, new(){"Yes", "No"}, new(){"Yes"} } },
-        { 1, new(){ new(){""}, new(){""}, new(){""} } } } ;
+        { 1, new(){ new(){"Would the number 3 be considered an integer (int)?"}, new(){"Yes", "No"}, new(){"Yes"} } },
+        { 2, new(){ new(){""}, new(){""}, new(){""} } } } ;
     private Dictionary<int, List<List<string>>> Quiz = new(){
         { 0, new(){ new(){""}, new(){""}, new(){""} } },
         { 1, new(){ new(){""}, new(){""}, new(){""} } } };
@@ -36,19 +39,29 @@ public class PuzzleManager : MonoBehaviour
         CurrentPuzzle = FindObjectOfType<Puzzle>();
     }
 
-    public void SubmitSolution(string CorrectSolution)
+    public void SubmitSolution()
     {
-        if (CurrentPuzzle.VerifySolution(CorrectSolution))
+        if (CurrentPuzzle.VerifySolution())
         {
             Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
             CurrentPuzzle.SetCompleted();
         }   
         else
+        {
             CurrentPuzzle.SetAttempts();
+            ErrorMessage.SetActive(true);
+            Invoke("RemoveMessage", 5);
+        }
+
     }
 
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
         return MultipleChoice[PuzzleID];
+    }
+
+    private void RemoveMessage()
+    {
+        ErrorMessage.SetActive(false);
     }
 }

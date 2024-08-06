@@ -17,6 +17,11 @@ public class Puzzle : MonoBehaviour
     private bool Done = false;
     private int Prize_ItemID = 0;
 
+    public string ProposedSolution;
+
+    public TMP_Text PromptObject;
+    public TMP_Text AttemptsObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +32,12 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AttemptsObject.text = Attempts.ToString();
     }
 
     public int GetID()
     {
-        return Prize_ItemID;
+        return PuzzleID;
     }
 
     public string GetPrompt()
@@ -54,15 +59,17 @@ public class Puzzle : MonoBehaviour
         Done = true;
     }
 
-    public bool VerifySolution(string ProposedSolution)
+    public void SetProposedSolution(string OptionName)
+    {
+        ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<Text>().text;
+    }
+
+    public bool VerifySolution()
     {
         return ProposedSolution == Solution;
     }
 
     // Multiple Choice;
-    public TMP_Text PromptObject;
-    public TMP_Text AttemptsObject;
-
     public void AssignValues_MC(List<List<string>> Values)
     {
         PromptObject.text = Values[0][0];
