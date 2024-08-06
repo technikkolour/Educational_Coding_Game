@@ -7,15 +7,18 @@ public class PuzzleManager : MonoBehaviour
     private Player Player;
     private Puzzle CurrentPuzzle;
 
+    // The sets are structured in the order: Prompt, Options (or Lines of Code), Solution;
     private Dictionary<int, List<string>> MultipleChoice = new(){
-        { 0, new(){ "", ""} },
-        { 1, new(){ "", "" } } } ;
+        { 0, new(){ "", "", ""} },
+        { 1, new(){ "", "", ""} } } ;
     private Dictionary<int, List<string>> Quiz = new(){
-        { 0, new(){ "", ""} },
-        { 1, new(){ "", "" } } };
+        { 0, new(){ "", "", "" } },
+        { 1, new(){ "", "", "" } } };
     private Dictionary<int, List<string>> CodeOrdering = new(){
-        { 0, new(){ "", ""} },
+        { 0, new(){ "", "" } },
         { 1, new(){ "", "" } } };
+
+    // 
     private Dictionary<int, List<string>> ValueUpdate = new(){
         { 0, new(){ "", ""} },
         { 1, new(){ "", "" } } };

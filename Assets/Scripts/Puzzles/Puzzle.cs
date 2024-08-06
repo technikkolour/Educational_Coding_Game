@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Puzzle : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Puzzle : MonoBehaviour
 
     private int Attempts = 0;
     private string Prompt;
-    private string Solution;
+    public string Solution;
     private bool Done = false;
     private int Prize_ItemID = 0;
 
@@ -53,5 +54,11 @@ public class Puzzle : MonoBehaviour
     public bool VerifySolution(string ProposedSolution)
     {
         return ProposedSolution == Solution;
+    }
+
+    // Multiple Choice;
+    public void MultipleChoice(GameObject gameObject)
+    {
+        Solution = gameObject.GetComponent<Toggle>().GetComponentInChildren<Text>().text;
     }
 }
