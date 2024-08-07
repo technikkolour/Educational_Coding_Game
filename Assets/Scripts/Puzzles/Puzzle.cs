@@ -11,7 +11,7 @@ public class Puzzle : MonoBehaviour
     public string PuzzleType;
     public int PuzzleID;
 
-    private int Attempts = 0;
+    private int Attempts = 1;
     private string Prompt;
     public string Solution;
     private bool Done = false;
@@ -27,6 +27,7 @@ public class Puzzle : MonoBehaviour
     {
         PuzzleManager PuzzleManager = FindObjectOfType<PuzzleManager>();
         if (PuzzleType == "MultipleChoice") AssignValues_MC(PuzzleManager.ReturnPuzzleDetails(PuzzleID));
+        if (PuzzleType == "CodeOrdering") AssignValues_CO(PuzzleManager.ReturnPuzzleDetails(PuzzleID));
     }
 
     // Update is called once per frame
@@ -57,12 +58,7 @@ public class Puzzle : MonoBehaviour
     public void SetCompleted()
     {
         Done = true;
-    }
-
-    public void SetProposedSolution(string OptionName)
-    {
-        ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<Text>().text;
-    }
+    }    
 
     public bool VerifySolution()
     {
@@ -86,8 +82,37 @@ public class Puzzle : MonoBehaviour
 
         Solution = Values[2][0];
     }
-    public void MultipleChoice(GameObject gameObject)
+    public void SetAnswer(string OptionName)
     {
-        Solution = gameObject.GetComponent<Toggle>().GetComponentInChildren<Text>().text;
+        ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<Text>().text;
+    }
+
+    // Code Line Ordering;
+    public void AssignValues_CO(List<List<string>> Values)
+    {
+        PromptObject.text = Values[0][0];
+        AttemptsObject.text = (Attempts + 1).ToString();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (i <= Values[1].Count - 1)
+                GameObject.Find("CodeLine_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = Values[1][i];
+            else
+            {
+                GameObject.Find("CodeLine_0" + (i + 1)).SetActive(false);
+                GameObject.Find("Place_0" + (i + 1)).SetActive(false);
+            }
+
+        }
+
+        Solution = Values[2][0];
+    }
+    private void ComputeOrder()
+    {
+        string Result = "";
+
+
+
+        ProposedSolution = Result;
     }
 }

@@ -16,11 +16,11 @@ public class PuzzleManager : MonoBehaviour
         { 1, new(){ new(){"Would the number 3 be considered an integer (int)?"}, new(){"Yes", "No"}, new(){"Yes"} } },
         { 2, new(){ new(){""}, new(){""}, new(){""} } } } ;
     private Dictionary<int, List<List<string>>> Quiz = new(){
-        { 0, new(){ new(){""}, new(){""}, new(){""} } },
-        { 1, new(){ new(){""}, new(){""}, new(){""} } } };
+        { 10, new(){ new(){""}, new(){""}, new(){""} } },
+        { 11, new(){ new(){""}, new(){""}, new(){""} } } };
     private Dictionary<int, List<List<string>>> CodeOrdering = new(){
-        { 0, new(){ new(){""}, new(){""}, new(){""} } },
-        { 1, new(){ new(){""}, new(){""}, new(){""} } } };
+        { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"2, 3, 1"} } },
+        { 4, new(){ new(){""}, new(){""}, new(){""} } } };
 
     // 
     private Dictionary<int, List<string>> ValueUpdate = new(){
@@ -57,7 +57,7 @@ public class PuzzleManager : MonoBehaviour
 
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
-        return MultipleChoice[PuzzleID];
+        return CodeOrdering[PuzzleID];
     }
 
     private void RemoveMessage()
