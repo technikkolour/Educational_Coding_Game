@@ -2931,6 +2931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrderingPuzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3496730961313838247, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

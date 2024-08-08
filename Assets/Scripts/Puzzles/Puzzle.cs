@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
@@ -109,10 +110,38 @@ public class Puzzle : MonoBehaviour
     }
     private void ComputeOrder()
     {
-        string Result = "";
+        string Order = ""; 
 
+        for (int i = 0; i < 4; i++)
+        {
+            Order += new(CollidingObject.name.Split("_"))[-1];
+        }
 
+        ProposedSolution = Order;
+    }
+    public void MoveLine(Collider2D MovedLine)
+    {
+        Vector2 IntialPosition = MovedLine.transform.position;
+    }
 
-        ProposedSolution = Result;
+    // Value Updating;
+    public void AssignValues_VU(List<List<string>> Values)
+    {
+        PromptObject.text = Values[0][0];
+        AttemptsObject.text = (Attempts + 1).ToString();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (i <= Values[1].Count - 1)
+                GameObject.Find("CodeLine_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = Values[1][i];
+            else
+            {
+                GameObject.Find("CodeLine_0" + (i + 1)).SetActive(false);
+                GameObject.Find("Place_0" + (i + 1)).SetActive(false);
+            }
+
+        }
+
+        Solution = Values[2][0];
     }
 }

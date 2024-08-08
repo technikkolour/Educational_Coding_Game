@@ -19,13 +19,12 @@ public class PuzzleManager : MonoBehaviour
         { 10, new(){ new(){""}, new(){""}, new(){""} } },
         { 11, new(){ new(){""}, new(){""}, new(){""} } } };
     private Dictionary<int, List<List<string>>> CodeOrdering = new(){
-        { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"2, 3, 1"} } },
-        { 4, new(){ new(){""}, new(){""}, new(){""} } } };
+        { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"231"} } } };
 
     // 
-    private Dictionary<int, List<string>> ValueUpdate = new(){
-        { 0, new(){ "", ""} },
-        { 1, new(){ "", "" } } };
+    private Dictionary<int, List<List<string>>> ValueUpdate = new(){
+        { 5, new(){ new(){"This gate seems to be locked. Maybe changing a value in the code will open it..."}, new(){"if 'gate is unlocked' = _____\n    open"}, new(){"True"} } },
+        { 4, new(){ new(){"The gate to the city is locked. Maybe setting its value to unlocked will help me get through."}, new(){"gate = '_________'"}, new(){"unlocked"} } } };
 
     // Start is called before the first frame update;
     void Start()
