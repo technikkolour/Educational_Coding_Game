@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private List<int> Medals = new() { 0, 0, 0 };
     private List<bool> CompletedPuzzles = new( Enumerable.Repeat(false, 10) );
     private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
-    private List<Item> Inventory = new(5);
+    private List<Item> CurrentInventory = new();
 
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
@@ -39,13 +39,9 @@ public class Player : MonoBehaviour
 
         // The E key is reserved for interacting;
         if (Input.GetKeyDown(KeyCode.E) && CollidingObject != null) Interact();
-    }
 
-    public List<bool> GetJournalEntriesFound()
-    {
-        return JournalEntriesFound;
+        if (Input.GetKeyDown(KeyCode.K)) PickUpItem(0);
     }
-
 
     // Called a set number or times, not depenent on framerate;
     void FixedUpdate()
@@ -95,21 +91,40 @@ public class Player : MonoBehaviour
         prompt = "";
     }    
 
-    // Inventory interaction functions;
-    public void PickUpItem(Item Item)
-    {
-        Inventory[Item.ItemID-1] = Item;
-    }
-    public void UseItem(int ItemID)
-    {
-        Inventory.RemoveAt(ItemID);
-    }
 
-    // Journal update function;
+    // Journal functions;
+    public List<bool> GetJournalEntriesFound()
+    {
+        return JournalEntriesFound;
+    }
     public void FoundEntry(int EntryID)
     {
         JournalEntriesFound[EntryID - 1] = true;
     }
+
+
+    public List<int> GetMedals()
+    {
+        return Medals;
+    }
+
+
+    // CurrentInventory interaction functions;
+    public void PickUpItem(int ItemID)
+    {
+        Inventory Inventory = FindObjectOfType<Inventory>();
+        Item Item = Inventory.ReturnItemForIndex(ItemID);
+        if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
+    }
+    public void UseItem(int ItemID)
+    {
+        CurrentInventory.RemoveAt(ItemID);
+    }
+    public List<Item> GetInventory()
+    {
+        return CurrentInventory;
+    }
+
 
     // Puzzle completion update function;
     public void CompletedPuzzle(int PuzzleID, int attempts)

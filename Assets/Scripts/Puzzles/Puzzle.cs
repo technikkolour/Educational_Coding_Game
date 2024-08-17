@@ -5,7 +5,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Puzzle : MonoBehaviour
 {
@@ -114,7 +113,7 @@ public class Puzzle : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            Order += new(CollidingObject.name.Split("_"))[-1];
+            /*Order += new(CollidingObject.name.Split("_"))[-1];*/
         }
 
         ProposedSolution = Order;

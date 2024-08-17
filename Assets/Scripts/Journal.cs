@@ -102,7 +102,7 @@ public class Journal : MonoBehaviour
             if (Player.GetJournalEntriesFound()[i] == true && !Entries.Contains(AllEntries[i]))
             {
                 if (Entries[0][1] == "" && Entries[1][1] == "") Entries.RemoveAt(0);
-                Entries.Insert((Entries.Count - 1), AllEntries[i]);
+                Entries.Insert(Entries.Count - 1, AllEntries[i]);
             }
         }
     }
