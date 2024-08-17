@@ -26,8 +26,10 @@ public class Puzzle : MonoBehaviour
     void Start()
     {
         PuzzleManager PuzzleManager = FindObjectOfType<PuzzleManager>();
-        if (PuzzleType == "MultipleChoice") AssignValues_MC(PuzzleManager.ReturnPuzzleDetails(PuzzleID));
-        if (PuzzleType == "CodeOrdering") AssignValues_CO(PuzzleManager.ReturnPuzzleDetails(PuzzleID));
+        DataManager DataManager = FindObjectOfType<DataManager>();
+
+        if (PuzzleType == "MultipleChoice") AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
+        if (PuzzleType == "CodeOrdering") AssignValues_CO(DataManager.ReturnPuzzleDetails(PuzzleID));
     }
 
     // Update is called once per frame

@@ -9,22 +9,15 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public TMP_Text Gold, Silver, Bronze;
-    public List<Sprite> Sprites = new();
 
     private Player Player;
-    private List<Item> Items = new();
-
+    private DataManager DataManager;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = FindObjectOfType<Player>();
-
-        Items.Add(Item.CreateInstance("Robot Licence", Sprites[0], "", 0));
-        Items.Add(Item.CreateInstance("Rusty Circuit Board", Sprites[1], "", 1));
-        Items.Add(Item.CreateInstance("", Sprites[2], "", 2));
-        Items.Add(Item.CreateInstance("", Sprites[3], "", 3));
-        Items.Add(Item.CreateInstance("", Sprites[4], "", 4));
+        DataManager = FindObjectOfType<DataManager>();
     }
 
     // Update is called once per frame
@@ -47,6 +40,6 @@ public class Inventory : MonoBehaviour
 
     public Item ReturnItemForIndex(int Index)
     {
-        return Items[Index];
+        return DataManager.Items[Index];
     }
 }
