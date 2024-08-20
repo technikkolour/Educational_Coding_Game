@@ -80,6 +80,7 @@ public class Puzzle : MonoBehaviour
         return ProposedSolution == Solution;
     }
 
+    //####################################################################################################################################################################
     // Multiple Choice;
     public void AssignValues_MC(List<List<string>> Values)
     {
@@ -102,6 +103,7 @@ public class Puzzle : MonoBehaviour
         ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
 
+    //####################################################################################################################################################################
     // Code Line Ordering;
     public void AssignValues_CO(List<List<string>> Values)
     {
@@ -138,6 +140,7 @@ public class Puzzle : MonoBehaviour
         Vector2 IntialPosition = MovedLine.transform.position;
     }
 
+    //####################################################################################################################################################################
     // Value Updating;
     public TMP_Text CodeBodyText;
     public TMP_InputField ValueInputField;
@@ -173,4 +176,7 @@ public class Puzzle : MonoBehaviour
     {
         ProposedSolution = ValueInputField.text;
     }
+
+    //####################################################################################################################################################################
+    // Code Building
 }
