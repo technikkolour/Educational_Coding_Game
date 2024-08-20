@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Puzzle : MonoBehaviour
 {
@@ -28,8 +31,18 @@ public class Puzzle : MonoBehaviour
         PuzzleManager PuzzleManager = FindObjectOfType<PuzzleManager>();
         DataManager DataManager = FindObjectOfType<DataManager>();
 
-        if (PuzzleType == "MultipleChoice") AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
-        if (PuzzleType == "CodeOrdering") AssignValues_CO(DataManager.ReturnPuzzleDetails(PuzzleID));
+        switch (PuzzleType)
+        {
+            case "MultipleChoice":
+                AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
+                break;
+            case "CodeOrdering":
+                AssignValues_CO(DataManager.ReturnPuzzleDetails(PuzzleID));
+                break;
+            case "ValueUpdate":
+                AssignValues_VU(DataManager.ReturnPuzzleDetails(PuzzleID));
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -76,7 +89,7 @@ public class Puzzle : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             if (i <= Values[1].Count - 1)
-                GameObject.Find("Option_0" + (i + 1)).GetComponentInChildren<Text>().text = Values[1][i];
+                GameObject.Find("Option_0" + (i + 1)).GetComponentInChildren<UnityEngine.UI.Text>().text = Values[1][i];
             else
                 GameObject.Find("Option_0" + (i + 1)).SetActive(false);
 
@@ -86,7 +99,7 @@ public class Puzzle : MonoBehaviour
     }
     public void SetAnswer(string OptionName)
     {
-        ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<Text>().text;
+        ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
 
     // Code Line Ordering;
@@ -126,23 +139,38 @@ public class Puzzle : MonoBehaviour
     }
 
     // Value Updating;
+    public TMP_Text CodeBodyText;
+    public TMP_InputField ValueInputField;
+
     public void AssignValues_VU(List<List<string>> Values)
     {
         PromptObject.text = Values[0][0];
         AttemptsObject.text = (Attempts + 1).ToString();
 
-        for (int i = 0; i < 4; i++)
-        {
-            if (i <= Values[1].Count - 1)
-                GameObject.Find("CodeLine_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = Values[1][i];
-            else
-            {
-                GameObject.Find("CodeLine_0" + (i + 1)).SetActive(false);
-                GameObject.Find("Place_0" + (i + 1)).SetActive(false);
-            }
-
-        }
+        GameObject.Find("CodeBody").GetComponentInChildren<TMP_Text>().text = Values[1][0];
+        PositionTextBox();
 
         Solution = Values[2][0];
+    }
+    public void PositionTextBox()
+    {
+        // Force TMP to update;
+        // Otherwise the text isn't fully loaded and the code doesn't function properly;
+        CodeBodyText.ForceMeshUpdate();
+        int UnderscoreIndex = CodeBodyText.text.IndexOf("_________");
+
+        if (UnderscoreIndex != -1)
+        {
+            // Get the world position of the missing value;
+            Vector3 MissingValuePosition = CodeBodyText.transform.TransformPoint(CodeBodyText.textInfo.characterInfo[UnderscoreIndex].topRight);
+
+            // Place the InputField in the location of the underscores;
+            RectTransform InputFieldRect = ValueInputField.GetComponent<RectTransform>();
+            InputFieldRect.position = new Vector3(MissingValuePosition.x + 85, MissingValuePosition.y + 20, InputFieldRect.position.z);
+        }
+    }
+    public void SetAnswer_VU()
+    {
+        ProposedSolution = ValueInputField.text;
     }
 }

@@ -37,9 +37,4 @@ public class Inventory : MonoBehaviour
         }
             
     }
-
-    public Item ReturnItemForIndex(int Index)
-    {
-        return DataManager.Items[Index];
-    }
 }

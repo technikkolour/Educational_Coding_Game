@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private Collider2D CollidingObject;
     private bool inInteraction = false;
     private string prompt;
+    private DataManager DataManager;
 
     public TMP_Text PromptText;
     public GameObject DialogueUI;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         RBComponent = GetComponent<Rigidbody2D>();
+        DataManager = FindObjectOfType<DataManager>();
     }
 
     // Update is called once per frame
@@ -112,8 +114,7 @@ public class Player : MonoBehaviour
     // CurrentInventory interaction functions;
     public void PickUpItem(int ItemID)
     {
-        Inventory Inventory = FindObjectOfType<Inventory>();
-        Item Item = Inventory.ReturnItemForIndex(ItemID);
+        Item Item = DataManager.ReturnItemForIndex(ItemID);
         if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
     }
     public void UseItem(int ItemID)
@@ -131,6 +132,6 @@ public class Player : MonoBehaviour
     {
         CompletedPuzzles[PuzzleID - 1] = true;
 
-        if (attempts <= 3) Medals[PuzzleID - 1] += 1;
+        if (attempts <= 3) Medals[attempts - 1] += 1;
     }
 }

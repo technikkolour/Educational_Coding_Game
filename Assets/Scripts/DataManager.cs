@@ -17,13 +17,13 @@ public class DataManager : MonoBehaviour
         { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"231"} } }
     };
 
-    // The lists are structured in the order: Prompt, Code (with missing values marked as underscores), Solution
+    // The lists are structured in the order: Prompt, Code (with missing values marked as underscores), Solution;
     private Dictionary<int, List<List<string>>> ValueUpdate = new(){
-        { 4, new(){ new(){"The gate to the city is locked. Maybe setting its value to unlocked will help me get through."}, new(){"gate = '_________'"}, new(){"unlocked"} } },
-        { 5, new(){ new(){"This gate seems to be locked. Maybe changing a value in the code will open it..."}, new(){"if 'gate is unlocked' = _____\n    open"}, new(){"True"} } },
+        { 4, new(){ new(){"The gate to the city is locked. Maybe setting its value to unlocked will help me get through."}, new(){"gate = ' _________ '"}, new(){"unlocked"} } },
+        { 5, new(){ new(){"This gate seems to be locked. Maybe changing a value in the code will open it..."}, new(){ "if 'gate is unlocked' = _________ \n    open" }, new(){"True"} } },
         { 6, new(){ new(){ "" }, new(){ "" }, new(){ "" } } } };
 
-    // The lists are structured in the order: Prompt, Possible Solutions
+    // The lists are structured in the order: Prompt, Possible Solutions;
     private Dictionary<int, List<List<string>>> CodeBuilding = new(){
         { 7, new(){ new() { } }}
     };
@@ -48,6 +48,11 @@ public class DataManager : MonoBehaviour
         
     }
 
+    public Item ReturnItemForIndex(int Index)
+    {
+        return Items[Index];
+    }
+
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
         List<List<string>> Puzzle = new();
@@ -68,9 +73,6 @@ public class DataManager : MonoBehaviour
                 break;
             case int i when i >= 10 && i <= 11:
                 Puzzle = Quiz[PuzzleID];
-                break;
-            default:
-                Puzzle = new() { new(){ }, new(){ }, new(){ } };
                 break;
         }
 
