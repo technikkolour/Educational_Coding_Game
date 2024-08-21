@@ -345,7 +345,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3311908887925591987}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: SetAnswer
+        m_MethodName: SetAnswer_MC
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1015,7 +1015,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3311908887925591987}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: SetAnswer
+        m_MethodName: SetAnswer_MC
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1267,7 +1267,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3311908887925591987}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: SetAnswer
+        m_MethodName: SetAnswer_MC
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1441,7 +1441,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3311908887925591987}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: SetAnswer
+        m_MethodName: SetAnswer_MC
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1847,6 +1847,8 @@ MonoBehaviour:
   ProposedSolution: 
   PromptObject: {fileID: 5007588774976202902}
   AttemptsObject: {fileID: 5371477338270588854}
+  CodeBodyText: {fileID: 0}
+  ValueInputField: {fileID: 0}
 --- !u!1 &9109719586548739349
 GameObject:
   m_ObjectHideFlags: 0

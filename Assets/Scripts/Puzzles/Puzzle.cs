@@ -98,7 +98,7 @@ public class Puzzle : MonoBehaviour
 
         Solution = Values[2][0];
     }
-    public void SetAnswer(string OptionName)
+    public void SetAnswer_MC(string OptionName)
     {
         ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
