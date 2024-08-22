@@ -5,10 +5,14 @@ using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private RectTransform OptionRectTransform;  
+    
+    public CanvasGroup Canvas;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        OptionRectTransform = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -19,16 +23,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        // 
+        Canvas.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        OptionRectTransform.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        Canvas.blocksRaycasts = true;
     }
 }

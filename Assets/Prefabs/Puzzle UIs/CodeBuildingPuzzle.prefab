@@ -4283,6 +4283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2273646388050599303}
+  - component: {fileID: 71106319897121373}
   m_Layer: 0
   m_Name: CodeBuildingPuzzle
   m_TagString: Untagged
@@ -4306,6 +4307,26 @@ Transform:
   - {fileID: 5576714578972730062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &71106319897121373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678298408168539697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea069d860faf4e4e86aed6dff9303e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PuzzleType: 
+  PuzzleID: 0
+  Solution: 
+  ProposedSolution: 
+  PromptObject: {fileID: 0}
+  AttemptsObject: {fileID: 0}
+  CodeBodyText: {fileID: 0}
+  ValueInputField: {fileID: 0}
 --- !u!1 &8825216422747215474
 GameObject:
   m_ObjectHideFlags: 0
