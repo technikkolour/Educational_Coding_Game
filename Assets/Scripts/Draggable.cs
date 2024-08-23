@@ -8,6 +8,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private RectTransform OptionRectTransform;
     private CanvasGroup OptionCanvasGroup;
 
+    public Vector3 StartPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        StartPosition = transform.position;
         OptionCanvasGroup.blocksRaycasts = false;
     }
 
@@ -34,6 +37,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.position = StartPosition;
         OptionCanvasGroup.blocksRaycasts = true;
     }
 }

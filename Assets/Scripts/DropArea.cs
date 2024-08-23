@@ -26,9 +26,9 @@ public class DropArea : MonoBehaviour, IDropHandler
         {
             droppedObject.transform.SetParent(transform);
             droppedObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        }
 
-        PlaceLines("123");
+
+        }
     }
 
     public void PlaceLines(string Order)
