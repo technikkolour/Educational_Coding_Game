@@ -102,6 +102,12 @@ public class Puzzle : MonoBehaviour
     {
         ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
+    //####################################################################################################################################################################
+    // Multiple Choice - QUIZ Mode;
+    public void QuizMode()
+    {
+
+    }
 
     //####################################################################################################################################################################
     // Code Line Ordering;
@@ -113,10 +119,12 @@ public class Puzzle : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             if (i <= Values[1].Count - 1)
-                GameObject.Find("CodeLine_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = Values[1][i];
+            {
+                GameObject ParentCode = GameObject.Find("Place_0" + (i + 1));
+                ParentCode.transform.Find("CodeLine_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = Values[1][i];
+            }
             else
             {
-                GameObject.Find("CodeLine_0" + (i + 1)).SetActive(false);
                 GameObject.Find("Place_0" + (i + 1)).SetActive(false);
             }
 

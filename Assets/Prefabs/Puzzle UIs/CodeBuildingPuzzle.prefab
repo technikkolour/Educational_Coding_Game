@@ -1847,7 +1847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0005275602}
+  m_AnchoredPosition: {x: 0, y: 0.00014474377}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &4333839910923471088
@@ -4323,8 +4323,8 @@ MonoBehaviour:
   PuzzleID: 0
   Solution: 
   ProposedSolution: 
-  PromptObject: {fileID: 0}
-  AttemptsObject: {fileID: 0}
+  PromptObject: {fileID: 3640160695262509515}
+  AttemptsObject: {fileID: 2575503248942858449}
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
 --- !u!1 &8825216422747215474
