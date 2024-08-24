@@ -31,6 +31,22 @@ public class DataManager : MonoBehaviour
         { 9, new(){ new(){""}, new(){""} } }
     };
 
+    // Code Building Blocks;
+    private Dictionary<string, string> CodeBuildingBlocks = new()
+    {
+        { "Integer", "integer _______ = _______" },
+        { "Float", "float _______ = _______" },
+        { "Boolean", "boolean _______ = _______" },
+        { "String", "string _______ = _______" },
+        { "Array", "array _______ = [_______, _______]" },
+        { "Mathematical Operation", " _______ = _______ --- _______"},
+        { "If Statement", "if _______ --- _______" },
+        { "For Loop", "for values of x increasing by 1, up to 5" },
+        { "While Loop", "while _______ --- _______" },
+        { "Move In Direction", "move _______ _______ steps" },
+        { "Attack With Power", "attack with _______ power" }
+    };
+
     // Inventory Data;
     public List<Item> Items = new();
     public List<Sprite> Sprites = new(5);
