@@ -49,6 +49,9 @@ public class Puzzle : MonoBehaviour
     void Update()
     {
         AttemptsObject.text = Attempts.ToString();
+
+        if (PuzzleType == "CodeOrdering")
+            ComputeOrder();
     }
 
     public int GetID()
@@ -127,7 +130,6 @@ public class Puzzle : MonoBehaviour
             {
                 GameObject.Find("Place_0" + (i + 1)).SetActive(false);
             }
-
         }
 
         Solution = Values[2][0];
@@ -138,14 +140,15 @@ public class Puzzle : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            /*Order += new(CollidingObject.name.Split("_"))[-1];*/
+            GameObject ParentCode = GameObject.Find("Place_0" + (i + 1));
+            if (ParentCode != null)
+            {
+                GameObject CodeLine = ParentCode.GetComponent<DropArea>().FindChildWithTag("CodeLine");
+                Order += CodeLine.name.Substring(CodeLine.name.Length - 1);
+            }
         }
 
         ProposedSolution = Order;
-    }
-    public void MoveLine(Collider2D MovedLine)
-    {
-        Vector2 IntialPosition = MovedLine.transform.position;
     }
 
     //####################################################################################################################################################################

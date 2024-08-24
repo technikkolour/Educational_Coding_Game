@@ -20,8 +20,6 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Hi!");
-
         GameObject PreviousLine = FindChildWithTag("CodeLine");
 
         GameObject DroppedObject = eventData.pointerDrag;
@@ -37,19 +35,7 @@ public class DropArea : MonoBehaviour, IDropHandler
         }
     }
 
-    public void PlaceLines(string Order)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            Transform Place = GameObject.Find("Place_0" + (i + 1)).transform;
-            GameObject Line = GameObject.Find("CodeLine_0" + Order[i]);
-
-            Line.transform.SetParent(Place);
-            Line.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        }
-    }
-
-    GameObject FindChildWithTag(string Tag)
+    public GameObject FindChildWithTag(string Tag)
     {
         foreach (Transform Child in transform)
         {
