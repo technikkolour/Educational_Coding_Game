@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private RectTransform OptionRectTransform;
     private CanvasGroup OptionCanvasGroup;
 
+    public Transform StartingParent;
     public Vector3 StartPosition;
 
     // Start is called before the first frame update
@@ -15,6 +17,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         OptionRectTransform = GetComponent<RectTransform>();
         OptionCanvasGroup = GetComponent<CanvasGroup>();
+        StartingParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         StartPosition = transform.position;
+        StartingParent = transform.parent;
         OptionCanvasGroup.blocksRaycasts = false;
     }
 
@@ -37,7 +41,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = StartPosition;
+        if (transform.parent == StartingParent)
+            transform.position = StartPosition;
+
         OptionCanvasGroup.blocksRaycasts = true;
+        StartingParent = null;
     }
 }

@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7459809065148146201}
   m_Layer: 5
   m_Name: CodeLine_04
-  m_TagString: Untagged
+  m_TagString: CodeLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e21a76beed0a0408a66bfa4d1f6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingParent: {fileID: 0}
+  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!225 &7459809065148146201
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -391,7 +393,7 @@ GameObject:
   - component: {fileID: 8277682164273894089}
   m_Layer: 5
   m_Name: CodeLine_03
-  m_TagString: Untagged
+  m_TagString: CodeLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -474,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e21a76beed0a0408a66bfa4d1f6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingParent: {fileID: 0}
+  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!225 &8277682164273894089
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -822,7 +826,7 @@ GameObject:
   - component: {fileID: 1934843743245965729}
   m_Layer: 5
   m_Name: Place_03
-  m_TagString: Untagged
+  m_TagString: CodeLineDropArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -957,7 +961,7 @@ GameObject:
   - component: {fileID: 11047290347848150}
   m_Layer: 5
   m_Name: CodeLine_02
-  m_TagString: Untagged
+  m_TagString: CodeLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1040,6 +1044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e21a76beed0a0408a66bfa4d1f6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingParent: {fileID: 0}
+  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!225 &11047290347848150
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1935,7 +1941,7 @@ GameObject:
   - component: {fileID: 2744941790129505580}
   m_Layer: 5
   m_Name: Place_01
-  m_TagString: Untagged
+  m_TagString: CodeLineDropArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2414,7 +2420,7 @@ GameObject:
   - component: {fileID: 278706393448148350}
   m_Layer: 5
   m_Name: Place_02
-  m_TagString: Untagged
+  m_TagString: CodeLineDropArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2550,7 +2556,7 @@ GameObject:
   - component: {fileID: 4427661258434525123}
   m_Layer: 5
   m_Name: CodeLine_01
-  m_TagString: Untagged
+  m_TagString: CodeLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2573,7 +2579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.999989, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1744352506103910099
@@ -2633,6 +2639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e21a76beed0a0408a66bfa4d1f6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingParent: {fileID: 0}
+  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!225 &3858846060800493804
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2668,7 +2676,7 @@ GameObject:
   - component: {fileID: 118478473937511784}
   m_Layer: 5
   m_Name: Place_04
-  m_TagString: Untagged
+  m_TagString: CodeLineDropArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
