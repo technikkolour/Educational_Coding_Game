@@ -42,6 +42,9 @@ public class Puzzle : MonoBehaviour
             case "ValueUpdate":
                 AssignValues_VU(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
+            case "CodeBuilding":
+                AssignValues_CB(DataManager.ReturnPuzzleDetails(PuzzleID));
+                break;
         }
     }
 
@@ -190,4 +193,9 @@ public class Puzzle : MonoBehaviour
 
     //####################################################################################################################################################################
     // Code Building
+    public void AssignValues_CB(List<List<string>> Values)
+    {
+        PromptObject.text = Values[0][0];
+        Solution = Values[1][0];
+    }
 }
