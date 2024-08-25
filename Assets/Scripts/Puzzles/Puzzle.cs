@@ -20,6 +20,7 @@ public class Puzzle : MonoBehaviour
     private bool Done = false;
     private int Prize_ItemID = 0;
 
+    private DataManager DataManager;
     public string ProposedSolution;
 
     public TMP_Text PromptObject;
@@ -29,7 +30,7 @@ public class Puzzle : MonoBehaviour
     void Start()
     {
         PuzzleManager PuzzleManager = FindObjectOfType<PuzzleManager>();
-        DataManager DataManager = FindObjectOfType<DataManager>();
+        DataManager = FindObjectOfType<DataManager>();
 
         switch (PuzzleType)
         {
@@ -193,9 +194,40 @@ public class Puzzle : MonoBehaviour
 
     //####################################################################################################################################################################
     // Code Building
+    public GameObject CodeBlockPrefab;
+    private GameObject CodeWindow;
+
     public void AssignValues_CB(List<List<string>> Values)
     {
         PromptObject.text = Values[0][0];
         Solution = Values[1][0];
+
+        CodeWindow = GameObject.Find("CodeScrollView");
+    }
+    public void SpawnCodeBlock(string Type)
+    {
+        string BlockText = DataManager.ReturnCodeBlockText(Type);
+
+        GameObject BlockInstance = Instantiate(CodeBlockPrefab);
+        BlockInstance.GetComponentInChildren<TMP_Text>().text = BlockText;
+        BlockInstance.transform.SetParent(CodeWindow.transform);
+
+        // Set location of block;
+    }
+    public void DeleteCodeBlock()
+    {
+
+    }
+    public void MoveBlockUp()
+    {
+
+    }
+    public void MoveBlockDown()
+    {
+
+    }
+    public void GenerateSolution()
+    {
+
     }
 }

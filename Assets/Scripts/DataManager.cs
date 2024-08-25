@@ -72,6 +72,11 @@ public class DataManager : MonoBehaviour
         return Items[Index];
     }
 
+    public string ReturnCodeBlockText(string Type)
+    {
+        return CodeBuildingBlocks[Type];
+    }
+
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
         List<List<string>> Puzzle = new();

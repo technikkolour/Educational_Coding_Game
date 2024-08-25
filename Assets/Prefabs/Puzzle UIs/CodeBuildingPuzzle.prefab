@@ -154,7 +154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2642872350847736032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Attack With Power
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &608879394465527577
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: 226.6}
+  m_AnchoredPosition: {x: 9, y: 220.4}
   m_SizeDelta: {x: 300.8528, y: 27.9537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3272529142967810188
@@ -574,7 +586,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1896498043519135669}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Mathematical Operation
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1230669618764644045
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +928,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6169253139966238047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: While Loop
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1830189139668247079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1522,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560958986176071822}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Integer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3143317210415063388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1789,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2470941666275663775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Move In Direction
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3326014541882783847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +2028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000008851572}
+  m_AnchoredPosition: {x: 0, y: 0.00010106819}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &4333839910923471088
@@ -3331,7 +3391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6429138369541557854}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Array
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6033167583383195876
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3792,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7953412702324062361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Boolean
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6319985336035631411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,7 +4059,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1114848398251560983}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Float
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6872040874671199169
 GameObject:
   m_ObjectHideFlags: 0
@@ -3991,7 +4087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &258503889935387443
 Transform:
   m_ObjectHideFlags: 0
@@ -4407,7 +4503,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1995013925829927119}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: If Statement
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8269789736588309866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4528,7 +4636,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 219507340517415546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: String
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8678298408168539697
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,6 +4702,7 @@ MonoBehaviour:
   AttemptsObject: {fileID: 2575503248942858449}
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
+  CodeBlockPrefab: {fileID: 4619988235309732689, guid: 420848401766df742a01b5fac88f9a10, type: 3}
 --- !u!1 &8825216422747215474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4865,7 +4986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6274517595383617805
 Transform:
   m_ObjectHideFlags: 0
@@ -5005,7 +5126,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7860964686692970474}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71106319897121373}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: SpawnCodeBlock
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: For Loop
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9039298260719349620
 GameObject:
   m_ObjectHideFlags: 0

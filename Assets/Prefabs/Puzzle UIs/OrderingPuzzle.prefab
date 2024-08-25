@@ -677,6 +677,7 @@ MonoBehaviour:
   AttemptsObject: {fileID: 1420328218662041980}
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
+  CodeBlockPrefab: {fileID: 0}
 --- !u!1 &2728016526314266206
 GameObject:
   m_ObjectHideFlags: 0
