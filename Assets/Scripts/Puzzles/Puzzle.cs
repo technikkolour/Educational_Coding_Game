@@ -100,13 +100,13 @@ public class Puzzle : MonoBehaviour
                 GameObject.Find("Option_0" + (i + 1)).GetComponentInChildren<UnityEngine.UI.Text>().text = Values[1][i];
             else
                 GameObject.Find("Option_0" + (i + 1)).SetActive(false);
-
         }
 
         Solution = Values[2][0];
     }
     public void SetAnswer_MC(string OptionName)
     {
+        Debug.Log("Hi");
         ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
     //####################################################################################################################################################################
