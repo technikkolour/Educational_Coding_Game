@@ -197,8 +197,6 @@ public class Puzzle : MonoBehaviour
     public GameObject CodeBlockPrefab;
     private GameObject CodeWindow;
 
-    private Vector2 PreviousBlockPosition = new Vector2(200, +100);
-
     public void AssignValues_CB(List<List<string>> Values)
     {
         PromptObject.text = Values[0][0];
@@ -213,10 +211,6 @@ public class Puzzle : MonoBehaviour
         GameObject BlockInstance = Instantiate(CodeBlockPrefab);
         BlockInstance.transform.Find("BlockText").GetComponent<TMP_Text>().text = BlockText;
         BlockInstance.transform.SetParent(CodeWindow.transform);
-
-        // Set location of block;
-        /*        BlockInstance.transform.position = PreviousBlockPosition;
-                PreviousBlockPosition = new Vector2(PreviousBlockPosition.x, PreviousBlockPosition.y - 100);*/
     }
     public void GenerateSolution()
     {
