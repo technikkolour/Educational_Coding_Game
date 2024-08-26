@@ -197,34 +197,26 @@ public class Puzzle : MonoBehaviour
     public GameObject CodeBlockPrefab;
     private GameObject CodeWindow;
 
+    private Vector2 PreviousBlockPosition = new Vector2(200, +100);
+
     public void AssignValues_CB(List<List<string>> Values)
     {
         PromptObject.text = Values[0][0];
         Solution = Values[1][0];
 
-        CodeWindow = GameObject.Find("CodeScrollView");
+        CodeWindow = GameObject.Find("CodeScrollView/Viewport/Content");
     }
     public void SpawnCodeBlock(string Type)
     {
         string BlockText = DataManager.ReturnCodeBlockText(Type);
 
         GameObject BlockInstance = Instantiate(CodeBlockPrefab);
-        BlockInstance.GetComponentInChildren<TMP_Text>().text = BlockText;
+        BlockInstance.transform.Find("BlockText").GetComponent<TMP_Text>().text = BlockText;
         BlockInstance.transform.SetParent(CodeWindow.transform);
 
         // Set location of block;
-    }
-    public void DeleteCodeBlock()
-    {
-
-    }
-    public void MoveBlockUp()
-    {
-
-    }
-    public void MoveBlockDown()
-    {
-
+        /*        BlockInstance.transform.position = PreviousBlockPosition;
+                PreviousBlockPosition = new Vector2(PreviousBlockPosition.x, PreviousBlockPosition.y - 100);*/
     }
     public void GenerateSolution()
     {
