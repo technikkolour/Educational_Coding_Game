@@ -4744,7 +4744,8 @@ MonoBehaviour:
   AttemptsObject: {fileID: 2575503248942858449}
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
-  CodeBlockPrefab: {fileID: 4619988235309732689, guid: 420848401766df742a01b5fac88f9a10, type: 3}
+  CodeBlockPrefab: {fileID: 8220588178936213256, guid: f39c5669c75eddf448624c555698ac3e, type: 3}
+  RobotBuilding: 0
 --- !u!1 &8825216422747215474
 GameObject:
   m_ObjectHideFlags: 0

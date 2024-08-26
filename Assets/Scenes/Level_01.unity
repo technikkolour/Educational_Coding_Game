@@ -11240,6 +11240,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 344093570}
     m_Modifications:
     - target: {fileID: 71106319897121373, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
+      propertyPath: RobotBuilding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71106319897121373, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
       propertyPath: CodeBlockPrefab
       value: 
       objectReference: {fileID: 8220588178936213256, guid: f39c5669c75eddf448624c555698ac3e, type: 3}

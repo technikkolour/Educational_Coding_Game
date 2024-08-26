@@ -7,17 +7,31 @@ public class Robot : MonoBehaviour
     private float Health;
     private float Strength;
 
+    // Movement functions;
+    private UnityEngine.Vector2 MovementDirection;
+    private Rigidbody2D RBComponent;
+
     // Start is called before the first frame update
     void Start()
     {
         Health = 150f;
         Strength = 250f;
+
+        RBComponent = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Strength < 250) RegenerateStrength();
+    }
+
+    private void FixedUpdate()
+    {
+        float speed = 7;
+
+        MovementDirection.x = Input.GetAxisRaw("Horizontal");
+        RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.deltaTime);
     }
 
     // Getters;

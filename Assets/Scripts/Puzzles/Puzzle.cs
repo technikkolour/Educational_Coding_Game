@@ -195,6 +195,8 @@ public class Puzzle : MonoBehaviour
     //####################################################################################################################################################################
     // Code Building
     public GameObject CodeBlockPrefab;
+    public bool RobotBuilding;
+
     private GameObject CodeWindow;
 
     public void AssignValues_CB(List<List<string>> Values)
@@ -203,6 +205,11 @@ public class Puzzle : MonoBehaviour
         Solution = Values[1][0];
 
         CodeWindow = GameObject.Find("CodeScrollView/Viewport/Content");
+
+        if (!RobotBuilding)
+        {
+            GameObject.Find("RobotTab").SetActive(false);
+        }
     }
     public void SpawnCodeBlock(string Type)
     {
