@@ -27,6 +27,7 @@ public class CodeBlock : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Change the order in which blocks are organised;
     public void MoveBlockUp()
     {
         Index = BlockRectTransform.GetSiblingIndex();
@@ -39,6 +40,7 @@ public class CodeBlock : MonoBehaviour
         if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
     }
 
+    // Update which buttons are interactable;
     public void UpdateButtons()
     {
         Index = BlockRectTransform.GetSiblingIndex();

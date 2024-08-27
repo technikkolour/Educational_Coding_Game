@@ -106,7 +106,6 @@ public class Puzzle : MonoBehaviour
     }
     public void SetAnswer_MC(string OptionName)
     {
-        Debug.Log("Hi");
         ProposedSolution = GameObject.Find(OptionName).GetComponentInChildren<UnityEngine.UI.Text>().text;
     }
     //####################################################################################################################################################################

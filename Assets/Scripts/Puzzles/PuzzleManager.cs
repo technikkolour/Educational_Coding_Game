@@ -12,6 +12,8 @@ public class PuzzleManager : MonoBehaviour
     public GameObject ErrorMessage;
     public string ProposedSolution;
 
+    public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_prefab, CodeBuildingUI_Prefab;
+
     // Start is called before the first frame update;
     void Start()
     {

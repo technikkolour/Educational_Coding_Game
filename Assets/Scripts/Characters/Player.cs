@@ -20,7 +20,10 @@ public class Player : MonoBehaviour
     private Collider2D CollidingObject;
     private bool inInteraction = false;
     private string prompt;
+
+    // Managers;
     private DataManager DataManager;
+    private GameManager GameManager;
 
     public TMP_Text PromptText;
     public GameObject DialogueUI;
@@ -29,7 +32,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         RBComponent = GetComponent<Rigidbody2D>();
+
         DataManager = FindObjectOfType<DataManager>();
+        GameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -79,11 +84,25 @@ public class Player : MonoBehaviour
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
         string CollidingObjectType = CollidingObjectName[^1];
 
-        prompt = CollidingObjectType switch
+        switch (CollidingObjectType)
         {
-            "Message" => "Hi! You must be new here!",
-            _ => "Hmm... Nothing to see here!",
-        };
+            case "Message":
+                prompt = "Hi! You must be new here!";
+                break;
+            case "Puzzle":
+                PuzzleSpawner Spawner = col.gameObject.GetComponent<PuzzleSpawner>();
+                Spawner.
+                break;
+            case "AcademyEntry":
+                GameManager.EnterAcademy();
+                break;
+            case "WarehouseEntry":
+                GameManager.EnterWarehouse();
+                break;
+            case "LevelExit":
+                GameManager.ReturnToCity();
+                break;
+        }
     }
 
     // Reset the values once the player is no longer colliding with a trigger;
