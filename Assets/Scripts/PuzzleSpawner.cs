@@ -20,4 +20,9 @@ public class PuzzleSpawner : MonoBehaviour
     {
         
     }
+
+    public void Spawn()
+    {
+        PuzzleManager.SpawnPuzzle(PuzzleType, PuzzleID);
+    }
 }

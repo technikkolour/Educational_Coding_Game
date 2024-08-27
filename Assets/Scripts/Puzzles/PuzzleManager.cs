@@ -10,6 +10,7 @@ public class PuzzleManager : MonoBehaviour
     private Puzzle CurrentPuzzle;
 
     public GameObject ErrorMessage;
+    public GameObject PuzzleUI;
     public string ProposedSolution;
 
     public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_prefab, CodeBuildingUI_Prefab;
@@ -44,5 +45,37 @@ public class PuzzleManager : MonoBehaviour
     private void RemoveMessage()
     {
         ErrorMessage.SetActive(false);
+    }
+
+    public void SpawnPuzzle(string PuzzleType, int PuzzleID)
+    {
+        GameObject Puzzle = new();
+        
+        switch (PuzzleType)
+        {
+            case "MultipleChoice":
+                Puzzle = Instantiate(MultipleChoiceUI_Prefab);
+                break;
+            case "CodeOrdering":
+                Puzzle = Instantiate(CodeOrderingUI_Prefab);
+                break;
+            case "ValueUpdate":
+                Puzzle = Instantiate(ValueUpdatingUI_prefab);
+                break;
+            case "CodeBuilding":
+                Puzzle = Instantiate(CodeBuildingUI_Prefab);
+                break;
+        }
+
+        PuzzleUI.SetActive(true);
+        Puzzle.transform.SetParent(PuzzleUI.transform);
+
+        Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
+        Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
+    }
+    public void ClosePuzzle()
+    {
+        Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
+        Destroy(Puzzle);
     }
 }

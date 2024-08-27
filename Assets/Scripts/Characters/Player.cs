@@ -65,7 +65,17 @@ public class Player : MonoBehaviour
             case false:
                 inInteraction = true;
                 PromptText.text = prompt;
-                DialogueUI.SetActive(true);
+
+                List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
+                string CollidingObjectType = CollidingObjectName[^1];
+
+                if (CollidingObjectType == "Puzzle")
+                {
+                    PuzzleSpawner Spawner = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
+                    Spawner.Spawn();
+                }
+                else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
+
                 Time.timeScale = 0.0f;
                 break;
             case true:
@@ -88,10 +98,6 @@ public class Player : MonoBehaviour
         {
             case "Message":
                 prompt = "Hi! You must be new here!";
-                break;
-            case "Puzzle":
-                PuzzleSpawner Spawner = col.gameObject.GetComponent<PuzzleSpawner>();
-                Spawner.
                 break;
             case "AcademyEntry":
                 GameManager.EnterAcademy();
