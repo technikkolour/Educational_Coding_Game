@@ -8,6 +8,8 @@ public class CodeBlock : MonoBehaviour
     public Button UpButton, DownButton;
     public RectTransform BlockRectTransform;
 
+    // The blocks that
+    private List<CodeBlock> NestedBlocks = new List<CodeBlock>();
     private int Index;
 
     // Start is called before the first frame update
