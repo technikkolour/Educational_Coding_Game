@@ -1079,8 +1079,9 @@ GameObject:
   - component: {fileID: 812396553}
   - component: {fileID: 812396555}
   - component: {fileID: 812396554}
+  - component: {fileID: 812396556}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1225,6 +1226,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &812396556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812396551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7632f1aa02d76a46bcc1f2727277f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  CurrentState: 0
+  AttackCooldown: 0
+  Timer: 0
+  Player: {fileID: 0}
+  Attacks: []
 --- !u!1 &952151786
 GameObject:
   m_ObjectHideFlags: 0

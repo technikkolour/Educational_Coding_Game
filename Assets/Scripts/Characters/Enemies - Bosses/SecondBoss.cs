@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SecondBoss : Enemy
 {
+    public List<Attack> Attacks;
+    private int ChanceOfHeavyAttack = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,17 @@ public class SecondBoss : Enemy
     }    
     
     public override void Attack()
+    {
+        int RandomValue = Random.Range(1, 100);
+
+        if (RandomValue < ChanceOfHeavyAttack) BaseAttack();
+        else HeavyAttack();
+    }
+    private void BaseAttack()
+    {
+
+    }
+    private void HeavyAttack()
     {
 
     }
