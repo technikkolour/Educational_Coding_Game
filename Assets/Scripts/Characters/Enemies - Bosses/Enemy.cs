@@ -13,38 +13,16 @@ public enum State
 
 public abstract class Enemy : MonoBehaviour
 {
-    private float Health;
-    private State CurrentState;
-    private float AttackCooldown;
-    private float Timer = 0f;
+    // The variables that all enemies have in common;
+    public float Health;
+    public State CurrentState;
+    public float AttackCooldown;
+    public float Timer = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        CurrentState = State.Idle;
-    }
+    // A reference to the player's robot;
+    public GameObject Player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        switch (CurrentState)
-        {
-            case State.Idle:
-                break;
-            case State.Attacking:
-                Attack();
-                break;  
-            case State.TakingDamage:
-                break;
-            case State.Moving:
-                MoveToPlayer();
-                break;
-            case State.Dead:
-                break;
-        }
-    }
-
-    private void ChangeState(State NewState)
+    public void ChangeState(State NewState)
     {
         CurrentState = NewState;
     }
@@ -52,11 +30,8 @@ public abstract class Enemy : MonoBehaviour
     // The attack method will be overridden by each child class;
     public abstract void Attack();
 
-    public void TakeDamage(float Damage)
-    {
-        Health -= Damage;
-        if (Health < 0) ChangeState(State.Dead);
-    }
+    // The damage taking behaviour will be overridden by each child class;
+    public abstract void TakeDamage(float Damage);
 
     // The movement will be defined in each child class;
     public abstract void MoveToPlayer(); 
