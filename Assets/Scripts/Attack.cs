@@ -53,6 +53,9 @@ public class Attack : MonoBehaviour
         Robot Robot = collision.collider.gameObject.GetComponent<Robot>();
         if (Robot != null) Robot.TakeDamage(Power);
 
+        Enemy Enemy = collision.collider.gameObject.GetComponent<Enemy>();
+        if (Enemy != null) Enemy.TakeDamage(Power);
+
         // The attack should despawn in the event that it collides with an object;
         GameObject.Destroy(gameObject);
     }

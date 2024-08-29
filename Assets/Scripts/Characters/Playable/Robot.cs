@@ -6,6 +6,9 @@ public class Robot : MonoBehaviour
 {
     public float Health;
     public float Strength;
+    public float Speed = 7f;
+
+    public Attack AttackPrefab;
 
     // Movement functions;
     private UnityEngine.Vector2 MovementDirection;
@@ -28,10 +31,8 @@ public class Robot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float speed = 7;
-
         MovementDirection.x = Input.GetAxisRaw("Horizontal");
-        RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.deltaTime);
+        RBComponent.MovePosition(RBComponent.position + MovementDirection * Speed * Time.deltaTime);
     }
 
     // Getters;
@@ -62,5 +63,20 @@ public class Robot : MonoBehaviour
     private void RegenerateStrength()
     {
         Strength = (Strength + (Strength + 5) / 2.0f) % 250;
+    }
+
+    // Robot Building Blocks;
+    public void AttackWithPower(float Power)
+    {
+        if (Strength >= Power)
+        {
+            Attack Attack = Instantiate(AttackPrefab);
+            Attack.transform.position = new Vector2(gameObject.transform.position.x + 1, gameObject.transform.position.y);
+            Attack.Power = Power;
+        }
+    }
+    public void MoveInDirection(Vector2 Direction, float Distance)
+    {
+        RBComponent.MovePosition(RBComponent.position + Direction * Speed * Time.deltaTime);
     }
 }

@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
     public float Health;
     public State CurrentState;
     public float AttackCooldown;
-    public float Timer = 0f;
+    public float LastAttackTime;
 
     // A reference to the player's robot;
     public GameObject Player;
@@ -34,5 +34,5 @@ public abstract class Enemy : MonoBehaviour
     public abstract void TakeDamage(float Damage);
 
     // The movement will be defined in each child class;
-    public abstract void MoveToPlayer(); 
+    public abstract void MoveToPlayer();
 }

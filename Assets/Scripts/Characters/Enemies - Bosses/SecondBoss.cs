@@ -12,6 +12,7 @@ public class SecondBoss : Enemy
     {
         CurrentState = State.Idle;
         Player = GameObject.Find("Robot");
+        LastAttackTime = 0;
     }
 
     // Update is called once per frame

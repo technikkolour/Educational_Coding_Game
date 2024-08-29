@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e31aede29500e345a2434a4549f5335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 0
-  Direction: {x: 0, y: 0}
+  Power: 20
+  Color: {r: 1, g: 0, b: 0, a: 1}
+  Direction: {x: -1, y: 0}
 --- !u!50 &1750281103459879189
 Rigidbody2D:
   serializedVersion: 4

@@ -11,6 +11,7 @@ public class FirstBoss : Enemy
     {
         CurrentState = State.Idle;
         Player = GameObject.Find("Robot");
+        LastAttackTime = 0;
     }
 
     // Update is called once per frame
@@ -35,17 +36,29 @@ public class FirstBoss : Enemy
 
     public override void Attack()
     {
-
+        if ((Time.time - LastAttackTime) > AttackCooldown)
+        {
+            Attack Attack = Instantiate(Attacks[0]);
+            Attack.transform.position = new Vector2(gameObject.transform.position.x - 1, gameObject.transform.position.y);
+            LastAttackTime = Time.time;
+        }
     }
 
     public override void TakeDamage(float Damage)
     {
         Health -= Damage;
+
         if (Health < 0) ChangeState(State.Dead);
+        else ChangeState(State.Idle);
     }
 
     public override void MoveToPlayer()
     {
+        float Speed = 10f;
+        Rigidbody2D Rigidbody = GetComponent<Rigidbody2D>();
 
+        Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
+
+        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5) Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
     }
 }
