@@ -5,22 +5,19 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public float Power;
-    public Color Color;
     public Vector2 Direction;
+
+    private Rigidbody2D Rigidbody;
 
     private float Speed = 7f;
     private Vector2 LastPosition;
     private float DistanceTravelled;
-    private Rigidbody2D Rigidbody;
     private float ScreenDistance;
 
     // Start is called before the first frame update;
     void Start()
     {
         DistanceTravelled = 0f;
-
-        gameObject.GetComponent<SpriteRenderer>().color = Color;
-
         Rigidbody = GetComponent<Rigidbody2D>();        
         
         // Compute the screen width limit;
@@ -32,10 +29,10 @@ public class Attack : MonoBehaviour
     // Update is called once per frame;
     void Update()
     { 
-
-
+        // Move the projectile in the given direction;
         Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
 
+        // Compute the distance travelled;
         DistanceTravelled += Vector2.Distance(Rigidbody.position, LastPosition);
         if (DistanceTravelled > ScreenDistance)
         {
