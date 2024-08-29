@@ -9,9 +9,6 @@ public class FirstBoss : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        AttackCooldown = 4f;
-        Health = 250f;
-
         CurrentState = State.Idle;
         Player = GameObject.Find("Robot");
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public float Power;
+    public Color Color;
     public Vector2 Direction;
 
     private Rigidbody2D Rigidbody;
@@ -18,6 +19,7 @@ public class Attack : MonoBehaviour
     void Start()
     {
         DistanceTravelled = 0f;
+        gameObject.GetComponent<SpriteRenderer>().color = Color;
         Rigidbody = GetComponent<Rigidbody2D>();        
         
         // Compute the screen width limit;

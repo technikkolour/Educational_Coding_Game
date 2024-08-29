@@ -10,9 +10,6 @@ public class ThirdBoss : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        AttackCooldown = 2f;
-        Health = 1000f;
-
         CurrentState = State.Idle;
         Player = GameObject.Find("Robot");
     }
