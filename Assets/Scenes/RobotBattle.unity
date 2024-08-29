@@ -862,6 +862,10 @@ PrefabInstance:
       value: BaseAttack
       objectReference: {fileID: 0}
     - target: {fileID: 8156420835430604064, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}
+      propertyPath: Power
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8156420835430604064, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}
       propertyPath: Color.a
       value: 1
       objectReference: {fileID: 0}
@@ -871,11 +875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219944647121958506, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 9219944647121958506, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -2.13
       objectReference: {fileID: 0}
     - target: {fileID: 9219944647121958506, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}
       propertyPath: m_LocalPosition.z

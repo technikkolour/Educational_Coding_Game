@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    private float Health;
-    private float Strength;
+    public float Health;
+    public float Strength;
 
     // Movement functions;
     private UnityEngine.Vector2 MovementDirection;
