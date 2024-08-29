@@ -30,16 +30,18 @@ public class FirstBoss : Enemy
                 MoveToPlayer();
                 break;
             case State.Dead:
-                gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
                 break;
         }
     }
 
     public override void Attack()
     {
+        // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
+            // Spawn in the attack;
             Attack Attack = Instantiate(Attacks[0]);
+            // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x - 1, gameObject.transform.position.y);
             LastAttackTime = Time.time;
         }
@@ -49,15 +51,23 @@ public class FirstBoss : Enemy
     {
         Health -= Damage;
 
-        if (Health < 0) ChangeState(State.Dead);
+        if (Health < 0)
+        {
+            // Unfreeze the rotation of the game object around the Z axis;
+            // Rotation is frozen at the start of the game to ensure that the enemy sprite does not begin spinning while moving towards the player, or falls over after attacks;
+            gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            ChangeState(State.Dead);
+        }
         else ChangeState(State.Idle);
     }
 
     public override void MoveToPlayer()
     {
-        float Speed = 15f;
+        float Speed = 12.5f;
         Rigidbody2D Rigidbody = GetComponent<Rigidbody2D>();
 
+        // Compute the Direction vector as the difference between the positions of the player and the enemy, normalised;
+        // This has been done to ;
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
         if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5) Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
