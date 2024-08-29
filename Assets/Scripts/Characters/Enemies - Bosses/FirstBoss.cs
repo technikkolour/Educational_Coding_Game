@@ -30,6 +30,7 @@ public class FirstBoss : Enemy
                 MoveToPlayer();
                 break;
             case State.Dead:
+                gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
                 break;
         }
     }
@@ -54,7 +55,7 @@ public class FirstBoss : Enemy
 
     public override void MoveToPlayer()
     {
-        float Speed = 10f;
+        float Speed = 15f;
         Rigidbody2D Rigidbody = GetComponent<Rigidbody2D>();
 
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
