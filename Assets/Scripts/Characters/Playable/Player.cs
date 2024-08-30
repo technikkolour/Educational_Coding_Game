@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     // Progress Data;
     private List<int> Medals = new() { 0, 0, 0 };
     private List<bool> CompletedPuzzles = new( Enumerable.Repeat(false, 10) );
-    private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
+    public List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
     private List<Item> CurrentInventory = new();
 
     private UnityEngine.Vector2 MovementDirection;

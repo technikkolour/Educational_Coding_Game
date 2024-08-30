@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
-
     // Return the journal entry corresponding to the ID;
     public string GetTheoreticalEntry(int EntryID)
     {
