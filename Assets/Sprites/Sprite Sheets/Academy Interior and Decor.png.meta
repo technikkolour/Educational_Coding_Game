@@ -289,9 +289,9 @@ TextureImporter:
       name: Academy Interior and Decor_9
       rect:
         serializedVersion: 2
-        x: 1712
+        x: 2275
         y: 1259
-        width: 2576
+        width: 1444
         height: 1320
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -348,6 +348,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Academy Interior and Decor_12
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 1258
+        width: 187
+        height: 1321
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 067657ec0acf2f0498fcb2d12d15d75d
+      internalID: 252680391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Academy Interior and Decor_14
+      rect:
+        serializedVersion: 2
+        x: 3721
+        y: 1259
+        width: 507
+        height: 1319
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0be638ee22e11c49af736c7c77830e8
+      internalID: 2069918152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Academy Interior and Decor_13
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 1259
+        width: 316
+        height: 1320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aca34a7d71edd64586784bac19fd556
+      internalID: -2058552357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -364,6 +427,8 @@ TextureImporter:
       Academy Interior and Decor_10: 652591823
       Academy Interior and Decor_11: -746390390
       Academy Interior and Decor_12: 252680391
+      Academy Interior and Decor_13: -2058552357
+      Academy Interior and Decor_14: 2069918152
       Academy Interior and Decor_2: -1118455261
       Academy Interior and Decor_3: 1242152037
       Academy Interior and Decor_4: 840313784
