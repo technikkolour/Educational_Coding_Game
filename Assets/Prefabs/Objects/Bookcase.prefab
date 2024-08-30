@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7258869334133405723}
   - component: {fileID: 7418805321039403753}
   m_Layer: 0
-  m_Name: InteractableObject
+  m_Name: Bookcase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
