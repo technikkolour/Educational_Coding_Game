@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1372234198}
     m_Modifications:
+    - target: {fileID: 2881646211289725283, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: DialogueUI
       value: 

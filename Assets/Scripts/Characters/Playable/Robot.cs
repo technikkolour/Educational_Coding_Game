@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float Health;
-    public float Strength;
+    public float Health = 150f;
+    public float Strength = 250f;
     public float Speed = 7f;
 
     public Attack AttackPrefab;
@@ -17,9 +17,6 @@ public class Robot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Health = 150f;
-        Strength = 250f;
-
         RBComponent = GetComponent<Rigidbody2D>();
     }
 
@@ -32,7 +29,7 @@ public class Robot : MonoBehaviour
     private void FixedUpdate()
     {
         MovementDirection.x = Input.GetAxisRaw("Horizontal");
-        RBComponent.MovePosition(RBComponent.position + MovementDirection * Speed * Time.deltaTime);
+        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * MovementDirection);
     }
 
     // Getters;
@@ -62,7 +59,10 @@ public class Robot : MonoBehaviour
     }
     private void RegenerateStrength()
     {
-        Strength = (Strength + (Strength + 5) / 2.0f) % 250;
+        Strength = (2*Strength + 2.5f) / 2.0f;
+
+        // Cap the strength at 250;
+        if (Strength > 250) Strength = 250;
     }
 
     // Robot Building Blocks;
@@ -73,10 +73,12 @@ public class Robot : MonoBehaviour
             Attack Attack = Instantiate(AttackPrefab);
             Attack.transform.position = new Vector2(gameObject.transform.position.x + 1, gameObject.transform.position.y);
             Attack.Power = Power;
+
+            DecreaseStrength(Power);
         }
     }
     public void MoveInDirection(Vector2 Direction, float Distance)
     {
-        RBComponent.MovePosition(RBComponent.position + Direction * Speed * Time.deltaTime);
+        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * Direction);
     }
 }

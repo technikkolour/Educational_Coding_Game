@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_03.unity
     guid: 8a1a5294df3d3c345b4bb6d4b41be521
   - enabled: 1
-    path: Assets/Scenes/Level_04.unity
-    guid: a5ebd4902b27c7641a292f827bd3038f
+    path: Assets/Scenes/MultiplayerLobby.unity
+    guid: 486f9d9ca2db14f43a66eaf29fddc483
   - enabled: 1
-    path: Assets/Scenes/Multiplayer_Lobby.unity
-    guid: a927ad80d44fe09489a2de8a41d91d43
+    path: Assets/Scenes/RobotBattle.unity
+    guid: 8aca0fbbf62dc9c41822466ab6968a8b
   m_configObjects: {}

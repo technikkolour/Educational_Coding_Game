@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5388407648817126747}
   - component: {fileID: -7193681839907128605}
-  - component: {fileID: -4171732220110652589}
   - component: {fileID: 3235024226976975184}
+  - component: {fileID: -4171732220110652589}
   - component: {fileID: -6365950977551696471}
   m_Layer: 0
   m_Name: FirstBoss
@@ -87,33 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &-4171732220110652589
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3300318982061415443}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!70 &3235024226976975184
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +122,33 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0025030375, y: 0.0025030375}
   m_Size: {x: 1.0156333, y: 2.016248}
   m_Direction: 0
+--- !u!50 &-4171732220110652589
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300318982061415443}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &-6365950977551696471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   Health: 250
   CurrentState: 0
   AttackCooldown: 4
-  Timer: 0
+  LastAttackTime: 0
   Player: {fileID: 0}
   Attacks:
   - {fileID: 8156420835430604064, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}

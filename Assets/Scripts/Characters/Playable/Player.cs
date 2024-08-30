@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         float speed = 7;
-        RBComponent.MovePosition(RBComponent.position + MovementDirection * speed * Time.fixedDeltaTime);
+        RBComponent.MovePosition(RBComponent.position + speed * Time.fixedDeltaTime * MovementDirection);
     }
 
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
