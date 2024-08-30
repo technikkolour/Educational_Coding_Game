@@ -41,7 +41,7 @@ public class DataManager : MonoBehaviour
         { "Array", "array _______ = [_______, _______]" },
         { "Mathematical Operation", " _______ = _______ --- _______"},
         { "If Statement", "if _______ --- _______" },
-        { "For Loop", "for values of x increasing by 1, up to 5" },
+        { "For Loop", "for values of _______ increasing by _______, up to _______" },
         { "While Loop", "while _______ --- _______" },
         { "Move In Direction", "move _______ _______ steps" },
         { "Attack With Power", "attack with _______ power" }
@@ -49,16 +49,15 @@ public class DataManager : MonoBehaviour
 
     // Inventory Data;
     public List<Item> Items = new();
-    public List<Sprite> Sprites = new(5);
+    public List<Sprite> Sprites = new(4);
 
     // Start is called before the first frame update
     void Start()
     {
-        Items.Add(Item.CreateInstance("Robot Licence", Sprites[0], "", 0));
-        Items.Add(Item.CreateInstance("Rusty Circuit Board", Sprites[1], "", 1));
-        Items.Add(Item.CreateInstance("", Sprites[2], "", 2));
-        Items.Add(Item.CreateInstance("", Sprites[3], "", 3));
-        Items.Add(Item.CreateInstance("", Sprites[4], "", 4));
+        Items.Add(Item.CreateInstance("Robot Licence", Sprites[0], "With this I can build my own robot!", 0));
+        Items.Add(Item.CreateInstance("Rusty Circuit Board", Sprites[1], "Wow! I've never seen one in real life until now!", 1));
+        Items.Add(Item.CreateInstance("Multicolour Pen", Sprites[2], "It's so cool! I've always wanted one!", 2));
+        Items.Add(Item.CreateInstance("Smartphone", Sprites[3], "Hmm... Apparently this is the phone of the future!", 3));
     }
 
     // Update is called once per frame
