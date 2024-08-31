@@ -35,7 +35,7 @@ public class Attack : MonoBehaviour
         if (gameObject.name.Contains("Circular"))
         {
             GameObject Pivot = GameObject.Find("CustomPivot");
-            gameObject.transform.RotateAround(Pivot.transform.position, (-1) * Vector3.forward, 50 * Time.deltaTime);
+            gameObject.transform.RotateAround(Pivot.transform.position, (-1) * Vector3.forward, 100 * Time.deltaTime);
         }
         else
         {

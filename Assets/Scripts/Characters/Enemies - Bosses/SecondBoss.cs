@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SecondBoss : Enemy
@@ -39,8 +40,16 @@ public class SecondBoss : Enemy
     {
         int RandomValue = Random.Range(1, 100);
 
-        if (RandomValue > ChanceOfHeavyAttack) Attack(0);
-        else Attack(1);
+        if (RandomValue > ChanceOfHeavyAttack)
+        {
+            Attack(0);
+            AttackCooldown = 3;
+        }
+        else
+        {
+            Attack(1);
+            AttackCooldown = 6;
+        }
     }
     private void Attack(int Index)
     {
