@@ -9236,11 +9236,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items: []
   Sprites:
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 652591823, guid: 9656df8e8ad230447b96d495bbe24c61, type: 3}
+  - {fileID: 2064097842, guid: 21ff1b8c3bc803e4c9a2003bcbee7156, type: 3}
+  - {fileID: 160092834, guid: 21ff1b8c3bc803e4c9a2003bcbee7156, type: 3}
+  - {fileID: 1336415424, guid: 21ff1b8c3bc803e4c9a2003bcbee7156, type: 3}
 --- !u!1001 &3912545979990623802
 PrefabInstance:
   m_ObjectHideFlags: 0

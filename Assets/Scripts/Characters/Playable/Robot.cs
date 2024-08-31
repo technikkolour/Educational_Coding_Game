@@ -24,6 +24,7 @@ public class Robot : MonoBehaviour
     void Update()
     {
         if (Strength < 250) RegenerateStrength();
+        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(new Vector2(0f, 1f), 10);
     }
 
     private void FixedUpdate()
@@ -79,6 +80,6 @@ public class Robot : MonoBehaviour
     }
     public void MoveInDirection(Vector2 Direction, float Distance)
     {
-        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * Direction);
+        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * Direction * Distance);
     }
 }
