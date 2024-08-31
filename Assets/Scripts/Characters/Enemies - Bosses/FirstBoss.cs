@@ -37,7 +37,11 @@ public class FirstBoss : Enemy
 
     public void DecideOnNextMove()
     {
+        float ChanceOfMovement = (Vector2.Distance(Player.transform.position, gameObject.transform.position)) * 20;
+        int RandomValue = Random.Range(1, 100);
 
+        if (RandomValue < ChanceOfMovement) ChangeState(State.Moving);
+        else ChangeState(State.Attacking);
     }
 
     public override void Attack()
@@ -52,8 +56,11 @@ public class FirstBoss : Enemy
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
             Attack.Direction = Direction;
-            LastAttackTime = Time.time;
 
+            // Ignore the collision with the attack;
+            Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<CircleCollider2D>());
+
+            LastAttackTime = Time.time;
             ChangeState(State.Idle);
         }
     }

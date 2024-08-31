@@ -63,9 +63,13 @@ public class SecondBoss : Enemy
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
 
+            // Assign the different collider types to one Collider2D variable;
+            Collider2D AttackCollider = new();
+            if (Attack.GetComponent<BoxCollider2D>() != null) AttackCollider = Attack.GetComponent<BoxCollider2D>();
+            else if (Attack.GetComponent<CircleCollider2D>() != null) AttackCollider = Attack.GetComponent<CircleCollider2D>();
+
             // Ignore the collision with the attack;
-            if (Attack.name.Contains("Circular"))
-                Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<BoxCollider2D>());
+            Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), AttackCollider);
 
             LastAttackTime = Time.time;
         }
