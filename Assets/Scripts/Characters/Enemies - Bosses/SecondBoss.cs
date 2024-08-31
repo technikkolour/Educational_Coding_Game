@@ -39,10 +39,10 @@ public class SecondBoss : Enemy
     {
         int RandomValue = Random.Range(1, 100);
 
-        if (RandomValue < ChanceOfHeavyAttack) BaseAttack();
-        else HeavyAttack();
+        if (RandomValue > ChanceOfHeavyAttack) Attack(0);
+        else Attack(1);
     }
-    private void BaseAttack()
+    private void Attack(int Index)
     {
         // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
@@ -50,22 +50,9 @@ public class SecondBoss : Enemy
             Vector2 Direction = (Player.transform.position - gameObject.transform.position);
 
             // Spawn in the attack;
-            Attack Attack = Instantiate(Attacks[0]);
+            Attack Attack = Instantiate(Attacks[Index]);
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
-            LastAttackTime = Time.time;
-        }
-    }
-    private void HeavyAttack()
-    {
-        // Check whether the time passed since the last attack is greater than the cooldown time;
-        if ((Time.time - LastAttackTime) > AttackCooldown)
-        {
-            // Spawn in the attack;
-            Attack Attack = Instantiate(Attacks[1]);
-
-            // Position the attack in front of the enemy;
-            Attack.transform.position = new Vector2(gameObject.transform.position.x - 1, gameObject.transform.position.y);
             LastAttackTime = Time.time;
         }
     }

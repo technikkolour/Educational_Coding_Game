@@ -9,7 +9,6 @@ public class Attack : MonoBehaviour
     public Vector2 Direction;
 
     private Rigidbody2D Rigidbody;
-
     private float Speed = 7f;
     private Vector2 LastPosition;
     private float DistanceTravelled;
@@ -30,21 +29,28 @@ public class Attack : MonoBehaviour
 
     // Update is called once per frame;
     void Update()
-    { 
-        // Move the projectile in the given direction;
-        Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
-
-        // Compute the distance travelled;
-        DistanceTravelled += Vector2.Distance(Rigidbody.position, LastPosition);
-        if (DistanceTravelled > ScreenDistance)
+    {
+        if (gameObject.name.Contains("Circular"))
         {
-            UpdatePower();
-
-            // The screen distance variable increases every time the power of the attack is updated to ensure that the value does not drop to 0;
-            ScreenDistance *= 1.05f;
+            GameObject Pivot = GameObject.Find("CustomPivot");
+            gameObject.transform.RotateAround(Pivot.transform.position, (-1) * Vector3.forward, 50 * Time.deltaTime);
         }
+        else
+        {
+            Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime); // Move the projectile in the given direction;
 
-        LastPosition = Rigidbody.position;
+            // Compute the distance travelled;
+            DistanceTravelled += Vector2.Distance(Rigidbody.position, LastPosition);
+            if (DistanceTravelled > ScreenDistance)
+            {
+                UpdatePower();
+
+                // The screen distance variable increases every time the power of the attack is updated to ensure that the value does not drop to 0;
+                ScreenDistance *= 1.05f;
+            }
+
+            LastPosition = Rigidbody.position;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

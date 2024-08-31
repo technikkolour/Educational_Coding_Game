@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &-6917766402134018182
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   Health: 500
   CurrentState: 0
   AttackCooldown: 3
-  Timer: 0
+  LastAttackTime: 0
   Player: {fileID: 0}
   Attacks:
   - {fileID: 8156420835430604064, guid: 1d8d02a20c4b8b94bb6ebc6d7e949ea1, type: 3}

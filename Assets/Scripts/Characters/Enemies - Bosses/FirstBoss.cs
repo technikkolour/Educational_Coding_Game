@@ -39,12 +39,13 @@ public class FirstBoss : Enemy
         // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
-            Vector2 Direction = (Player.transform.position - gameObject.transform.position);
+            Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
             // Spawn in the attack;
             Attack Attack = Instantiate(Attacks[0]);
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
+            Attack.Direction = Direction;
             LastAttackTime = Time.time;
         }
     }
