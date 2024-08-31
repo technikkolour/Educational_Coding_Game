@@ -39,7 +39,7 @@ public class ThirdBoss : Enemy
     {
         int RandomValue = Random.Range(1, 100);
 
-        if (RandomValue < ChanceOfHeavyAttack) BaseAttack();
+        if (RandomValue > ChanceOfHeavyAttack) BaseAttack();
         else HeavyAttack();
     }
     private void BaseAttack()
@@ -70,6 +70,8 @@ public class ThirdBoss : Enemy
                 // Position the attack above the player's last known location;
                 Attack.transform.position = new Vector2(gameObject.transform.position.x - 1, gameObject.transform.position.y);
 
+                NumberOfAttacks -= 1;
+
             }
             
             LastAttackTime = Time.time;
@@ -79,14 +81,40 @@ public class ThirdBoss : Enemy
 
     public override void MoveToPlayer()
     {
+        float Speed = 12.5f;
+        Rigidbody2D Rigidbody = GetComponent<Rigidbody2D>();
 
+        // Compute the Direction vector as the difference between the positions of the player and the enemy, normalised;
+        Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
+
+
+        // If the player is not next to a wall, the enemy has a 50% chance of jumping over them;
+        int RandomValue = Random.Range(1, 100);
+
+        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5)
+        {
+            if (RandomValue >= 50)
+            {
+                Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
+            }
+            else
+            {
+
+            }
+        }
     }
 
     public override void TakeDamage(float Damage)
     {
         Health -= Damage;
 
-        if (Health < 0) ChangeState(State.Dead);
-        if (Health < 500) ChanceOfHeavyAttack = 45;
+        if (Health < 0)
+        {
+            // Unfreeze the rotation of the game object around the Z axis;
+            // Rotation is frozen at the start of the game to ensure that the enemy sprite does not begin spinning while moving towards the player, or falls over after attacks;
+            gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            ChangeState(State.Dead);
+        }
+        else ChangeState(State.Idle);
     }
 }

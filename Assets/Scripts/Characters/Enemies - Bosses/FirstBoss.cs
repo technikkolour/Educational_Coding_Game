@@ -20,6 +20,7 @@ public class FirstBoss : Enemy
         switch (CurrentState)
         {
             case State.Idle:
+                DecideOnNextMove();
                 break;
             case State.Attacking:
                 Attack();
@@ -32,6 +33,11 @@ public class FirstBoss : Enemy
             case State.Dead:
                 break;
         }
+    }
+
+    public void DecideOnNextMove()
+    {
+
     }
 
     public override void Attack()
@@ -47,6 +53,8 @@ public class FirstBoss : Enemy
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
             Attack.Direction = Direction;
             LastAttackTime = Time.time;
+
+            ChangeState(State.Idle);
         }
     }
 
@@ -74,5 +82,6 @@ public class FirstBoss : Enemy
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
         if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5) Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
+        else ChangeState(State.Attacking);
     }
 }

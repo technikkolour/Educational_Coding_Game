@@ -40,6 +40,7 @@ public class DataManager : MonoBehaviour
         { "String", "string _______ = _______" },
         { "Array", "array _______ = [_______, _______]" },
         { "Mathematical Operation", " _______ = _______ --- _______"},
+        { "Output", "print _______"},
         { "If Statement", "if _______ --- _______" },
         { "For Loop", "for values of _______ increasing by _______, up to _______" },
         { "While Loop", "while _______ --- _______" },
@@ -66,6 +67,7 @@ public class DataManager : MonoBehaviour
         
     }
 
+    // Get the item corresponding to the given index;
     public Item ReturnItemForIndex(int Index)
     {
         return Items[Index];
@@ -76,6 +78,7 @@ public class DataManager : MonoBehaviour
         return CodeBuildingBlocks[Type];
     }
 
+    // Get the details correspomding to the puzzle identified by its ID;
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
         List<List<string>> Puzzle = new();

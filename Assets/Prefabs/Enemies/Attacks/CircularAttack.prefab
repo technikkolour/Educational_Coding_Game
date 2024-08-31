@@ -59,14 +59,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6990677971547290806}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8673496, w: 0.49769944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 7.0570035, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3253259180650113186}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120.304}
 --- !u!212 &6624846202279766966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,10 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e31aede29500e345a2434a4549f5335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 0
+  Power: 55
   Color: {r: 1, g: 1, b: 1, a: 1}
   Direction: {x: 0, y: 0}
-  Speed: 20
 --- !u!50 &1750281103459879189
 Rigidbody2D:
   serializedVersion: 4

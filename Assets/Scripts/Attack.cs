@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour
     public Vector2 Direction;
 
     private Rigidbody2D Rigidbody;
-    private float Speed = 7f;
+    private float Speed = 10f;
     private Vector2 LastPosition;
     private float DistanceTravelled;
     private float ScreenDistance;
@@ -30,6 +30,8 @@ public class Attack : MonoBehaviour
     // Update is called once per frame;
     void Update()
     {
+        // If the attack is circular, spin it around a pivot point;
+        // If not, have it move in the direction of the player;
         if (gameObject.name.Contains("Circular"))
         {
             GameObject Pivot = GameObject.Find("CustomPivot");

@@ -47,12 +47,17 @@ public class SecondBoss : Enemy
         // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
-            Vector2 Direction = (Player.transform.position - gameObject.transform.position);
+            Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
             // Spawn in the attack;
             Attack Attack = Instantiate(Attacks[Index]);
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
+
+            // Ignore the collision with the attack;
+            if (Attack.name.Contains("Circular"))
+                Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<BoxCollider2D>());
+
             LastAttackTime = Time.time;
         }
     }
@@ -86,6 +91,14 @@ public class SecondBoss : Enemy
     public override void TakeDamage(float Damage)
     {
         Health -= Damage;
-        if (Health < 0) ChangeState(State.Dead);
+
+        if (Health < 0)
+        {
+            // Unfreeze the rotation of the game object around the Z axis;
+            // Rotation is frozen at the start of the game to ensure that the enemy sprite does not begin spinning while moving towards the player, or falls over after attacks;
+            gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            ChangeState(State.Dead);
+        }
+        else ChangeState(State.Idle);
     }
 }
