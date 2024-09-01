@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 146451261}
   - component: {fileID: 146451260}
   - component: {fileID: 146451259}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 239044845}
   - component: {fileID: 239044844}
   - component: {fileID: 239044843}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 252221958}
   - component: {fileID: 252221959}
   - component: {fileID: 252221960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BossHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 376362158}
   - component: {fileID: 376362160}
   - component: {fileID: 376362159}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 559732878}
   - component: {fileID: 559732880}
   - component: {fileID: 559732879}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StrengthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 790750427}
   - component: {fileID: 790750428}
   - component: {fileID: 790750429}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RobotStrengthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 1136608346}
   - component: {fileID: 1136608347}
   - component: {fileID: 1136608348}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RobotHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 1421350544}
   - component: {fileID: 1421350546}
   - component: {fileID: 1421350545}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BossName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607666157}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UISprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,7 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620715964}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UICanvases
   m_TagString: Untagged
   m_Icon: {fileID: 0}

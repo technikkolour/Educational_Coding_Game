@@ -7,9 +7,9 @@ public class Attack : MonoBehaviour
     public float Power;
     public Color Color;
     public Vector2 Direction;
+    public float Speed = 10f;
 
     private Rigidbody2D Rigidbody;
-    private float Speed = 10f;
     private Vector2 LastPosition;
     private float DistanceTravelled;
     private float ScreenDistance;

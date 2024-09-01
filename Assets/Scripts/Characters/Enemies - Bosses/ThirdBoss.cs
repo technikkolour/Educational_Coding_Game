@@ -118,8 +118,12 @@ public class ThirdBoss : Enemy
 
                 // Position the attack above the player's last known location;
                 float RandomX = Random.Range((Center.x - 1.5f), (Center.x + 1.5f));
-                Attack.transform.position = new Vector2(RandomX, 5);
+                Attack.transform.position = new Vector2(RandomX, 2);
 
+                // Ignore the collision between the enemy and the attack;
+                Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<CapsuleCollider2D>());
+
+                // Decrease number of attacks still to spawn;
                 NumberOfAttacks -= 1;
             }
 

@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 25
+  Color: {r: 1, g: 0.33460778, b: 0, a: 1}
   Direction: {x: 0, y: -1}
+  Speed: 5
 --- !u!50 &1750281103459879189
 Rigidbody2D:
   serializedVersion: 4
