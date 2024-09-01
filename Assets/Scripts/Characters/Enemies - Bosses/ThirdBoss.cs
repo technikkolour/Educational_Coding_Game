@@ -72,43 +72,64 @@ public class ThirdBoss : Enemy
     }
     private void BaseAttack()
     {
+        Attack Attack = null;
+
         // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
             Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
             // Spawn in the attack;
-            Attack Attack = Instantiate(Attacks[0]);
+            Attack = Instantiate(Attacks[0]);
+
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
             Attack.Direction = Direction;
+            Attack.Power = 75;
 
-            // Ignore the collision with the attack;
+            // Ignore the collision between the enemy and the attack;
             Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<CircleCollider2D>());
 
             LastAttackTime = Time.time;
+        }
+
+        if (Attack == null)
+        {
+            PreviousState = State.Attacking;
             ChangeState(State.Idle);
         }
     }
     private void HeavyAttack()
     {
+        Attack Attack = null;
+
+        // Check whether cooldpon has run out;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
             Vector2 Center = Player.transform.position;
 
+            // Randomly select number of projectiles to spawn;
             int NumberOfAttacks = Random.Range(3, 5);
+
             while (NumberOfAttacks > 0)
             {
-                Attack Attack = Instantiate(Attacks[1]);
+                // Spawn projectile;
+                Attack = Instantiate(Attacks[1]);
 
                 // Position the attack above the player's last known location;
-                Attack.transform.position = new Vector2(gameObject.transform.position.x - 1, gameObject.transform.position.y);
+                float RandomX = Random.Range((Center.x - 1.5f), (Center.x + 1.5f));
+                Attack.transform.position = new Vector2(RandomX, 5);
 
                 NumberOfAttacks -= 1;
-
             }
-            
+
             LastAttackTime = Time.time;
+        }
+
+        if (Attack == null)
+        {
+            PreviousState = State.Attacking;
+            ChangeState(State.Idle);
         }
 
     }
@@ -121,8 +142,6 @@ public class ThirdBoss : Enemy
 
         // Compute the Direction vector as the difference between the positions of the player and the enemy, normalised;
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
-
-
 
         int RandomValue = Random.Range(1, 100);
 

@@ -31,7 +31,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         // If the attack is circular, spin it around a pivot point;
-        // If not, have it move in the direction of the player;
+        // If not, have it move in the initial direction of the player;
         if (gameObject.name.Contains("Circular"))
         {
             GameObject Pivot = GameObject.Find("CustomPivot");
@@ -39,7 +39,8 @@ public class Attack : MonoBehaviour
         }
         else
         {
-            Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime); // Move the projectile in the given direction;
+            // Move the projectile in the given direction;
+            Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime); 
 
             // Compute the distance travelled;
             DistanceTravelled += Vector2.Distance(Rigidbody.position, LastPosition);

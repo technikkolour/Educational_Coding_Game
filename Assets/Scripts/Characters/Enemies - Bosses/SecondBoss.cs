@@ -95,7 +95,7 @@ public class SecondBoss : Enemy
             if (Attack.GetComponent<BoxCollider2D>() != null) AttackCollider = Attack.GetComponent<BoxCollider2D>();
             else if (Attack.GetComponent<CircleCollider2D>() != null) AttackCollider = Attack.GetComponent<CircleCollider2D>();
 
-            // Ignore the collision with the attack;
+            // Ignore the collision between the enemy and the attack;
             Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), AttackCollider);
 
             LastAttackTime = Time.time;
