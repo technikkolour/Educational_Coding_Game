@@ -82,6 +82,10 @@ public class SecondBoss : Enemy
 
             // Spawn in the attack;
             Attack = Instantiate(Attacks[Index]);
+
+            // Update the Power value for the base attack;
+            if (Index == 0) Attack.Power = 40f;
+
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
             Attack.Direction = Direction;

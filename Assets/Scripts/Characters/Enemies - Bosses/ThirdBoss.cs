@@ -5,7 +5,12 @@ using UnityEngine;
 public class ThirdBoss : Enemy
 {
     public List<Attack> Attacks;
+
     private int ChanceOfHeavyAttack = 35;
+
+    private bool IsInAir = false;
+    private float JumpCooldown = 5f;
+    private float LastJumpTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,32 +44,50 @@ public class ThirdBoss : Enemy
     public void DecideOnNextMove()
     {
         // The further the enemy is from the player, the higher the chance of moving closer;
-        float ChanceOfMovement = (Vector2.Distance(Player.transform.position, gameObject.transform.position)) * 20;
+        float ChanceOfMovement = (Vector2.Distance(Player.transform.position, gameObject.transform.position)) * 5f;
         int RandomValue = Random.Range(1, 100);
 
-        if (RandomValue < ChanceOfMovement) ChangeState(State.Moving);
-        else ChangeState(State.Attacking);
+        if (!IsInAir)
+        {
+            if ((RandomValue < ChanceOfMovement) && (PreviousState != State.Moving)) ChangeState(State.Moving);
+            else ChangeState(State.Attacking);
+        }
     }
 
+    // Randomly decide whether to use the base attack or the heavy attack;
     public override void Attack()
     {
         int RandomValue = Random.Range(1, 100);
 
-        if (RandomValue > ChanceOfHeavyAttack) BaseAttack();
-        else HeavyAttack();
+        if ((RandomValue > ChanceOfHeavyAttack) && (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 2.5))
+        {
+            BaseAttack();
+            AttackCooldown = 2;
+        }
+        else
+        {
+            HeavyAttack();
+            AttackCooldown = 5;
+        }
     }
     private void BaseAttack()
     {
         // Check whether the time passed since the last attack is greater than the cooldown time;
         if ((Time.time - LastAttackTime) > AttackCooldown)
         {
-            Vector2 Direction = (Player.transform.position - gameObject.transform.position);
+            Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
             // Spawn in the attack;
             Attack Attack = Instantiate(Attacks[0]);
             // Position the attack in front of the enemy;
             Attack.transform.position = new Vector2(gameObject.transform.position.x + Mathf.Sign(Direction.x), gameObject.transform.position.y);
+            Attack.Direction = Direction;
+
+            // Ignore the collision with the attack;
+            Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Attack.GetComponent<CircleCollider2D>());
+
             LastAttackTime = Time.time;
+            ChangeState(State.Idle);
         }
     }
     private void HeavyAttack()
@@ -90,6 +113,7 @@ public class ThirdBoss : Enemy
 
     }
 
+    // Move closer to the player if they are a set distance away;
     public override void MoveToPlayer()
     {
         float Speed = 12.5f;
@@ -99,22 +123,33 @@ public class ThirdBoss : Enemy
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
 
-        // If the player is not next to a wall, the enemy has a 50% chance of jumping over them;
+
         int RandomValue = Random.Range(1, 100);
 
-        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5)
+        // If the enemy is far from the player;
+        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 3.5)
         {
-            if (RandomValue >= 50)
-            {
-                Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
-            }
-            else
-            {
+            Rigidbody.MovePosition(Rigidbody.position + Speed * Time.deltaTime * Direction);
 
+            // If the player is not next to a wall, the enemy has a 10% chance of jumping over them;
+            if ((Mathf.Abs(Player.transform.position.x) < 6) && (RandomValue <= 10) && (Time.time - LastJumpTime > JumpCooldown))
+            {
+                float JumpForce = 10f;
+                float ForwardSpeed = 5f;
+                Rigidbody.velocity = new Vector2(Direction.x * ForwardSpeed, JumpForce);
+
+                LastJumpTime = Time.time;
+                IsInAir = true;
             }
+        }
+        else
+        {
+            PreviousState = State.Moving;
+            ChangeState(State.Idle);
         }
     }
 
+    // Take damage when hit and verify whether the object is dead;
     public override void TakeDamage(float Damage)
     {
         Health -= Damage;
@@ -127,5 +162,11 @@ public class ThirdBoss : Enemy
             ChangeState(State.Dead);
         }
         else ChangeState(State.Idle);
+    }
+
+    // Check if the enemy has landed;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.name == "Floor") IsInAir = false;
     }
 }
