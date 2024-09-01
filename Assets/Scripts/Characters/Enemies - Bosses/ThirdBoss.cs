@@ -21,6 +21,7 @@ public class ThirdBoss : Enemy
         switch (CurrentState)
         {
             case State.Idle:
+                DecideOnNextMove();
                 break;
             case State.Attacking:
                 Attack();
@@ -33,8 +34,18 @@ public class ThirdBoss : Enemy
             case State.Dead:
                 break;
         }
-    }    
-    
+    }
+
+    public void DecideOnNextMove()
+    {
+        // The further the enemy is from the player, the higher the chance of moving closer;
+        float ChanceOfMovement = (Vector2.Distance(Player.transform.position, gameObject.transform.position)) * 20;
+        int RandomValue = Random.Range(1, 100);
+
+        if (RandomValue < ChanceOfMovement) ChangeState(State.Moving);
+        else ChangeState(State.Attacking);
+    }
+
     public override void Attack()
     {
         int RandomValue = Random.Range(1, 100);

@@ -37,6 +37,7 @@ public class FirstBoss : Enemy
 
     public void DecideOnNextMove()
     {
+        // The further the enemy is from the player, the higher the chance of moving closer;
         float ChanceOfMovement = (Vector2.Distance(Player.transform.position, gameObject.transform.position)) * 20;
         int RandomValue = Random.Range(1, 100);
 

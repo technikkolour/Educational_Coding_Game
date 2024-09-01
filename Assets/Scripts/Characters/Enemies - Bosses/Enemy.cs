@@ -16,6 +16,7 @@ public abstract class Enemy : MonoBehaviour
     // The variables that all enemies have in common;
     public float Health;
     public State CurrentState;
+    public State PreviousState;
     public float AttackCooldown;
     public float LastAttackTime;
 
