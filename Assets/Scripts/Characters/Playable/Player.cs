@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
     }
 
     // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
-    void OnTriggerStay2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         CollidingObject = col;
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
@@ -108,6 +108,9 @@ public class Player : MonoBehaviour
                 break;
             case "LevelExit":
                 GameManager.ReturnToCity();
+                break;
+            case "BossBattleTrigger_01":
+                Invoke("GameManager.EnterBattle()", 5);
                 break;
         }
     }

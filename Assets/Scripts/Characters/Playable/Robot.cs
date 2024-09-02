@@ -25,7 +25,7 @@ public class Robot : MonoBehaviour
     {
         if (Strength < 250) RegenerateStrength();
 
-        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(Vector2.up, 10);
+        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(Vector2.up, 10f);
     }
 
     private void FixedUpdate()
@@ -79,14 +79,14 @@ public class Robot : MonoBehaviour
             DecreaseStrength(Power);
         }
     }
-    public void MoveInDirection(Vector2 Direction, float Distance)
+    public void MoveInDirection(Vector2 Direction, float Speed)
     {
         if (Direction == Vector2.up)
-            RBComponent.velocity = new Vector2(RBComponent.velocity.x, Distance);
+            RBComponent.velocity = new Vector2(RBComponent.velocity.x, Speed);
         else if (Direction == Vector2.left)
-            RBComponent.velocity = new Vector2(Vector2.left.x * Distance, RBComponent.velocity.y);
+            RBComponent.velocity = new Vector2(Vector2.left.x * Speed, RBComponent.velocity.y);
         else if (Direction == Vector2.right)
-            RBComponent.velocity = new Vector2(Vector2.right.x * Distance, RBComponent.velocity.y);
+            RBComponent.velocity = new Vector2(Vector2.right.x * Speed, RBComponent.velocity.y);
 
         /*        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * Direction * Distance);*/
     }

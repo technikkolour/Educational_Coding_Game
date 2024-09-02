@@ -2131,6 +2131,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
   m_PrefabInstance: {fileID: 853439617}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &853439619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+  m_PrefabInstance: {fileID: 853439617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41d66d4e2b58bc4e8a79a0706d5a145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &897364772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4425,6 +4436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141354e5a1340f341826cc59e52d8470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 853439619}
+  AcademySpawn: {fileID: 0}
+  WarehouseSpawn: {fileID: 0}
 --- !u!4 &1751578352
 Transform:
   m_ObjectHideFlags: 0

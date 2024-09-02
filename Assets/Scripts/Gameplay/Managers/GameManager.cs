@@ -6,7 +6,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private static string PreviousSceneName;
     private List<string> TheoreticalCollection = new List<string>() { "" };
+
+    // Spawning properties;
+    public Player Player;
+    public GameObject AcademySpawn, WarehouseSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +49,20 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    private IEnumerator LoadSceneWait(string SceneName, System.Action OnSceneLoaded)
+    {
+        AsyncOperation AsyncLoadLevel = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+
+
+        while (!AsyncLoadLevel.isDone)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForEndOfFrame();
+
+        OnSceneLoaded?.Invoke();
+    }
 
 
     //####################################################################################################################################################################
@@ -51,9 +76,26 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level_03");
     }
+    public void EnterBattle()
+    {
+        SceneManager.LoadScene("RobotBattle");
+    }
     public void ReturnToCity() 
     {
-        SceneManager.LoadScene("Level_01");
+        PreviousSceneName = SceneManager.GetActiveScene().name;
+
+        StartCoroutine(LoadSceneWait("Level_01", () =>
+        {
+            Player = FindObjectOfType<Player>();
+            AcademySpawn = GameObject.Find("AcademySpawn");
+            WarehouseSpawn = GameObject.Find("WarehouseSpawn");
+
+            Debug.Log(PreviousSceneName);
+
+            if (PreviousSceneName == "Level_02") Player.transform.position = AcademySpawn.transform.position;
+            else if (PreviousSceneName == "Level_03") Player.transform.position = WarehouseSpawn.transform.position;
+
+        }));
     }
 
     // When the game is paused, time no longer passes and the player becomes unable to move;
