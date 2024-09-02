@@ -76,6 +76,6 @@ public class PuzzleManager : MonoBehaviour
     public void ClosePuzzle()
     {
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
-        Destroy(Puzzle);
+        Destroy(Puzzle.gameObject);
     }
 }
