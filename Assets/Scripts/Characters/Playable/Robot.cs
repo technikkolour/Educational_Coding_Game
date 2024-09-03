@@ -10,9 +10,13 @@ public class Robot : MonoBehaviour
 
     public Attack AttackPrefab;
 
-    // Movement functions;
-    private UnityEngine.Vector2 MovementDirection;
+    // Movement properties;
+    private Vector2 MovementDirection;
+    private Vector2 LastPosition = Vector2.zero;
     private Rigidbody2D RBComponent;
+
+    private bool SpecialMovementUsed = false;
+    private float SpecialMovementDuration = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +29,26 @@ public class Robot : MonoBehaviour
     {
         if (Strength < 250) RegenerateStrength();
 
-        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(Vector2.up, 10f);
+        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(Vector2.up, 14f);
     }
 
     private void FixedUpdate()
     {
-        MovementDirection.x = Input.GetAxisRaw("Horizontal");
-        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * MovementDirection);
+        // If the character is not using their special movement, allow them to move as normal;
+        if (!SpecialMovementUsed)
+        {
+            MovementDirection.x = Input.GetAxisRaw("Horizontal");
+            RBComponent.velocity = new Vector2(Speed * MovementDirection.x, RBComponent.velocity.y);
+        }
+        else SpecialMovementDuration += Time.deltaTime;
+
+        // If the character has used their special movement for 0.5 seconds, stop their movement;
+        if (SpecialMovementDuration >= 0.2f)
+        {
+            SpecialMovementUsed = false;
+            SpecialMovementDuration = 0f;
+        }
+
     }
 
     // Getters;
@@ -48,6 +65,11 @@ public class Robot : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
+        if (Health < 0)
+        {
+            Health = 0;
+            Invoke("RestartLevel", 5);
+        }
     }
     public void IncreaseHealth()
     {
@@ -81,13 +103,18 @@ public class Robot : MonoBehaviour
     }
     public void MoveInDirection(Vector2 Direction, float Speed)
     {
-        if (Direction == Vector2.up)
+        SpecialMovementUsed = true;
+
+        if (Direction == Vector2.up) 
             RBComponent.velocity = new Vector2(RBComponent.velocity.x, Speed);
         else if (Direction == Vector2.left)
-            RBComponent.velocity = new Vector2(Vector2.left.x * Speed, RBComponent.velocity.y);
+            RBComponent.velocity = new Vector2(-Speed, RBComponent.velocity.y);
         else if (Direction == Vector2.right)
-            RBComponent.velocity = new Vector2(Vector2.right.x * Speed, RBComponent.velocity.y);
+            RBComponent.velocity = new Vector2(Speed, RBComponent.velocity.y);
+    }
 
-        /*        RBComponent.MovePosition(RBComponent.position + Speed * Time.deltaTime * Direction * Distance);*/
+    public void RestartLevel()
+    {
+
     }
 }
