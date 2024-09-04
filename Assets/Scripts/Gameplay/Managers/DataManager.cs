@@ -11,7 +11,12 @@ public class DataManager : MonoBehaviour
     };
     private Dictionary<int, List<List<string>>> Quiz = new(){
         { 10, new(){ new(){""}, new(){""}, new(){""} } },
-        { 11, new(){ new(){""}, new(){""}, new(){""} } }
+        { 11, new(){ new(){""}, new(){""}, new(){""} } },
+        { 12, new(){ new(){""}, new(){""}, new(){""} } },
+        { 13, new(){ new(){""}, new(){""}, new(){""} } },
+        { 14, new(){ new(){""}, new(){""}, new(){""} } },
+        { 15, new(){ new(){""}, new(){""}, new(){""} } },
+        { 16, new(){ new(){""}, new(){""}, new(){""} } }
     };
     private Dictionary<int, List<List<string>>> CodeOrdering = new(){
         { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"312"} } }
@@ -41,11 +46,12 @@ public class DataManager : MonoBehaviour
         { "Array", "array _______ = [_______, _______]" },
         { "Mathematical Operation", " _______ = _______ --- _______"},
         { "Output", "print _______"},
-        { "If Statement", "if _______ --- _______" },
-        { "For Loop", "for values of _______ increasing by _______, up to _______" },
-        { "While Loop", "while _______ --- _______" },
+        { "If Statement", "if _______ --- _______ do" },
+        { "For Loop", "for values of _______ increasing by _______, up to _______, do" },
+        { "While Loop", "while _______ --- _______ do" },
         { "Move In Direction", "move _______ _______ steps" },
-        { "Attack With Power", "attack with _______ power" }
+        { "Attack With Power", "attack with _______ power" },
+        { "Assign Key", "if --- is pressed down do"}
     };
 
     // Inventory Data;

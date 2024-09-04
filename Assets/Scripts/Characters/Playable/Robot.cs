@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
@@ -29,7 +30,21 @@ public class Robot : MonoBehaviour
     {
         if (Strength < 250) RegenerateStrength();
 
-        if (Input.GetKeyDown(KeyCode.Space)) MoveInDirection(Vector2.up, 14f);
+        // Key bindings;
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {        
+
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -112,9 +127,24 @@ public class Robot : MonoBehaviour
         else if (Direction == Vector2.right)
             RBComponent.velocity = new Vector2(Speed, RBComponent.velocity.y);
     }
+/*    public KeyCode AssignStringToKey(string Key)
+    {
+        switch (Key)
+        {
+            case "E":
+                return KeyCode.E;
+            case "Q":
+                return KeyCode.Q;
+            case "SPACE":
+                return KeyCode.Space; 
+        }
 
+        return null;
+    }*/
+
+    // Restart the level if the player dies;
     public void RestartLevel()
     {
-
+        GameObject.FindObjectOfType<GameManager>().EnterBattle();
     }
 }

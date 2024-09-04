@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class CodeBlock : MonoBehaviour
 {
     public Button UpButton, DownButton;
     public RectTransform BlockRectTransform;
+    public string Type;
 
     // The blocks that
     private List<CodeBlock> NestedBlocks = new List<CodeBlock>();
@@ -53,4 +55,43 @@ public class CodeBlock : MonoBehaviour
         if (Index < BlockRectTransform.parent.childCount - 1) DownButton.interactable = true;
         else DownButton.interactable = false;
     }
+
+    // Block types;
+    public void DeclarativeBlock(string Type, string Name, string Value)
+    {
+        switch (Type)
+        {
+            case "Integer":
+                break;
+            case "Float":
+                break;
+            case "Boolean":
+                break;
+            case "String":
+                break;
+            case "Array":
+                break; 
+        }
+    }
+    public void AssignmentBlock(string Variable, string Element_01, string Operation, string Element_02)
+    {
+
+    }
+    public void OutputBlock(string Output)
+    {
+
+    }
+    public void ConditionalBlock(string Variable_01, string Condition, string Variable_02)
+    {
+
+    }
+    public void ForLoopBlock(string Variable, string StartValue, string StepValue)
+    {
+
+    }
+    public void WhileLoopBlock(string Variable_01, string Condition, string Variable_02)
+    {
+
+    }
+
 }

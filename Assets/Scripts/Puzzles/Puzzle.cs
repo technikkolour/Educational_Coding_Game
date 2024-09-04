@@ -209,6 +209,11 @@ public class Puzzle : MonoBehaviour
         {
             GameObject.Find("RobotTab").SetActive(false);
         }
+        else
+        {
+            GameObject.Find("VariablesTab").SetActive(false);
+            GameObject.Find("FunctionsTab").SetActive(false);
+        }
     }
     public void SpawnCodeBlock(string Type)
     {
@@ -218,8 +223,40 @@ public class Puzzle : MonoBehaviour
         BlockInstance.transform.Find("BlockText").GetComponent<TMP_Text>().text = BlockText;
         BlockInstance.transform.SetParent(CodeWindow.transform);
     }
-    public void GenerateSolution()
+    public void GenerateSolution(List<CodeBlock> CodeBlocks)
     {
+        // Put the code together;
+        foreach (CodeBlock block in CodeBlocks) {
+            switch (block.Type)
+            {
+                case "DeclarativeBlock":
+                    // Must check for issues with 
+                    switch (block.Type)
+                    {
+                        case "Integer":
+                            break;
+                        case "Float":
+                            break;
+                        case "Boolean":
+                            break;
+                        case "String":
+                            break;
+                        case "Array":
+                            break;
+                    }
+                    break;
+                case "AssignmentBlock":
+                    break;
+                case "OutputBlock":
+                    break;
+                case "ConditionalBlock":
+                    break;
+                case "ForLoopBlock":
+                    break;
+                case "WhileLoopBlock":
+                    break;
+            }
 
+        }
     }
 }
