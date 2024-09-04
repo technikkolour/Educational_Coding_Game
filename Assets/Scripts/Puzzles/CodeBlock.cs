@@ -139,7 +139,7 @@ public class CodeBlock : MonoBehaviour
 
             // Position the input field;
             RectTransform InputFieldRect = Element.GetComponent<RectTransform>();
-            InputFieldRect.position = new Vector3(MissingValuePosition.x + 65, MissingValuePosition.y + 20, InputFieldRect.position.z);
+            InputFieldRect.position = new Vector3(MissingValuePosition.x + 65, MissingValuePosition.y + 10, InputFieldRect.position.z);
         }
     }
     public void PositionAndPopulateDropdown(GameObject Dropdown, List<string> Options)
@@ -153,7 +153,7 @@ public class CodeBlock : MonoBehaviour
 
             // Position the dropdown;
             RectTransform DropdownRect = Dropdown.GetComponent<RectTransform>();
-            DropdownRect.position = new Vector3(DropdownPosition.x, DropdownPosition.y, DropdownRect.position.z);
+            DropdownRect.position = new Vector3(DropdownPosition.x + 40, DropdownPosition.y + 5, DropdownRect.position.z);
 
             // Remove old options and populate the dropdown;
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
