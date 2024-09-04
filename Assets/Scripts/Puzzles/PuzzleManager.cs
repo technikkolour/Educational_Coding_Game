@@ -47,6 +47,7 @@ public class PuzzleManager : MonoBehaviour
         ErrorMessage.SetActive(false);
     }
 
+    // Instantiate the puzzle;
     public void SpawnPuzzle(string PuzzleType, int PuzzleID)
     {
         GameObject Puzzle = new();
@@ -72,9 +73,12 @@ public class PuzzleManager : MonoBehaviour
 
         Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
         Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
-    }
+    }        
+    
+    // Remove the puzzle from the scene once it is closed;
     public void ClosePuzzle()
     {
+
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
         Destroy(Puzzle.gameObject);
     }

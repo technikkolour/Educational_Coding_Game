@@ -222,6 +222,7 @@ public class Puzzle : MonoBehaviour
         GameObject BlockInstance = Instantiate(CodeBlockPrefab);
         BlockInstance.transform.Find("BlockText").GetComponent<TMP_Text>().text = BlockText;
         BlockInstance.transform.SetParent(CodeWindow.transform);
+        BlockInstance.GetComponent<CodeBlock>().Type = Type;
     }
     public void GenerateSolution(List<CodeBlock> CodeBlocks)
     {

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +12,20 @@ public class CodeBlock : MonoBehaviour
     public RectTransform BlockRectTransform;
     public string Type;
 
-    // The blocks that
+    // The optional elements;
+    public GameObject Dropdown;
+    public List<GameObject> Elements = new() {  };
+
+    public TMP_Text Content;
+
+    // The blocks that are nested inside the parent block;
     private List<CodeBlock> NestedBlocks = new List<CodeBlock>();
     private int Index;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        UpdateElements();
     }
 
     // Update is called once per frame
@@ -26,6 +34,7 @@ public class CodeBlock : MonoBehaviour
         UpdateButtons();
     }
 
+    // Code for removing the code block;
     public void DeleteCodeBlock()
     {
         Destroy(gameObject);
@@ -54,6 +63,101 @@ public class CodeBlock : MonoBehaviour
 
         if (Index < BlockRectTransform.parent.childCount - 1) DownButton.interactable = true;
         else DownButton.interactable = false;
+    }
+
+    // Place the UI elements in the correct spots;
+    public void UpdateElements()
+    {
+        switch (Type)
+        {
+            case "Integer":
+            case "Float":            
+            case "Boolean":
+            case "String":
+                for (int i = 0; i<2; i++)
+                {
+                    Elements[i].gameObject.SetActive(true);
+                    PositionTextBox(Elements[i]);
+                }
+                break;
+            case "Array":            
+            case "For Loop":
+                for (int i = 0; i < 3; i++)
+                {
+                    Elements[i].gameObject.SetActive(true);
+                    PositionTextBox(Elements[i]);
+                }
+                break;
+            case "Mathematical Operation":
+                for (int i = 0; i < 3; i++)
+                {
+                    Elements[i].gameObject.SetActive(true);
+                    PositionTextBox(Elements[i]);
+                }
+                Dropdown.SetActive(true);
+                PositionAndPopulateDropdown(Dropdown, new(){ "+", "-", "*", "/" });
+                break;
+            case "Output":
+            case "Attack With Power":            
+                Elements[0].SetActive(true);
+                PositionTextBox(Elements[0]);
+                break;
+            case "If Statement":
+            case "While Loop":
+                for (int i = 0; i < 2; i++)
+                {
+                    Elements[i].gameObject.SetActive(true);
+                    PositionTextBox(Elements[i]);
+                }
+                Dropdown.SetActive(true);
+                PositionAndPopulateDropdown(Dropdown, new() { "=", "<", ">" });
+                break;
+            case "Move In Direction":
+                Elements[0].SetActive(true);
+                Dropdown.SetActive(true);
+                PositionTextBox(Elements[0]);
+                PositionAndPopulateDropdown(Dropdown, new() { "Up", "Left", "Right" });
+                break;
+            case "Assign Key":
+                Dropdown.SetActive(true);
+                PositionAndPopulateDropdown(Dropdown, new() { "Q", "E", "Space" });
+                break;
+        }
+
+    }
+    // Code for positioning the input field;
+    public void PositionTextBox(GameObject Element)
+    {
+        Content.ForceMeshUpdate();
+        int UnderscoreIndex = Content.text.IndexOf("_______");
+
+        Debug.Log(Content.text);
+
+        if (UnderscoreIndex != -1)
+        {
+            Vector3 MissingValuePosition = Content.transform.TransformPoint(Content.textInfo.characterInfo[UnderscoreIndex].topRight);
+
+            // Position the input field;
+            RectTransform InputFieldRect = Element.GetComponent<RectTransform>();
+            InputFieldRect.position = new Vector3(MissingValuePosition.x + 65, MissingValuePosition.y + 20, InputFieldRect.position.z);
+        }
+    }
+    public void PositionAndPopulateDropdown(GameObject Dropdown, List<string> Options)
+    {
+        Content.ForceMeshUpdate();
+        int UnderscoreIndex = Content.text.IndexOf("------");
+
+        if (UnderscoreIndex != -1)
+        {
+            Vector3 DropdownPosition = Content.transform.TransformPoint(Content.textInfo.characterInfo[UnderscoreIndex].topRight);
+
+            // Position the dropdown;
+            RectTransform DropdownRect = Dropdown.GetComponent<RectTransform>();
+            DropdownRect.position = new Vector3(DropdownPosition.x, DropdownPosition.y, DropdownRect.position.z);
+
+            // Remove old options and populate the dropdown;
+            Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
+        }
     }
 
     // Block types;

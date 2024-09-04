@@ -44,14 +44,14 @@ public class DataManager : MonoBehaviour
         { "Boolean", "boolean _______ = _______" },
         { "String", "string _______ = _______" },
         { "Array", "array _______ = [_______, _______]" },
-        { "Mathematical Operation", " _______ = _______ --- _______"},
+        { "Mathematical Operation", " _______ = _______ ------ _______"},
         { "Output", "print _______"},
-        { "If Statement", "if _______ --- _______ do" },
+        { "If Statement", "if _______ ------ _______ do" },
         { "For Loop", "for values of _______ increasing by _______, up to _______, do" },
-        { "While Loop", "while _______ --- _______ do" },
-        { "Move In Direction", "move _______ _______ steps" },
+        { "While Loop", "while _______ ------ _______ do" },
+        { "Move In Direction", "move ------ with speed _______" },
         { "Attack With Power", "attack with _______ power" },
-        { "Assign Key", "if --- is pressed down do"}
+        { "Assign Key", "if ------ is pressed down do"}
     };
 
     // Inventory Data;
