@@ -68,6 +68,8 @@ public class CodeBlock : MonoBehaviour
     // Place the UI elements in the correct spots;
     public void UpdateElements()
     {
+        int LastIndex = 0;
+
         switch (Type)
         {
             case "Integer":
@@ -77,7 +79,7 @@ public class CodeBlock : MonoBehaviour
                 for (int i = 0; i<2; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
-                    PositionTextBox(Elements[i]);
+                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
                 }
                 break;
             case "Array":            
@@ -85,14 +87,14 @@ public class CodeBlock : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
-                    PositionTextBox(Elements[i]);
+                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
                 }
                 break;
             case "Mathematical Operation":
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
-                    PositionTextBox(Elements[i]);
+                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
                 }
                 Dropdown.SetActive(true);
                 PositionAndPopulateDropdown(Dropdown, new(){ "+", "-", "*", "/" });
@@ -100,14 +102,14 @@ public class CodeBlock : MonoBehaviour
             case "Output":
             case "Attack With Power":            
                 Elements[0].SetActive(true);
-                PositionTextBox(Elements[0]);
+                LastIndex = PositionTextBox(Elements[0], 0, 0);
                 break;
             case "If Statement":
             case "While Loop":
                 for (int i = 0; i < 2; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
-                    PositionTextBox(Elements[i]);
+                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
                 }
                 Dropdown.SetActive(true);
                 PositionAndPopulateDropdown(Dropdown, new() { "=", "<", ">" });
@@ -115,7 +117,7 @@ public class CodeBlock : MonoBehaviour
             case "Move In Direction":
                 Elements[0].SetActive(true);
                 Dropdown.SetActive(true);
-                PositionTextBox(Elements[0]);
+                LastIndex = PositionTextBox(Elements[0], 0, 0);
                 PositionAndPopulateDropdown(Dropdown, new() { "Up", "Left", "Right" });
                 break;
             case "Assign Key":
@@ -126,12 +128,10 @@ public class CodeBlock : MonoBehaviour
 
     }
     // Code for positioning the input field;
-    public void PositionTextBox(GameObject Element)
+    public int PositionTextBox(GameObject Element, int ElementIndex, int LastIndex)
     {
         Content.ForceMeshUpdate();
-        int UnderscoreIndex = Content.text.IndexOf("_______");
-
-        Debug.Log(Content.text);
+        int UnderscoreIndex = Content.text.IndexOf("_______", LastIndex + 1);
 
         if (UnderscoreIndex != -1)
         {
@@ -139,17 +139,21 @@ public class CodeBlock : MonoBehaviour
 
             // Position the input field;
             RectTransform InputFieldRect = Element.GetComponent<RectTransform>();
-            InputFieldRect.position = new Vector3(MissingValuePosition.x + 65, MissingValuePosition.y + 10, InputFieldRect.position.z);
+            InputFieldRect.position = new Vector3(MissingValuePosition.x + 60, MissingValuePosition.y + 10, InputFieldRect.position.z);
+
+            LastIndex = UnderscoreIndex;
         }
+
+        return LastIndex;
     }
     public void PositionAndPopulateDropdown(GameObject Dropdown, List<string> Options)
     {
         Content.ForceMeshUpdate();
-        int UnderscoreIndex = Content.text.IndexOf("------");
+        int DashIndex = Content.text.IndexOf("------");
 
-        if (UnderscoreIndex != -1)
+        if (DashIndex != -1)
         {
-            Vector3 DropdownPosition = Content.transform.TransformPoint(Content.textInfo.characterInfo[UnderscoreIndex].topRight);
+            Vector3 DropdownPosition = Content.transform.TransformPoint(Content.textInfo.characterInfo[DashIndex].topRight);
 
             // Position the dropdown;
             RectTransform DropdownRect = Dropdown.GetComponent<RectTransform>();
@@ -158,6 +162,19 @@ public class CodeBlock : MonoBehaviour
             // Remove old options and populate the dropdown;
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
         }
+    }
+
+    private int GetIndexOf(string Text, string RequiredText, int ElementIndex)
+    {
+        int Index = -1;
+
+        while (ElementIndex > 0)
+        {
+            Index = Text.IndexOf(RequiredText, Index + 1);
+            if (Index == -1) break;
+            ElementIndex--;
+        }
+        return Index;
     }
 
     // Block types;
