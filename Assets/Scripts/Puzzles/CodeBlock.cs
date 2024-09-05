@@ -3,22 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CodeBlock : MonoBehaviour
 {
+    // The visual elements;
     public Button UpButton, DownButton;
     public RectTransform BlockRectTransform;
     public string Type;
+    public List<Sprite> BlockBackgrounds = new List<Sprite>(2);
 
-    // The optional elements;
+    // The optional components;
     public GameObject Dropdown;
     public List<GameObject> Elements = new() {  };
-
     public TMP_Text Content;
 
     // The blocks that are nested inside the parent block;
+    public bool IsNested = false;
+    public bool CanHaveNestedBlocks = false;
     private List<CodeBlock> NestedBlocks = new List<CodeBlock>();
     private int Index;
 
@@ -49,6 +53,10 @@ public class CodeBlock : MonoBehaviour
     }
     public void MoveBlockDown()
     {
+        // The block being moved down does not nest it into another;
+        IsNested = false;
+        gameObject.GetComponent<SpriteRenderer>().sprite = BlockBackgrounds[0];
+
         Index = BlockRectTransform.GetSiblingIndex();
         if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
     }
@@ -82,8 +90,15 @@ public class CodeBlock : MonoBehaviour
                     LastIndex = PositionTextBox(Elements[i], i, LastIndex);
                 }
                 break;
-            case "Array":            
+            case "Array":
+                for (int i = 0; i < 3; i++)
+                {
+                    Elements[i].gameObject.SetActive(true);
+                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                }
+                break;
             case "For Loop":
+                CanHaveNestedBlocks = true;
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
@@ -106,6 +121,7 @@ public class CodeBlock : MonoBehaviour
                 break;
             case "If Statement":
             case "While Loop":
+                CanHaveNestedBlocks = true;
                 for (int i = 0; i < 2; i++)
                 {
                     Elements[i].gameObject.SetActive(true);
@@ -121,6 +137,7 @@ public class CodeBlock : MonoBehaviour
                 PositionAndPopulateDropdown(Dropdown, new() { "Up", "Left", "Right" });
                 break;
             case "Assign Key":
+                CanHaveNestedBlocks = true;
                 Dropdown.SetActive(true);
                 PositionAndPopulateDropdown(Dropdown, new() { "Q", "E", "Space" });
                 break;
@@ -162,19 +179,6 @@ public class CodeBlock : MonoBehaviour
             // Remove old options and populate the dropdown;
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
         }
-    }
-
-    private int GetIndexOf(string Text, string RequiredText, int ElementIndex)
-    {
-        int Index = -1;
-
-        while (ElementIndex > 0)
-        {
-            Index = Text.IndexOf(RequiredText, Index + 1);
-            if (Index == -1) break;
-            ElementIndex--;
-        }
-        return Index;
     }
 
     // Block types;
