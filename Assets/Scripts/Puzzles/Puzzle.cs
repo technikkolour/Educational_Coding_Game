@@ -232,21 +232,20 @@ public class Puzzle : MonoBehaviour
         foreach (CodeBlock Block in CodeBlocks) {
             switch (Block.Type)
             {
-                case "DeclarativeBlock":
+                case "Integer":
                     // Verify whether the types match up;
-                    switch (Block.Type)
-                    {
-                        case "Integer":
-                            break;
-                        case "Float":
-                            break;
-                        case "Boolean":
-                            break;
-                        case "String":
-                            break;
-                        case "Array":
-                            break;
-                    }
+                    break;
+                case "Float":
+                    // Verify whether the types match up;
+                    break;
+                case "Boolean":
+                    // Verify whether the types match up;
+                    break;
+                case "String":
+                    // Verify whether the types match up;
+                    break;
+                case "Array":
+                    // Verify whether the types match up;
                     break;
                 case "AssignmentBlock":
                     // Verify whether the types match up;
@@ -276,6 +275,7 @@ public class Puzzle : MonoBehaviour
             // If there is an output field inside the loop, compute final output as printed value * number of repeats;
 
             // Create a new list for each block containing the values entered and selected by the player and add it to the Solution set;
+            // If the block is nested into another, add "___" at the start of all of the entries in its list;
             List<string> BlockContents = new() { Block.Type };
             Solution.Add(BlockContents);
         }
