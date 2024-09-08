@@ -89,7 +89,7 @@ public class FirstBoss : Enemy
         // This has been done to ;
         Vector2 Direction = (Player.transform.position - gameObject.transform.position).normalized;
 
-        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5) Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime);
+        if (Vector2.Distance(Player.transform.position, gameObject.transform.position) > 4.5) Rigidbody.MovePosition(Rigidbody.position + (Speed * Time.deltaTime * Direction));
         else ChangeState(State.Attacking);
     }
 }

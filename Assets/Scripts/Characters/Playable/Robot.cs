@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
@@ -43,8 +42,6 @@ public class Robot : MonoBehaviour
         {        
 
         }
-
-
     }
 
     private void FixedUpdate()
@@ -83,7 +80,7 @@ public class Robot : MonoBehaviour
         if (Health < 0)
         {
             Health = 0;
-            Invoke("RestartLevel", 5);
+            Invoke(nameof(RestartLevel), 5);
         }
     }
     public void IncreaseHealth()
@@ -127,20 +124,10 @@ public class Robot : MonoBehaviour
         else if (Direction == Vector2.right)
             RBComponent.velocity = new Vector2(Speed, RBComponent.velocity.y);
     }
-/*    public KeyCode AssignStringToKey(string Key)
+    public void DefineBehaviour()
     {
-        switch (Key)
-        {
-            case "E":
-                return KeyCode.E;
-            case "Q":
-                return KeyCode.Q;
-            case "SPACE":
-                return KeyCode.Space; 
-        }
 
-        return null;
-    }*/
+    }
 
     // Restart the level if the player dies;
     public void RestartLevel()

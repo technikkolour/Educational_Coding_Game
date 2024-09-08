@@ -38,7 +38,7 @@ public class PuzzleManager : MonoBehaviour
         {
             CurrentPuzzle.SetAttempts();
             ErrorMessage.SetActive(true);
-            Invoke("RemoveMessage", 5);
+            Invoke(nameof(RemoveMessage), 5);
         }
     }
 

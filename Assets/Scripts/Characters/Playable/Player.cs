@@ -109,8 +109,8 @@ public class Player : MonoBehaviour
             case "LevelExit":
                 GameManager.ReturnToCity();
                 break;
-            case "BossBattleTrigger_01":
-                Invoke("GameManager.EnterBattle()", 5);
+            case "BossBattleTrigger":
+                Invoke(nameof(GameManager.EnterBattle), 5);
                 break;
         }
     }

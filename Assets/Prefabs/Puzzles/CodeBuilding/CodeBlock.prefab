@@ -2757,12 +2757,17 @@ MonoBehaviour:
   DownButton: {fileID: 6330184190223636762}
   BlockRectTransform: {fileID: 4940712515062313727}
   Type: 
+  BlockBackgrounds:
+  - {fileID: -1986763719, guid: 882127d3d28d82f42b13f3b7f999bd71, type: 3}
+  - {fileID: 1288111013, guid: 882127d3d28d82f42b13f3b7f999bd71, type: 3}
   Dropdown: {fileID: 538737670685674152}
   Elements:
   - {fileID: 289679724240024601}
   - {fileID: 732772634664445230}
   - {fileID: 7130950491056153389}
   Content: {fileID: 6719150819162571082}
+  IsNested: 0
+  CanHaveNestedBlocks: 0
 --- !u!1 &8310576563807454343
 GameObject:
   m_ObjectHideFlags: 0

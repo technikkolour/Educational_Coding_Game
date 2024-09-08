@@ -29,7 +29,6 @@ public class Puzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PuzzleManager PuzzleManager = FindObjectOfType<PuzzleManager>();
         DataManager = FindObjectOfType<DataManager>();
 
         switch (PuzzleType)
@@ -147,7 +146,7 @@ public class Puzzle : MonoBehaviour
             if (ParentCode != null)
             {
                 GameObject CodeLine = ParentCode.GetComponent<DropArea>().FindChildWithTag("CodeLine");
-                Order += CodeLine.name.Substring(CodeLine.name.Length - 1);
+                Order += CodeLine.name[^1..];
             }
         }
 
@@ -224,15 +223,18 @@ public class Puzzle : MonoBehaviour
         BlockInstance.transform.SetParent(CodeWindow.transform);
         BlockInstance.GetComponent<CodeBlock>().Type = Type;
     }
-    public void GenerateSolution(List<CodeBlock> CodeBlocks)
+    public List<List<string>> GenerateSolution(List<CodeBlock> CodeBlocks)
     {
+        List<List<string>> Solution = new() { new() { } };
+        bool ErrorsPresent = false;
+
         // Put the code together;
-        foreach (CodeBlock block in CodeBlocks) {
-            switch (block.Type)
+        foreach (CodeBlock Block in CodeBlocks) {
+            switch (Block.Type)
             {
                 case "DeclarativeBlock":
-                    // Must check for issues with 
-                    switch (block.Type)
+                    // Verify whether the types match up;
+                    switch (Block.Type)
                     {
                         case "Integer":
                             break;
@@ -247,17 +249,42 @@ public class Puzzle : MonoBehaviour
                     }
                     break;
                 case "AssignmentBlock":
+                    // Verify whether the types match up;
                     break;
                 case "OutputBlock":
+                    // Verify whether the variables referenced exist;
                     break;
                 case "ConditionalBlock":
+                    // Verify whether the types match up and the condition is possible;
+                    // Verify whether the variables inside the declaration exist;
                     break;
                 case "ForLoopBlock":
+                    // Verify whether the variable inside the loop declaration exists;
                     break;
                 case "WhileLoopBlock":
+                    // Verify whether the variable inside the loop declaration exists;
                     break;
             }
 
+            // If there are any errors, mark flag as true;
+            ErrorsPresent = true;
+
+            // If any loops are present, compute how many times the loop is repeated:
+            //      - For: Use the values entered by the player;
+            //      - While: Identify stopping condition, simulate loop;
+
+            // If there is an output field inside the loop, compute final output as printed value * number of repeats;
+
+            // Create a new list for each block containing the values entered and selected by the player and add it to the Solution set;
+            List<string> BlockContents = new() { Block.Type };
+            Solution.Add(BlockContents);
         }
+
+        // If there are any error with the code, the solution is reset to an empty set;
+        if (ErrorsPresent) Solution = new() { new() };
+
+        return Solution;
     }
+    //####################################################################################################################################################################
+    // Code Building - ROBOT Mode;
 }

@@ -67,12 +67,6 @@ public class DataManager : MonoBehaviour
         Items.Add(Item.CreateInstance("Smartphone", Sprites[3], "Hmm... Apparently this is the phone of the future!", 3));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Get the item corresponding to the given index;
     public Item ReturnItemForIndex(int Index)
     {

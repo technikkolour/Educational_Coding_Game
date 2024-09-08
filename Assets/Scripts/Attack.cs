@@ -40,7 +40,7 @@ public class Attack : MonoBehaviour
         else
         {
             // Move the projectile in the given direction;
-            Rigidbody.MovePosition(Rigidbody.position + Direction * Speed * Time.deltaTime); 
+            Rigidbody.MovePosition(Rigidbody.position + Speed * Time.deltaTime * Direction);
 
             // Compute the distance travelled;
             DistanceTravelled += Vector2.Distance(Rigidbody.position, LastPosition);
@@ -59,11 +59,9 @@ public class Attack : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the attack collides with the robot, the attack should damage the player;
-        Robot Robot = collision.collider.gameObject.GetComponent<Robot>();
-        if (Robot != null) Robot.TakeDamage(Power);
+        if (collision.collider.gameObject.TryGetComponent<Robot>(out var Robot)) Robot.TakeDamage(Power);
 
-        Enemy Enemy = collision.collider.gameObject.GetComponent<Enemy>();
-        if (Enemy != null) Enemy.TakeDamage(Power);
+        if (collision.collider.gameObject.TryGetComponent<Enemy>(out var Enemy)) Enemy.TakeDamage(Power);
 
         // The attack should despawn in the event that it collides with an object;
         GameObject.Destroy(gameObject);

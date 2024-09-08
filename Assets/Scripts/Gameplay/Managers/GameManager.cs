@@ -13,24 +13,11 @@ public class GameManager : MonoBehaviour
     }
 
     private static string PreviousSceneName;
-    private List<string> TheoreticalCollection = new List<string>() { "" };
+    private List<string> TheoreticalCollection = new() { "" };
 
     // Spawning properties;
     public Player Player;
     public GameObject AcademySpawn, WarehouseSpawn;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     //####################################################################################################################################################################
     // MENU RELATED
