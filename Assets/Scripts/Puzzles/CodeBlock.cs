@@ -53,18 +53,19 @@ public class CodeBlock : MonoBehaviour
         // Get the code block above;
         CodeBlock BlockAbove = BlockRectTransform.parent.GetChild(Index - 1).GetComponent<CodeBlock>();
 
-
         if (Index > 0)
         {
             if (BlockAbove.CanHaveNestedBlocks)
             {
                 // If the block above can have nested blocks, the current one will be attached at the end of the nested set;
                 IsNested = true;
+                BlockAbove.NestedBlocks.Add(this);
                 transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
 
                 if (IsNested)
                 {
                     IsNested = false;
+                    BlockAbove.NestedBlocks.Remove(this);
                     BlockRectTransform.SetSiblingIndex(Index - 1);
                     transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
                 }
@@ -75,6 +76,7 @@ public class CodeBlock : MonoBehaviour
                 if (IsNested) BlockRectTransform.SetSiblingIndex(Index - 1);
 
                 IsNested = true;
+                BlockAbove.NestedBlocks.Add(this);
                 transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
             }
             else if (NestedBlocks.Count != 0)
@@ -85,7 +87,7 @@ public class CodeBlock : MonoBehaviour
                 foreach (CodeBlock Block in NestedBlocks)
                 {
                     int BlockIndex = Block.GetComponent<RectTransform>().GetSiblingIndex();
-                    Block.GetComponent<RectTransform>().SetSiblingIndex(BlockIndex - 1);
+                    Block.BlockRectTransform.SetSiblingIndex(BlockIndex - 1);
                 }
             }
             else
@@ -99,22 +101,57 @@ public class CodeBlock : MonoBehaviour
 
         }
 
-
         UpdateButtons();
     }
     public void MoveBlockDown()
     {
         Index = BlockRectTransform.GetSiblingIndex();
 
-        // The block is not nested into into another regardless if the block below it can have nested blocks;
-        // This includes the case in which the block below it can have nested blocks, but does not contain any currently;
-        IsNested = false;
-        if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
-        transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+        // Get the code block below;
+        CodeBlock BlockBelow = BlockRectTransform.parent.GetChild(Index + 1).GetComponent<CodeBlock>();
 
-        // If the block below has nested blocks, the current block should bypass them and be moved directly below the last nested block;
+        if (Index < BlockRectTransform.parent.childCount - 1)
+        {
+            if (IsNested)
+            {        
+                // If the block is nested into another, and the block below is nested too, it should simply move down;
+                if (BlockBelow.IsNested) BlockRectTransform.SetSiblingIndex(Index + 1);
+                else
+                {
+                    // If the block is nested into another, and the block below is not, it should no longer be nested when moved down, but should remain in the same position;
+                    // Get the block it was nested into;
+                    CodeBlock BlockAbove = BlockRectTransform.parent.GetChild(Index - 1).GetComponent<CodeBlock>();
 
-        // If the block has nested blocks, the entirety of the set is moved together;
+                    IsNested = false;
+                    BlockAbove.NestedBlocks.Remove(this);
+                    transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+                }
+            }
+            else if (BlockBelow.CanHaveNestedBlocks && BlockBelow.NestedBlocks.Count != 0)
+            {
+                // If the block below has nested blocks, the current block should bypass them and be moved directly below the last nested block;
+                Index = BlockBelow.NestedBlocks[NestedBlocks.Count - 1].Index;
+                BlockRectTransform.SetSiblingIndex(Index + 1);
+            }
+            else if (CanHaveNestedBlocks && NestedBlocks.Count != 0)
+            {        
+                // If the block has nested blocks, the entirety of the set is moved together;
+                BlockRectTransform.SetSiblingIndex(Index - 1);
+                foreach (CodeBlock Block in NestedBlocks)
+                {
+                    int BlockIndex = Block.GetComponent<RectTransform>().GetSiblingIndex();
+                    Block.BlockRectTransform.SetSiblingIndex(BlockIndex + 1);
+                }
+            }
+            else
+            {
+                // When moving downwards, the block is not nested into another regardless of the block below it having the possibility of nesting blocks;
+                // This includes the case in which the block below it can have nested blocks, but does not contain any currently;
+                IsNested = false;
+                if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
+                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+            }
+        }
 
     }
 
