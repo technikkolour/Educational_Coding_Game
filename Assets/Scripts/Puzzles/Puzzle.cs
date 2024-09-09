@@ -268,10 +268,9 @@ public class Puzzle : MonoBehaviour
                     // Verify whether the variable inside the loop declaration exists;
                     break;
             }
-
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
 
-            // If there are any errors, mark flag as true;
+            // If there are any errors, mark ErrorsPresent as true;
             ErrorsPresent = true;
 
             // If any loops are present, compute how many times the loop is repeated:

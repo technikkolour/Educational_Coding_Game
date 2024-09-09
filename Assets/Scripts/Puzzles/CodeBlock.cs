@@ -44,6 +44,8 @@ public class CodeBlock : MonoBehaviour
     // Code for removing the code block;
     public void DeleteCodeBlock()
     {
+        if (NestedBlocks.Count != 0) ResetNestedBlocks();
+        if (IsNested) Parent.NestedBlocks.Remove(this);
         Destroy(gameObject);
     }
 
@@ -95,7 +97,7 @@ public class CodeBlock : MonoBehaviour
 
                 foreach (CodeBlock Block in NestedBlocks)
                 {
-                    int BlockIndex = Block.GetComponent<RectTransform>().GetSiblingIndex();
+                    int BlockIndex = Block.BlockRectTransform.GetSiblingIndex();
                     Block.BlockRectTransform.SetSiblingIndex(BlockIndex - 1);
                 }
             }
@@ -130,8 +132,6 @@ public class CodeBlock : MonoBehaviour
                 {
                     // If the block is nested into another, and the block below is not, it should no longer be nested when moved down, but should remain in the same position;
                     // Get the block it was nested into;
-                    CodeBlock BlockAbove = BlockRectTransform.parent.GetChild(Index - 1).GetComponent<CodeBlock>();
-
                     IsNested = false;
                     Parent.NestedBlocks.Remove(this);
                     Parent = null;
@@ -141,17 +141,18 @@ public class CodeBlock : MonoBehaviour
             else if (BlockBelow.CanHaveNestedBlocks && BlockBelow.NestedBlocks.Count != 0)
             {
                 // If the block below has nested blocks, the current block should bypass them and be moved directly below the last nested block;
-                Index = BlockBelow.NestedBlocks[NestedBlocks.Count - 1].Index;
-                BlockRectTransform.SetSiblingIndex(Index + 1);
+                Index = BlockBelow.NestedBlocks[^1].Index;
+                BlockRectTransform.SetSiblingIndex(Index);
             }
-            else if (CanHaveNestedBlocks && NestedBlocks.Count != 0)
+            else if (NestedBlocks.Count != 0)
             {        
                 // If the block has nested blocks, the entirety of the set is moved together;
-                BlockRectTransform.SetSiblingIndex(Index - 1);
+                BlockRectTransform.SetSiblingIndex(Index + NestedBlocks.Count + 1);
+
                 foreach (CodeBlock Block in NestedBlocks)
                 {
-                    int BlockIndex = Block.GetComponent<RectTransform>().GetSiblingIndex();
-                    Block.BlockRectTransform.SetSiblingIndex(BlockIndex + 1);
+                    int BlockIndex = Block.BlockRectTransform.GetSiblingIndex();
+                    Block.BlockRectTransform.SetSiblingIndex(BlockIndex + NestedBlocks.Count + 1);
                 }
             }
             else
@@ -172,6 +173,18 @@ public class CodeBlock : MonoBehaviour
             transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
         }
 
+    }
+
+    // Reset the nested blocks to not nested;
+    public void ResetNestedBlocks()
+    {
+        foreach (CodeBlock Block in NestedBlocks)
+        {
+            Block.IsNested = false;
+            Block.Parent.NestedBlocks.Remove(this);
+            Block.Parent = null;
+            Block.transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+        }    
     }
 
     // Update which buttons are interactable;
