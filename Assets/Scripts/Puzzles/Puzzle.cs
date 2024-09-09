@@ -222,6 +222,10 @@ public class Puzzle : MonoBehaviour
         BlockInstance.transform.Find("BlockText").GetComponent<TMP_Text>().text = BlockText;
         BlockInstance.transform.SetParent(CodeWindow.transform);
         BlockInstance.GetComponent<CodeBlock>().Type = Type;
+
+        // Set whether the block can have nested blocks;
+        List<string> NestingTypes = new() { "If Statement", "For Loop", "While Loop", "Assign Key" };
+        if (NestingTypes.Contains(Type)) BlockInstance.GetComponent<CodeBlock>().CanHaveNestedBlocks = true;
     }
     public List<List<string>> GenerateSolution(List<CodeBlock> CodeBlocks)
     {
@@ -247,23 +251,25 @@ public class Puzzle : MonoBehaviour
                 case "Array":
                     // Verify whether the types match up;
                     break;
-                case "AssignmentBlock":
+                case "Mathematical Operation":
                     // Verify whether the types match up;
                     break;
-                case "OutputBlock":
+                case "Output":
                     // Verify whether the variables referenced exist;
                     break;
-                case "ConditionalBlock":
+                case "If Statement":
                     // Verify whether the types match up and the condition is possible;
                     // Verify whether the variables inside the declaration exist;
                     break;
-                case "ForLoopBlock":
+                case "For Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     break;
-                case "WhileLoopBlock":
+                case "While Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     break;
             }
+
+            if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
 
             // If there are any errors, mark flag as true;
             ErrorsPresent = true;
@@ -281,7 +287,7 @@ public class Puzzle : MonoBehaviour
         }
 
         // If there are any error with the code, the solution is reset to an empty set;
-        if (ErrorsPresent) Solution = new() { new() };
+        if (ErrorsPresent) Solution.Clear();
 
         return Solution;
     }

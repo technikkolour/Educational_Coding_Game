@@ -24,7 +24,9 @@ public class CodeBlock : MonoBehaviour
     // The blocks that are nested inside the parent block;
     public bool IsNested = false;
     public bool CanHaveNestedBlocks = false;
-    private List<CodeBlock> NestedBlocks = new();
+    public CodeBlock Parent = null;
+    public List<CodeBlock> NestedBlocks = new();
+
     private int Index;
 
     // Start is called before the first frame update
@@ -58,14 +60,18 @@ public class CodeBlock : MonoBehaviour
             if (BlockAbove.CanHaveNestedBlocks)
             {
                 // If the block above can have nested blocks, the current one will be attached at the end of the nested set;
-                IsNested = true;
-                BlockAbove.NestedBlocks.Add(this);
-                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
-
-                if (IsNested)
+                if (!IsNested)
+                {
+                    IsNested = true;
+                    Parent = BlockAbove;
+                    BlockAbove.NestedBlocks.Add(this);
+                    transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
+                }
+                else if (IsNested)
                 {
                     IsNested = false;
-                    BlockAbove.NestedBlocks.Remove(this);
+                    Parent.NestedBlocks.Remove(this);
+                    Parent = null;
                     BlockRectTransform.SetSiblingIndex(Index - 1);
                     transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
                 }
@@ -74,10 +80,13 @@ public class CodeBlock : MonoBehaviour
             {
                 // If the block above is nested and the current one is also nested, move above;
                 if (IsNested) BlockRectTransform.SetSiblingIndex(Index - 1);
-
-                IsNested = true;
-                BlockAbove.NestedBlocks.Add(this);
-                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
+                else
+                {
+                    IsNested = true;
+                    Parent = BlockAbove.Parent;
+                    Parent.NestedBlocks.Add(this);
+                    transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
+                }
             }
             else if (NestedBlocks.Count != 0)
             {
@@ -95,6 +104,7 @@ public class CodeBlock : MonoBehaviour
                 // If neither the block above, nor the current one have any nested blocks, the current block is moved directly above;
                 // If the block is the first in the nested set, it is moved above the initial parent block;
                 IsNested = false;
+                Parent = null;
                 BlockRectTransform.SetSiblingIndex(Index - 1);
                 transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
             }
@@ -107,11 +117,11 @@ public class CodeBlock : MonoBehaviour
     {
         Index = BlockRectTransform.GetSiblingIndex();
 
-        // Get the code block below;
-        CodeBlock BlockBelow = BlockRectTransform.parent.GetChild(Index + 1).GetComponent<CodeBlock>();
-
         if (Index < BlockRectTransform.parent.childCount - 1)
         {
+            // Get the code block below;
+            CodeBlock BlockBelow = BlockRectTransform.parent.GetChild(Index + 1).GetComponent<CodeBlock>();
+
             if (IsNested)
             {        
                 // If the block is nested into another, and the block below is nested too, it should simply move down;
@@ -123,7 +133,8 @@ public class CodeBlock : MonoBehaviour
                     CodeBlock BlockAbove = BlockRectTransform.parent.GetChild(Index - 1).GetComponent<CodeBlock>();
 
                     IsNested = false;
-                    BlockAbove.NestedBlocks.Remove(this);
+                    Parent.NestedBlocks.Remove(this);
+                    Parent = null;
                     transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
                 }
             }
@@ -148,9 +159,17 @@ public class CodeBlock : MonoBehaviour
                 // When moving downwards, the block is not nested into another regardless of the block below it having the possibility of nesting blocks;
                 // This includes the case in which the block below it can have nested blocks, but does not contain any currently;
                 IsNested = false;
-                if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
+                BlockRectTransform.SetSiblingIndex(Index + 1);
                 transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
             }
+        }
+        else if (Index == BlockRectTransform.parent.childCount - 1 && IsNested)
+        {
+            // If the block is the last one in the window and is nested, it should be able to move down, outside of the nested set;
+            IsNested = false;
+            Parent.NestedBlocks.Remove(this);
+            Parent = null;
+            transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
         }
 
     }
@@ -165,7 +184,7 @@ public class CodeBlock : MonoBehaviour
         else UpButton.interactable = false;
 
         // If the block is not last, it should be able to move downwards;
-        if (Index < BlockRectTransform.parent.childCount - 1) DownButton.interactable = true;
+        if (Index < BlockRectTransform.parent.childCount - 1 || IsNested) DownButton.interactable = true;
         else DownButton.interactable = false;
     }
 
@@ -277,43 +296,4 @@ public class CodeBlock : MonoBehaviour
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
         }
     }
-
-    // Block types;
-    public void DeclarativeBlock(string Type, string Name, string Value)
-    {
-        switch (Type)
-        {
-            case "Integer":
-                break;
-            case "Float":
-                break;
-            case "Boolean":
-                break;
-            case "String":
-                break;
-            case "Array":
-                break; 
-        }
-    }
-    public void AssignmentBlock(string Variable, string Element_01, string Operation, string Element_02)
-    {
-
-    }
-    public void OutputBlock(string Output)
-    {
-
-    }
-    public void ConditionalBlock(string Variable_01, string Condition, string Variable_02)
-    {
-
-    }
-    public void ForLoopBlock(string Variable, string StartValue, string StepValue)
-    {
-
-    }
-    public void WhileLoopBlock(string Variable_01, string Condition, string Variable_02)
-    {
-
-    }
-
 }
