@@ -48,31 +48,74 @@ public class CodeBlock : MonoBehaviour
     // Change the order in which blocks are organised;
     public void MoveBlockUp()
     {
-        // If neither the block above, nor the current one have any nested blocks, the current block is moved directly above;
         Index = BlockRectTransform.GetSiblingIndex();
-        if (Index > 0) BlockRectTransform.SetSiblingIndex(Index - 1);
 
-        // If the block is the first in the nested set, it is moved above the initial parent block;
+        // Get the code block above;
+        CodeBlock BlockAbove = BlockRectTransform.parent.GetChild(Index - 1).GetComponent<CodeBlock>();
 
-        // If the block above can have nested blocks, the current one will be attached at the end of the nested set;
 
-        // If the block has nested blocks, the entirety of the set is moved together;
+        if (Index > 0)
+        {
+            if (BlockAbove.CanHaveNestedBlocks)
+            {
+                // If the block above can have nested blocks, the current one will be attached at the end of the nested set;
+                IsNested = true;
+                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
+
+                if (IsNested)
+                {
+                    IsNested = false;
+                    BlockRectTransform.SetSiblingIndex(Index - 1);
+                    transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+                }
+            }
+            else if (BlockAbove.IsNested)
+            {
+                // If the block above is nested and the current one is also nested, move above;
+                if (IsNested) BlockRectTransform.SetSiblingIndex(Index - 1);
+
+                IsNested = true;
+                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[1];
+            }
+            else if (NestedBlocks.Count != 0)
+            {
+                // If the block has nested blocks, the entirety of the set is moved together;
+                BlockRectTransform.SetSiblingIndex(Index - 1);
+
+                foreach (CodeBlock Block in NestedBlocks)
+                {
+                    int BlockIndex = Block.GetComponent<RectTransform>().GetSiblingIndex();
+                    Block.GetComponent<RectTransform>().SetSiblingIndex(BlockIndex - 1);
+                }
+            }
+            else
+            {
+                // If neither the block above, nor the current one have any nested blocks, the current block is moved directly above;
+                // If the block is the first in the nested set, it is moved above the initial parent block;
+                IsNested = false;
+                BlockRectTransform.SetSiblingIndex(Index - 1);
+                transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
+            }
+
+        }
+
 
         UpdateButtons();
     }
     public void MoveBlockDown()
     {
+        Index = BlockRectTransform.GetSiblingIndex();
+
         // The block is not nested into into another regardless if the block below it can have nested blocks;
         // This includes the case in which the block below it can have nested blocks, but does not contain any currently;
         IsNested = false;
-        gameObject.GetComponent<SpriteRenderer>().sprite = BlockBackgrounds[0];
+        if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
+        transform.Find("BlockBackground").GetComponent<Image>().sprite = BlockBackgrounds[0];
 
         // If the block below has nested blocks, the current block should bypass them and be moved directly below the last nested block;
 
         // If the block has nested blocks, the entirety of the set is moved together;
 
-        Index = BlockRectTransform.GetSiblingIndex();
-        if (Index < BlockRectTransform.parent.childCount - 1) BlockRectTransform.SetSiblingIndex(Index + 1);
     }
 
     // Update which buttons are interactable;
