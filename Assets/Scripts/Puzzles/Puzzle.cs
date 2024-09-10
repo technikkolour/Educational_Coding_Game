@@ -227,13 +227,19 @@ public class Puzzle : MonoBehaviour
         List<string> NestingTypes = new() { "If Statement", "For Loop", "While Loop", "Assign Key" };
         if (NestingTypes.Contains(Type)) BlockInstance.GetComponent<CodeBlock>().CanHaveNestedBlocks = true;
     }
-    public List<List<string>> GenerateSolution(List<CodeBlock> CodeBlocks)
+    public List<CodeBlock> GenerateBlockList()
     {
-        List<List<string>> Solution = new() { new() { } };
+        List<CodeBlock> BlockList = new List<CodeBlock>();
+        return BlockList;
+    }
+    public void ComputeSolution(List<CodeBlock> CodeBlocks)
+    {
+        List<List<string>> SolutionSet = new() { new() { } };
         bool ErrorsPresent = false;
 
         // Put the code together;
         foreach (CodeBlock Block in CodeBlocks) {
+            // If there are any errors present in the implementation, mark ErrorsPresent as true; 
             switch (Block.Type)
             {
                 case "Integer":
@@ -270,7 +276,6 @@ public class Puzzle : MonoBehaviour
             }
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
 
-            // If there are any errors, mark ErrorsPresent as true;
             ErrorsPresent = true;
 
             // If any loops are present, compute how many times the loop is repeated:
@@ -279,17 +284,24 @@ public class Puzzle : MonoBehaviour
 
             // If there is an output field inside the loop, compute final output as printed value * number of repeats;
 
-            // Create a new list for each block containing the values entered and selected by the player and add it to the Solution set;
+            // Create a new list for each block containing the values entered and selected by the player and add it to the SolutionSet set;
             // If the block is nested into another, add "___" at the start of all of the entries in its list;
             List<string> BlockContents = new() { Block.Type };
-            Solution.Add(BlockContents);
+            SolutionSet.Add(BlockContents);
         }
 
         // If there are any error with the code, the solution is reset to an empty set;
-        if (ErrorsPresent) Solution.Clear();
+        if (ErrorsPresent) SolutionSet.Clear();
 
-        return Solution;
+        ProposedSolution = "";
     }
     //####################################################################################################################################################################
     // Code Building - ROBOT Mode;
+    public void AssignKeyBindings(List<CodeBlock> CodeBlocks)
+    {
+        foreach (CodeBlock Block in CodeBlocks)
+        {
+
+        }
+    }
 }

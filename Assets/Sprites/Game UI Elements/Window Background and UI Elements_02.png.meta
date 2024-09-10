@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1ed0f697f55684894e8405f4e4a1aa
-      internalID: -568202052
+      spriteID: 4245755e806b5674da2c62520634f5f9
+      internalID: 1170986861
       vertices: []
       indices: 
       edges: []
@@ -121,7 +121,7 @@ TextureImporter:
       name: Window Background and UI Elements_02_1
       rect:
         serializedVersion: 2
-        x: 2486
+        x: 2576
         y: 2817
         width: 156
         height: 96
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0bd5f07dcaaf5d479a73db5328937ff
-      internalID: 191560747
+      spriteID: a02108bf12d95c7449824ca6aff18409
+      internalID: 1603094349
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: Window Background and UI Elements_02_2
       rect:
         serializedVersion: 2
-        x: 2728
-        y: 2577
-        width: 1204
-        height: 396
+        x: 2818
+        y: 2608
+        width: 1294
+        height: 365
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b34716c2dd408634a984723906fe6b92
-      internalID: 1832545600
+      spriteID: 866546f6c6347334b9751d54cfec2779
+      internalID: 1872703615
       vertices: []
       indices: 
       edges: []
@@ -163,9 +163,9 @@ TextureImporter:
       name: Window Background and UI Elements_02_3
       rect:
         serializedVersion: 2
-        x: 2308
-        y: 597
-        width: 1925
+        x: 2427
+        y: 627
+        width: 1926
         height: 1956
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -174,8 +174,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67c95e0ccdc1a30499c15dbb9e5f5596
-      internalID: 664580526
+      spriteID: f1ed1e0edd4adf14987cbd3a3d9fdd76
+      internalID: -1835788128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Window Background and UI Elements_02_4
+      rect:
+        serializedVersion: 2
+        x: 2337
+        y: 27
+        width: 2076
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac0247a1d909dc4383ca5500a65c40d
+      internalID: -624610653
       vertices: []
       indices: 
       edges: []
@@ -191,10 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Window Background and UI Elements_02_0: -568202052
-      Window Background and UI Elements_02_1: 191560747
-      Window Background and UI Elements_02_2: 1832545600
-      Window Background and UI Elements_02_3: 664580526
+      Window Background and UI Elements_02_0: 1170986861
+      Window Background and UI Elements_02_1: 1603094349
+      Window Background and UI Elements_02_2: 1872703615
+      Window Background and UI Elements_02_3: -1835788128
+      Window Background and UI Elements_02_4: -624610653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -29,16 +29,30 @@ public class PuzzleManager : MonoBehaviour
 
     public void SubmitSolution()
     {
-        if (CurrentPuzzle.VerifySolution())
+        if (!CurrentPuzzle.RobotBuilding)
         {
-            Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
-            CurrentPuzzle.SetCompleted();
-        }   
+            if (CurrentPuzzle.PuzzleType == "CodeBuilding")
+            {
+                List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
+                CurrentPuzzle.ComputeSolution(PuzzleBlocks);
+            }
+
+            if (CurrentPuzzle.VerifySolution())
+            {
+                Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
+                CurrentPuzzle.SetCompleted();
+            }
+            else
+            {
+                CurrentPuzzle.SetAttempts();
+                ErrorMessage.SetActive(true);
+                Invoke(nameof(RemoveMessage), 5);
+            }
+        }
         else
         {
-            CurrentPuzzle.SetAttempts();
-            ErrorMessage.SetActive(true);
-            Invoke(nameof(RemoveMessage), 5);
+            List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
+            if (CurrentPuzzle.RobotBuilding) CurrentPuzzle.AssignKeyBindings(PuzzleBlocks);
         }
     }
 
@@ -78,7 +92,6 @@ public class PuzzleManager : MonoBehaviour
     // Remove the puzzle from the scene once it is closed;
     public void ClosePuzzle()
     {
-
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
         Destroy(Puzzle.gameObject);
     }
