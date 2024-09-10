@@ -21,6 +21,9 @@ public class CodeBlock : MonoBehaviour
     public List<GameObject> Elements = new() {  };
     public TMP_Text Content;
 
+    // The values of the optional components;
+    public List<string> Values = new();
+
     // The blocks that are nested inside the parent block;
     public bool IsNested = false;
     public bool CanHaveNestedBlocks = false;

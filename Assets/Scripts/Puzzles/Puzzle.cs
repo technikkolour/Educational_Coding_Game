@@ -227,9 +227,17 @@ public class Puzzle : MonoBehaviour
         List<string> NestingTypes = new() { "If Statement", "For Loop", "While Loop", "Assign Key" };
         if (NestingTypes.Contains(Type)) BlockInstance.GetComponent<CodeBlock>().CanHaveNestedBlocks = true;
     }
+    // Obtain a list of the Code Blocks present in the code window;
     public List<CodeBlock> GenerateBlockList()
     {
-        List<CodeBlock> BlockList = new List<CodeBlock>();
+        List<CodeBlock> BlockList = new();
+
+        foreach (Transform BlockTransform in CodeWindow.transform)
+        {
+            CodeBlock Block = BlockTransform.GetComponent<CodeBlock>();
+            BlockList.Add(Block);
+        }
+ 
         return BlockList;
     }
     public void ComputeSolution(List<CodeBlock> CodeBlocks)
@@ -301,7 +309,10 @@ public class Puzzle : MonoBehaviour
     {
         foreach (CodeBlock Block in CodeBlocks)
         {
+            if (Block.IsNested)
+            {
 
+            }
         }
     }
 }
