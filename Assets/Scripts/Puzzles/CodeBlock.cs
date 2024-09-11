@@ -67,6 +67,7 @@ public class CodeBlock : MonoBehaviour
             if (BlockAbove.CanHaveNestedBlocks)
             {
                 // If the block above can have nested blocks, the current one will be attached at the end of the nested set;
+                // Otherwise, if the current block is nested and at the top of the list, move it above and reset IsNested;
                 if (!IsNested)
                 {
                     IsNested = true;
@@ -206,6 +207,7 @@ public class CodeBlock : MonoBehaviour
         else DownButton.interactable = false;
     }
 
+    // Depending on the types of blocks, set the necessary UI elements to active;
     // Place the UI elements in the correct spots;
     public void UpdateElements()
     {
@@ -316,10 +318,12 @@ public class CodeBlock : MonoBehaviour
         }
     }
 
+    // Set the index corresponding to the Game Object that had its value changed;
     public void SetIndex(int NewIndex)
     {
         ElementIndex = NewIndex;
     }
+    // When the value of a UI Game Object is changed, update the set of values;
     public void OnValueChanged(GameObject CurrentObject)
     {
         string Value;     

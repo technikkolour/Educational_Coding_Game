@@ -64,7 +64,7 @@ public class PuzzleManager : MonoBehaviour
         ErrorMessage.SetActive(false);
     }
 
-    // Instantiate the puzzle;
+    // Instantiate the puzzle depending on the type;
     public void SpawnPuzzle(string PuzzleType, int PuzzleID)
     {
         GameObject Puzzle = new();
@@ -91,6 +91,7 @@ public class PuzzleManager : MonoBehaviour
         Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
         Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
 
+        // Pause the game when the puzzle is spawned in;
         GameManager.PauseGame();
     }
 
@@ -99,6 +100,8 @@ public class PuzzleManager : MonoBehaviour
     {
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
         Destroy(Puzzle.gameObject);
+
+        // Unpause the game when the puzzle is closed;
         GameManager.UnpauseGame();
     }
 }
