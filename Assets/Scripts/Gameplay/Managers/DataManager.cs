@@ -33,7 +33,8 @@ public class DataManager : MonoBehaviour
     private Dictionary<int, List<List<string>>> CodeBuilding = new(){
         { 7, new(){ new(){"I want to add up all of the numbers up to 100. Could you write a function that does that for me?"}, new(){""} } },
         { 8, new(){ new(){"This robot just needs to move backwrds 10 steps so I can pass. I should change its code so it does that."}, new(){""} } },
-        { 9, new(){ new(){""}, new(){""} } }
+        { 9, new(){ new(){""}, new(){""} } },
+        { 999, new(){ new(){ "Here you get to build your own robot to control in the battles! The robot can already move left and right using the same controls as the human character! Your Strength stat is limited to 250." }, new(){ "" } } }
     };
 
     // Code Building Blocks;
@@ -95,7 +96,7 @@ public class DataManager : MonoBehaviour
             case int i when i >= 4 && i <= 6:
                 Puzzle = ValueUpdate[PuzzleID];
                 break;
-            case int i when i >= 7 && i <= 9:
+            case int i when i >= 7 && i <= 9 || i == 999:
                 Puzzle = CodeBuilding[PuzzleID];
                 break;
             case int i when i >= 10 && i <= 11:

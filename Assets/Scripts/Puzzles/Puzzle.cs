@@ -51,7 +51,8 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AttemptsObject.text = Attempts.ToString();
+        if (AttemptsObject != null)
+            AttemptsObject.text = Attempts.ToString();
 
         if (PuzzleType == "CodeOrdering")
             ComputeOrder();
