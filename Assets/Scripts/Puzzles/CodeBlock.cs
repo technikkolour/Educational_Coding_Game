@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -311,5 +312,20 @@ public class CodeBlock : MonoBehaviour
             // Remove old options and populate the dropdown;
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
         }
+    }
+    public void OnValueChanged(int Index)
+    {
+        string Value;
+        GameObject CurrentObject = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+
+        if (Index == 3) 
+        {
+            Dropdown Dropdown = CurrentObject.GetComponent<Dropdown>();
+            Value = Dropdown.options[Dropdown.value].text; 
+        }
+        else Value = CurrentObject.GetComponent<InputField>().text;
+
+        Debug.Log(Value);
+        Values[Index] = Value;
     }
 }

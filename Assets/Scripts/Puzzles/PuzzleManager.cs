@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
 {
     private Player Player;
     private Puzzle CurrentPuzzle;
+    private GameManager GameManager;
 
     public GameObject ErrorMessage;
     public GameObject PuzzleUI;
@@ -19,6 +20,7 @@ public class PuzzleManager : MonoBehaviour
     void Start()
     {
         Player = FindObjectOfType<Player>();
+        GameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame;
@@ -53,6 +55,7 @@ public class PuzzleManager : MonoBehaviour
         {
             List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
             if (CurrentPuzzle.RobotBuilding) CurrentPuzzle.AssignKeyBindings(PuzzleBlocks);
+            Destroy(GameObject.Find("PuzzleCanvas"));
         }
     }
 
@@ -65,7 +68,7 @@ public class PuzzleManager : MonoBehaviour
     public void SpawnPuzzle(string PuzzleType, int PuzzleID)
     {
         GameObject Puzzle = new();
-        
+
         switch (PuzzleType)
         {
             case "MultipleChoice":
@@ -87,12 +90,15 @@ public class PuzzleManager : MonoBehaviour
 
         Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
         Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
-    }        
-    
+
+        GameManager.PauseGame();
+    }
+
     // Remove the puzzle from the scene once it is closed;
     public void ClosePuzzle()
     {
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
         Destroy(Puzzle.gameObject);
+        GameManager.UnpauseGame();
     }
 }

@@ -17,6 +17,8 @@ public class Robot : MonoBehaviour
 
     private bool SpecialMovementUsed = false;
     private float SpecialMovementDuration = 0f;
+    Dictionary<string, List<CodeBlock>> KeyBindings = new Dictionary<string, List<CodeBlock>>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,15 +34,15 @@ public class Robot : MonoBehaviour
         // Key bindings;
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
+            ExecuteBlocksForKey("Q");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-
+            ExecuteBlocksForKey("E");
         }
         if (Input.GetKeyDown(KeyCode.Space))
-        {        
-
+        {
+            ExecuteBlocksForKey("SPACE");
         }
     }
 
@@ -124,9 +126,37 @@ public class Robot : MonoBehaviour
         else if (Direction == Vector2.right)
             RBComponent.velocity = new Vector2(Speed, RBComponent.velocity.y);
     }
-    public void DefineBehaviour()
+    public Vector2 StringToVector(string Direction)
     {
-
+        switch (Direction)
+        {
+            case "Up":
+                return Vector2.up;
+            case "Left":
+                return Vector2.left;
+            case "Right":
+                return Vector2.right;
+            default:
+                return Vector2.zero;
+        }
+    }
+    public void ExecuteBlocksForKey(string Key)
+    {
+        if (KeyBindings.ContainsKey(Key))
+        {
+            foreach (CodeBlock Block in KeyBindings[Key])
+            {
+                switch (Block.Type)
+                {
+                    case "Attack With Power":
+                        AttackWithPower(float.Parse(Block.Values[0]));
+                        break;
+                    case "Move In Direction":
+                        MoveInDirection(StringToVector(Block.Values[3]), float.Parse(Block.Values[0]));
+                        break;
+                }
+            }
+        }
     }
 
     // Restart the level if the player dies;

@@ -96,7 +96,7 @@ public class DataManager : MonoBehaviour
             case int i when i >= 4 && i <= 6:
                 Puzzle = ValueUpdate[PuzzleID];
                 break;
-            case int i when i >= 7 && i <= 9 || i == 999:
+            case int i when (i >= 7 && i <= 9) || i == 999:
                 Puzzle = CodeBuilding[PuzzleID];
                 break;
             case int i when i >= 10 && i <= 11:
