@@ -15,14 +15,15 @@ public class CodeBlock : MonoBehaviour
     public RectTransform BlockRectTransform;
     public string Type;
     // The background will change depending on whether the blocks are nested or not;
-    public List<Sprite> BlockBackgrounds = new(2);
+    public List<Sprite> BlockBackgrounds = new();
 
-    // The optional components;
+    // The optional Game Objects;
     public GameObject Dropdown;
     public List<GameObject> Elements = new() {  };
     public TMP_Text Content;
 
-    // The values of the optional components;
+    // The values of the optional Game Objects;
+    public int ElementIndex = -1;
     public List<string> Values = new();
 
     // The blocks that are nested inside the parent block;
@@ -276,6 +277,7 @@ public class CodeBlock : MonoBehaviour
         }
 
     }
+
     // Position the input field;
     public int PositionTextBox(GameObject Element, int ElementIndex, int LastIndex)
     {
@@ -313,19 +315,28 @@ public class CodeBlock : MonoBehaviour
             Dropdown.GetComponent<TMP_Dropdown>().AddOptions(Options);
         }
     }
-    public void OnValueChanged(int Index)
+
+    public void SetIndex(int NewIndex)
     {
-        string Value;
-        GameObject CurrentObject = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-
-        if (Index == 3) 
+        ElementIndex = NewIndex;
+    }
+    public void OnValueChanged(GameObject CurrentObject)
+    {
+        string Value;     
+        
+        switch (ElementIndex)
         {
-            Dropdown Dropdown = CurrentObject.GetComponent<Dropdown>();
-            Value = Dropdown.options[Dropdown.value].text; 
+            case int i when i >= 0 && i <= 2:
+                Value = CurrentObject.GetComponent<TMP_InputField>().text;        
+                Values[ElementIndex] = Value;
+                break;
+            case int i when i == 3:
+                TMP_Dropdown Dropdown = CurrentObject.GetComponent<TMP_Dropdown>();
+                Value = Dropdown.options[Dropdown.value].text;
+                Values[ElementIndex] = Value;
+                break;
         }
-        else Value = CurrentObject.GetComponent<InputField>().text;
 
-        Debug.Log(Value);
-        Values[Index] = Value;
+        SetIndex(-1);
     }
 }
