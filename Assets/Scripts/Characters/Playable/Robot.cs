@@ -17,7 +17,7 @@ public class Robot : MonoBehaviour
 
     private bool SpecialMovementUsed = false;
     private float SpecialMovementDuration = 0f;
-    Dictionary<string, List<CodeBlock>> KeyBindings = new Dictionary<string, List<CodeBlock>>();
+    Dictionary<string, List<CodeBlock>> KeyBindings = new();
 
 
     // Start is called before the first frame update
@@ -75,14 +75,16 @@ public class Robot : MonoBehaviour
         return Health;
     }
 
-    // Functions relating to the health of the robot.
+    // Functions relating to the health of the robot;
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
+
+        // If the robot's health drops below 0 thy are dead and the level is restarted;
         if (Health < 0)
         {
             Health = 0;
-            Invoke(nameof(RestartLevel), 5);
+            Invoke(nameof(RestartLevel), 2);
         }
     }
     public void IncreaseHealth()
@@ -104,8 +106,11 @@ public class Robot : MonoBehaviour
     }
 
     // Robot Building Blocks;
+    // Spawn an attack that deals the sepcified amount of power;
     public void AttackWithPower(float Power)
     {
+        // Check that the character has enough strength to use the attack;
+        // In the event that they do not, do nothing;
         if (Strength >= Power)
         {
             Attack Attack = Instantiate(AttackPrefab);
@@ -115,10 +120,12 @@ public class Robot : MonoBehaviour
             DecreaseStrength(Power);
         }
     }
+    // Move the character in the specified direction at a specified speed;
     public void MoveInDirection(Vector2 Direction, float Speed)
     {
         SpecialMovementUsed = true;
 
+        // This is intended to simulate jumping and dashing to either side;
         if (Direction == Vector2.up) 
             RBComponent.velocity = new Vector2(RBComponent.velocity.x, Speed);
         else if (Direction == Vector2.left)
@@ -126,20 +133,18 @@ public class Robot : MonoBehaviour
         else if (Direction == Vector2.right)
             RBComponent.velocity = new Vector2(Speed, RBComponent.velocity.y);
     }
+    // Convert string directions to Vector2; 
     public Vector2 StringToVector(string Direction)
     {
-        switch (Direction)
+        return Direction switch
         {
-            case "Up":
-                return Vector2.up;
-            case "Left":
-                return Vector2.left;
-            case "Right":
-                return Vector2.right;
-            default:
-                return Vector2.zero;
-        }
+            "Up" => Vector2.up,
+            "Left" => Vector2.left,
+            "Right" => Vector2.right,
+            _ => Vector2.zero,
+        };
     }
+    // This executes the actions corresponding to the keys bindings that have been set by the player;
     public void ExecuteBlocksForKey(string Key)
     {
         if (KeyBindings.ContainsKey(Key))
@@ -162,10 +167,6 @@ public class Robot : MonoBehaviour
     // Restart the level if the player dies;
     public void RestartLevel()
     {
-        GameManager GameManager = GameObject.FindObjectOfType<GameManager>();
-
-        GameManager.EnterBattle();
-        GameManager.PauseGame();
-
+        GameObject.FindObjectOfType<GameManager>().EnterBattle();
     }
 }

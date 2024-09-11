@@ -80,7 +80,7 @@ public class DataManager : MonoBehaviour
         return CodeBuildingBlocks[Type];
     }
 
-    // Get the details correspomding to the puzzle identified by its ID;
+    // Get the details corresponding to the puzzle identified by its ID;
     public List<List<string>> ReturnPuzzleDetails(int PuzzleID)
     {
         List<List<string>> Puzzle = new();

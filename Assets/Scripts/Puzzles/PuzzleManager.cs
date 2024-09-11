@@ -59,6 +59,7 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+    // Set the error message as inactive;
     private void RemoveMessage()
     {
         ErrorMessage.SetActive(false);
