@@ -222,14 +222,14 @@ public class CodeBlock : MonoBehaviour
                 for (int i = 0; i<2; i++)
                 {
                     Elements[i].SetActive(true);
-                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                    LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 break;
             case "Array":
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].SetActive(true);
-                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                    LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 break;
             case "For Loop":
@@ -237,14 +237,14 @@ public class CodeBlock : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].SetActive(true);
-                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                    LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 break;
             case "Mathematical Operation":
                 for (int i = 0; i < 3; i++)
                 {
                     Elements[i].SetActive(true);
-                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                    LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 Dropdown.SetActive(true);
                 PositionAndPopulateDropdown(Dropdown, new(){ "+", "-", "*", "/" });
@@ -252,7 +252,7 @@ public class CodeBlock : MonoBehaviour
             case "Output":
             case "Attack With Power":            
                 Elements[0].SetActive(true);
-                PositionTextBox(Elements[0], 0, 0);
+                PositionTextBox(Elements[0], 0);
                 break;
             case "If Statement":
             case "While Loop":
@@ -260,7 +260,7 @@ public class CodeBlock : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     Elements[i].SetActive(true);
-                    LastIndex = PositionTextBox(Elements[i], i, LastIndex);
+                    LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 Dropdown.SetActive(true);
                 PositionAndPopulateDropdown(Dropdown, new() { "=", "<", ">" });
@@ -268,7 +268,7 @@ public class CodeBlock : MonoBehaviour
             case "Move In Direction":
                 Elements[0].SetActive(true);
                 Dropdown.SetActive(true);
-                PositionTextBox(Elements[0], 0, 0);
+                PositionTextBox(Elements[0], 0);
                 PositionAndPopulateDropdown(Dropdown, new() { "Up", "Left", "Right" });
                 break;
             case "Assign Key":
@@ -281,7 +281,7 @@ public class CodeBlock : MonoBehaviour
     }
 
     // Position the input field;
-    public int PositionTextBox(GameObject Element, int ElementIndex, int LastIndex)
+    public int PositionTextBox(GameObject Element, int LastIndex)
     {
         Content.ForceMeshUpdate();
         int UnderscoreIndex = Content.text.IndexOf("_______", LastIndex + 1);

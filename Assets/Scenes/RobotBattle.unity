@@ -2991,6 +2991,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8834599933396363163, guid: fa0774d6432203f4fb25704037c202ad, type: 3}
+      propertyPath: AttackPrefab
+      value: 
+      objectReference: {fileID: 8156420835430604064, guid: a2dd73e1006081747955a327e5458f98, type: 3}
     - target: {fileID: 8944947329223983743, guid: fa0774d6432203f4fb25704037c202ad, type: 3}
       propertyPath: m_Name
       value: Robot

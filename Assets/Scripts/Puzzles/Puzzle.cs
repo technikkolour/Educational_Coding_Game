@@ -215,6 +215,7 @@ public class Puzzle : MonoBehaviour
             GameObject.Find("FunctionsTab").SetActive(false);
         }
     }
+    // Instantiate the code block;
     public void SpawnCodeBlock(string Type)
     {
         string BlockText = DataManager.ReturnCodeBlockText(Type);
@@ -308,11 +309,19 @@ public class Puzzle : MonoBehaviour
     // Code Building - ROBOT Mode;
     public void AssignKeyBindings(List<CodeBlock> CodeBlocks)
     {
-        foreach (CodeBlock Block in CodeBlocks)
-        {
-            if (Block.IsNested)
-            {
+        Robot Robot = GameObject.Find("Robot").GetComponent<Robot>();
 
+        foreach (CodeBlock ParentBlock in CodeBlocks)
+        {
+            if (ParentBlock.CanHaveNestedBlocks && ParentBlock.NestedBlocks.Count != 0)
+            {
+                TMP_Dropdown KeyDropdown = ParentBlock.GetComponentInChildren<TMP_Dropdown>();
+                string Key = KeyDropdown.options[KeyDropdown.value].text;
+
+                foreach (CodeBlock Block in ParentBlock.NestedBlocks)
+                {
+                    Robot.KeyBindings[Key].Add(Block);
+                }
             }
         }
     }

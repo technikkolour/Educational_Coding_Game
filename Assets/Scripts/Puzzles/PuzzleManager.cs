@@ -99,10 +99,10 @@ public class PuzzleManager : MonoBehaviour
     // Remove the puzzle from the scene once it is closed;
     public void ClosePuzzle()
     {
-        Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
-        Destroy(Puzzle.gameObject);
-
         // Unpause the game when the puzzle is closed;
         GameManager.UnpauseGame();
+
+        Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
+        Destroy(Puzzle.gameObject);
     }
 }

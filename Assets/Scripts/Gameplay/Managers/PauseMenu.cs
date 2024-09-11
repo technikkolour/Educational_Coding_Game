@@ -5,15 +5,15 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     private GameManager GameManager;
-
     public GameObject MenuUI;
 
-    private void Start()
+    // Start is called before the first frame update;
+    void Start()
     {
        GameManager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

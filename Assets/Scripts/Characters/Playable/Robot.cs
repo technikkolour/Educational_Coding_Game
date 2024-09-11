@@ -14,19 +14,17 @@ public class Robot : MonoBehaviour
     private Vector2 MovementDirection;
     private Vector2 LastPosition = Vector2.zero;
     private Rigidbody2D RBComponent;
-
     private bool SpecialMovementUsed = false;
     private float SpecialMovementDuration = 0f;
-    Dictionary<string, List<CodeBlock>> KeyBindings = new();
+    public Dictionary<string, List<CodeBlock>> KeyBindings = new() { { "Q", new() { } }, { "E", new() { } }, { "Space", new() { } } };
 
-
-    // Start is called before the first frame update
+    // Start is called before the first frame update;
     void Start()
     {
         RBComponent = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame;
     void Update()
     {
         if (Strength < 250) RegenerateStrength();
@@ -62,7 +60,6 @@ public class Robot : MonoBehaviour
             SpecialMovementUsed = false;
             SpecialMovementDuration = 0f;
         }
-
     }
 
     // Getters;
@@ -144,7 +141,7 @@ public class Robot : MonoBehaviour
             _ => Vector2.zero,
         };
     }
-    // This executes the actions corresponding to the keys bindings that have been set by the player;
+    // This calls the actions corresponding to the keys bindings that have been set by the player;
     public void ExecuteBlocksForKey(string Key)
     {
         if (KeyBindings.ContainsKey(Key))

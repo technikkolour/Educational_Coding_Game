@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public void EnterBattle()
     {
         SceneManager.LoadScene("RobotBattle");
+        PauseGame();
     }
     public void ReturnToCity() 
     {
@@ -81,7 +82,6 @@ public class GameManager : MonoBehaviour
 
             if (PreviousSceneName == "Level_02") Player.transform.position = AcademySpawn.transform.position;
             else if (PreviousSceneName == "Level_03") Player.transform.position = WarehouseSpawn.transform.position;
-
         }));
     }
 
