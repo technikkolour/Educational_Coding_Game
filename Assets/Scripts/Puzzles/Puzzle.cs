@@ -242,6 +242,7 @@ public class Puzzle : MonoBehaviour
  
         return BlockList;
     }
+    // Compute the solution string based on the blocks in the code window;
     public void ComputeSolution(List<CodeBlock> CodeBlocks)
     {
         List<List<string>> SolutionSet = new() { new() { } };
@@ -285,8 +286,6 @@ public class Puzzle : MonoBehaviour
                     break;
             }
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
-
-            ErrorsPresent = true;
 
             // If any loops are present, compute how many times the loop is repeated:
             //      - For: Use the values entered by the player;
