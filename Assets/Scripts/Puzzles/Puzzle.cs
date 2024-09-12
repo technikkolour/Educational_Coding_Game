@@ -315,17 +315,22 @@ public class Puzzle : MonoBehaviour
 
                 case "Output":
                     // Verify whether the variables referenced exist;
+                    Debug.Log(ErrorsPresent);
                     if (string.IsNullOrEmpty(Block.Values[0])) ErrorsPresent = true;
-                    else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ErrorsPresent = true;
-                    else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
+                    else if (!float.TryParse(Block.Values[0], out _) && !(Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\"")) && !VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
+                    Debug.Log(ErrorsPresent);
 
                     // If there are no issues with the code, add the resulting output to the Output string;
                     if (!ErrorsPresent)
                         if (VariablesAndValues.ContainsKey(Block.Values[0]))
-                            {
-                                Output += VariablesAndValues[Block.Values[0]];
-                            }
-                    else Output += Block.Values[0];
+                        {
+                            Output += VariablesAndValues[Block.Values[0]];
+                        }
+                        else
+                        {
+                            Output += Block.Values[0];
+                        }
+
                     break;
 
                 case "If Statement":
@@ -357,7 +362,7 @@ public class Puzzle : MonoBehaviour
 
                     if (!ErrorsPresent)
                     {
-                        int Start = int.Parse(Block.Values[0]);
+                        int Start = int.Parse(VariablesAndValues[Block.Values[0]]);
                         int End = int.Parse(Block.Values[1]);
                         int Step = int.Parse(Block.Values[2]);
 
