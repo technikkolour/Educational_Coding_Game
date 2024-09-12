@@ -261,6 +261,7 @@ public class Puzzle : MonoBehaviour
                         VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
                     else ErrorsPresent = true;
                     break;
+
                 case "Float":
                     // Verify whether the types match up;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
@@ -268,6 +269,7 @@ public class Puzzle : MonoBehaviour
                         VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
                     else ErrorsPresent = true;
                     break;
+
                 case "Boolean":
                     // Verify whether the types match up;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
@@ -275,6 +277,7 @@ public class Puzzle : MonoBehaviour
                         VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
                     else ErrorsPresent = true;
                     break;
+
                 case "String":
                     // Verify whether the types match up;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
@@ -282,21 +285,25 @@ public class Puzzle : MonoBehaviour
                         VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
                     else ErrorsPresent = true;
                     break;
+
                 case "Array":
                     // Verify whether the types match up;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
                     else ErrorsPresent = true;
+                    
                     // If there are no issues with the array, add it to the variable list;
                     if (!ErrorsPresent)
                         VariablesAndValues.Add(Block.Values[0], "[" + Block.Values[1] + ", " + Block.Values[2] + "]");
                     break;
+
                 case "Mathematical Operation":
                     // Verify whether the types match up;
                     // Verify if the variables referenced exist;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2]) || (!AreSameType(Block.Values[0], Block.Values[1]))) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0]) || !VariablesAndValues.ContainsKey(Block.Values[1]) || !VariablesAndValues.ContainsKey(Block.Values[2])) ErrorsPresent = true;
+                    
                     // Compute the result of the operation;
                     if (!ErrorsPresent)
                     {
@@ -305,58 +312,78 @@ public class Puzzle : MonoBehaviour
                         else VariablesAndValues[Block.Values[0]] = MathematicalOperation(Block.Values[1], Block.Values[2], Block.Values[3]);
                     }
                     break;
+
                 case "Output":
                     // Verify whether the variables referenced exist;
                     if (string.IsNullOrEmpty(Block.Values[0])) ErrorsPresent = true;
                     else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
+
                     // If there are no issues with the code, add the resulting output to the Output string;
                     if (!ErrorsPresent)
-                        Output += Block.Values[0];
+                        if (VariablesAndValues.ContainsKey(Block.Values[0]))
+                            {
+                                Output += VariablesAndValues[Block.Values[0]];
+                            }
+                    else Output += Block.Values[0];
                     break;
+
                 case "If Statement":
                     // Verify whether the types match up and the condition is possible;
                     // Verify whether the variables inside the declaration exist;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+
+                    // Process the nested blocks;
                     if (!ErrorsPresent)
                     {
                         if (VariablesAndValues.ContainsKey(Block.Values[0]) || VariablesAndValues.ContainsKey(Block.Values[1]))
                             if (ConditionalBlock(VariablesAndValues[Block.Values[0]], VariablesAndValues[Block.Values[1]], Block.Values[3]))
                             {
-
+                                ComputeSolution(Block.NestedBlocks);
                             }
                         else if (ConditionalBlock(Block.Values[0], Block.Values[1], Block.Values[3]))
                             {
-
+                                ComputeSolution(Block.NestedBlocks);
                             }
                     }
                     break;
+
                 case "For Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[0], Block.Values[1]) || !AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+                    // Process the nested blocks;
+
                     if (!ErrorsPresent)
                     {
+                        int Start = int.Parse(Block.Values[0]);
+                        int End = int.Parse(Block.Values[1]);
+                        int Step = int.Parse(Block.Values[2]);
 
+                        for (int i = Start; i <= End; i += Step)
+                        {
+                            ComputeSolution(Block.NestedBlocks);
+                        }
                     }
                     break;
+
                 case "While Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
+
+                    // Process the nested blocks;
                     if (!ErrorsPresent)
                     {
-
+                        while (ConditionalBlock(VariablesAndValues[Block.Values[0]], Block.Values[1], Block.Values[3]))
+                        {
+                            ComputeSolution(Block.NestedBlocks);
+                        }
                     }
                     break;
             }
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
-
-            // If any loops are present, compute how many times the loop is repeated:
-            //      - For: Use the values entered by the player;
-            //      - While: Identify stopping condition, simulate loop;
-            // If there is an output field inside the loop, compute final output as printed value * number of repeats;
 
             List<string> BlockContents = new() { Block.Type };
         }
@@ -432,11 +459,14 @@ public class Puzzle : MonoBehaviour
 
         foreach (CodeBlock ParentBlock in CodeBlocks)
         {
+            // Check whether the parent block has nested blocks, if it does not, do not add a mapping for it;
             if (ParentBlock.CanHaveNestedBlocks && ParentBlock.NestedBlocks.Count != 0)
             {
+                // Get the key selected inside the Key Binding block;
                 TMP_Dropdown KeyDropdown = ParentBlock.GetComponentInChildren<TMP_Dropdown>();
                 string Key = KeyDropdown.options[KeyDropdown.value].text;
 
+                // Add the mapping to the corresponding key inside the KeyBindings list;
                 foreach (CodeBlock Block in ParentBlock.NestedBlocks)
                 {
                     Robot.KeyBindings[Key].Add(Block);

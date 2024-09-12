@@ -26,12 +26,12 @@ public class DataManager : MonoBehaviour
     private readonly Dictionary<int, List<List<string>>> ValueUpdate = new(){
         { 4, new(){ new(){"The gate to the city is locked. Maybe setting its value to unlocked will help me get through."}, new(){"gate = ' _________ '"}, new(){"unlocked"} } },
         { 5, new(){ new(){"This gate seems to be locked. Maybe changing a value in the code will open it..."}, new(){ "if 'gate is unlocked' = _________ \n    open" }, new(){"True"} } },
-        { 6, new(){ new(){"This robot just needs to move backwrds 10 steps so I can pass. I should change its code so it does that."}, new(){ "" }, new(){ "" } } } 
+        { 6, new(){ new(){"This robot just needs to move backwards 10 steps so I can pass. I should change its code so it does that."}, new(){ "move _______ steps backwards" }, new(){ "10" } } } 
     };
 
     // The lists are structured in the order: Prompt, Possible Solutions;
     private readonly Dictionary<int, List<List<string>>> CodeBuilding = new(){
-        { 7, new(){ new(){"I want to add up all of the numbers up to 100. Could you write a function that does that for me?"}, new(){""} } },
+        { 7, new(){ new(){"I want to add up all of the numbers up to 100. Could you write a function that does that for me?"}, new(){"5001"} } },
         { 8, new(){ new(){""}, new(){""} } },
         { 9, new(){ new(){""}, new(){""} } },
         { 999, new(){ new(){ "Here you get to build your own robot to control in the battles! The robot can already move left and right using the same controls as the human character! Your Strength stat is limited to 250." }, new(){ "" } } }
