@@ -237,7 +237,8 @@ public class Puzzle : MonoBehaviour
         foreach (Transform BlockTransform in CodeWindow.transform)
         {
             CodeBlock Block = BlockTransform.GetComponent<CodeBlock>();
-            BlockList.Add(Block);
+            if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count != 0)
+                BlockList.Add(Block);
         }
  
         return BlockList;
@@ -246,6 +247,8 @@ public class Puzzle : MonoBehaviour
     public void ComputeSolution(List<CodeBlock> CodeBlocks)
     {
         List<List<string>> SolutionSet = new() { new() { } };
+        Dictionary<string, string> VariablesAndValues = new();
+        string Output = "";
         bool ErrorsPresent = false;
 
         // Put the code together;
@@ -255,34 +258,66 @@ public class Puzzle : MonoBehaviour
             {
                 case "Integer":
                     // Verify whether the types match up;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if (int.TryParse(Block.Values[1], out _) && !VariablesAndValues.ContainsKey(Block.Values[0])) 
+                        VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
+                    else ErrorsPresent = true;
                     break;
                 case "Float":
                     // Verify whether the types match up;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if (float.TryParse(Block.Values[1], out _) && !VariablesAndValues.ContainsKey(Block.Values[0]))
+                        VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
+                    else ErrorsPresent = true;
                     break;
                 case "Boolean":
                     // Verify whether the types match up;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if (bool.TryParse(Block.Values[1], out _) && !VariablesAndValues.ContainsKey(Block.Values[0]))
+                        VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
+                    else ErrorsPresent = true;
                     break;
                 case "String":
                     // Verify whether the types match up;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if ((Block.Values[1].StartsWith("\"") && Block.Values[1].EndsWith("\"")) && !VariablesAndValues.ContainsKey(Block.Values[0]))
+                        VariablesAndValues.Add(Block.Values[0], Block.Values[1]);
+                    else ErrorsPresent = true;
                     break;
                 case "Array":
                     // Verify whether the types match up;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+                    else ErrorsPresent = true;
                     break;
                 case "Mathematical Operation":
                     // Verify whether the types match up;
+                    // Verify if the variables referenced exist;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[1], Block.Values[2]) || (!AreSameType(Block.Values[0], Block.Values[1]))) ErrorsPresent = true;
+                    else if (!VariablesAndValues.ContainsKey(Block.Values[0]) || !VariablesAndValues.ContainsKey(Block.Values[1]) || !VariablesAndValues.ContainsKey(Block.Values[2])) ErrorsPresent = true;
                     break;
                 case "Output":
                     // Verify whether the variables referenced exist;
+                    if (string.IsNullOrEmpty(Block.Values[0])) ErrorsPresent = true;
+                    else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ErrorsPresent = true;
+                    else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
                     break;
                 case "If Statement":
                     // Verify whether the types match up and the condition is possible;
                     // Verify whether the variables inside the declaration exist;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
                     break;
                 case "For Loop":
                     // Verify whether the variable inside the loop declaration exists;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[0], Block.Values[1]) || !AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
                     break;
                 case "While Loop":
                     // Verify whether the variable inside the loop declaration exists;
+                    if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
                     break;
             }
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
@@ -290,7 +325,6 @@ public class Puzzle : MonoBehaviour
             // If any loops are present, compute how many times the loop is repeated:
             //      - For: Use the values entered by the player;
             //      - While: Identify stopping condition, simulate loop;
-
             // If there is an output field inside the loop, compute final output as printed value * number of repeats;
 
             // Create a new list for each block containing the values entered and selected by the player and add it to the SolutionSet set;
@@ -300,9 +334,23 @@ public class Puzzle : MonoBehaviour
         }
 
         // If there are any error with the code, the solution is reset to an empty set;
-        if (ErrorsPresent) SolutionSet.Clear();
+        if (ErrorsPresent)
+        {
+            Output = "";
+            SolutionSet.Clear();
+        }
 
-        ProposedSolution = "";
+        // The proposed solution is equal to the expected output or the list of elements;
+        ProposedSolution = Output;
+    }
+    // Helper function for assessing whether the parameters are of the same type;
+    public bool AreSameType(string Variable_01, string Variable_02)
+    {
+        if ((int.TryParse(Variable_01, out _) == int.TryParse(Variable_02, out _)) ||
+            (float.TryParse(Variable_01, out _) == float.TryParse(Variable_02, out _)) ||
+            (bool.TryParse(Variable_01, out _) == bool.TryParse(Variable_02, out _)) ||
+            (Variable_01.StartsWith("\"") && Variable_02.StartsWith("\"") && Variable_01.EndsWith("\"") && Variable_02.EndsWith("\""))) return true;
+        return false;
     }
     //####################################################################################################################################################################
     // Code Building - ROBOT Mode;
