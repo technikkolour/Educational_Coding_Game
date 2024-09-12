@@ -229,7 +229,7 @@ public class Puzzle : MonoBehaviour
         List<string> NestingTypes = new() { "If Statement", "For Loop", "While Loop", "Assign Key" };
         if (NestingTypes.Contains(Type)) BlockInstance.GetComponent<CodeBlock>().CanHaveNestedBlocks = true;
     }
-    // Obtain a list of the Code Blocks present in the code window;
+    // Obtain a list of the Code Blocks that can nest other blocks present in the code window;
     public List<CodeBlock> GenerateBlockList()
     {
         List<CodeBlock> BlockList = new();
@@ -237,16 +237,14 @@ public class Puzzle : MonoBehaviour
         foreach (Transform BlockTransform in CodeWindow.transform)
         {
             CodeBlock Block = BlockTransform.GetComponent<CodeBlock>();
-            if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count != 0)
-                BlockList.Add(Block);
+            if (Block.CanHaveNestedBlocks || Block.Parent == null)
+            BlockList.Add(Block);
         }
- 
         return BlockList;
     }
     // Compute the solution string based on the blocks in the code window;
     public void ComputeSolution(List<CodeBlock> CodeBlocks)
     {
-        List<List<string>> SolutionSet = new() { new() { } };
         Dictionary<string, string> VariablesAndValues = new();
         string Output = "";
         bool ErrorsPresent = false;
@@ -289,6 +287,9 @@ public class Puzzle : MonoBehaviour
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
                     else ErrorsPresent = true;
+                    // If there are no issues with the array, add it to the variable list;
+                    if (!ErrorsPresent)
+                        VariablesAndValues.Add(Block.Values[0], "[" + Block.Values[1] + ", " + Block.Values[2] + "]");
                     break;
                 case "Mathematical Operation":
                     // Verify whether the types match up;
@@ -296,28 +297,58 @@ public class Puzzle : MonoBehaviour
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2]) || (!AreSameType(Block.Values[0], Block.Values[1]))) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0]) || !VariablesAndValues.ContainsKey(Block.Values[1]) || !VariablesAndValues.ContainsKey(Block.Values[2])) ErrorsPresent = true;
+                    // Compute the result of the operation;
+                    if (!ErrorsPresent)
+                    {
+                        if (VariablesAndValues.ContainsKey(Block.Values[0]) || VariablesAndValues.ContainsKey(Block.Values[1]) || VariablesAndValues.ContainsKey(Block.Values[2]))
+                            VariablesAndValues[Block.Values[0]] = MathematicalOperation(VariablesAndValues[Block.Values[1]], VariablesAndValues[Block.Values[2]], Block.Values[3]);
+                        else VariablesAndValues[Block.Values[0]] = MathematicalOperation(Block.Values[1], Block.Values[2], Block.Values[3]);
+                    }
                     break;
                 case "Output":
                     // Verify whether the variables referenced exist;
                     if (string.IsNullOrEmpty(Block.Values[0])) ErrorsPresent = true;
                     else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
+                    // If there are no issues with the code, add the resulting output to the Output string;
+                    if (!ErrorsPresent)
+                        Output += Block.Values[0];
                     break;
                 case "If Statement":
                     // Verify whether the types match up and the condition is possible;
                     // Verify whether the variables inside the declaration exist;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+                    if (!ErrorsPresent)
+                    {
+                        if (VariablesAndValues.ContainsKey(Block.Values[0]) || VariablesAndValues.ContainsKey(Block.Values[1]))
+                            if (ConditionalBlock(VariablesAndValues[Block.Values[0]], VariablesAndValues[Block.Values[1]], Block.Values[3]))
+                            {
+
+                            }
+                        else if (ConditionalBlock(Block.Values[0], Block.Values[1], Block.Values[3]))
+                            {
+
+                            }
+                    }
                     break;
                 case "For Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[0], Block.Values[1]) || !AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+                    if (!ErrorsPresent)
+                    {
+
+                    }
                     break;
                 case "While Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
                     else if (!AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
+                    if (!ErrorsPresent)
+                    {
+
+                    }
                     break;
             }
             if (Block.CanHaveNestedBlocks && Block.NestedBlocks.Count == 0) ErrorsPresent = true;
@@ -327,18 +358,11 @@ public class Puzzle : MonoBehaviour
             //      - While: Identify stopping condition, simulate loop;
             // If there is an output field inside the loop, compute final output as printed value * number of repeats;
 
-            // Create a new list for each block containing the values entered and selected by the player and add it to the SolutionSet set;
-            // If the block is nested into another, add "___" at the start of all of the entries in its list;
             List<string> BlockContents = new() { Block.Type };
-            SolutionSet.Add(BlockContents);
         }
 
         // If there are any error with the code, the solution is reset to an empty set;
-        if (ErrorsPresent)
-        {
-            Output = "";
-            SolutionSet.Clear();
-        }
+        if (ErrorsPresent) Output = "";
 
         // The proposed solution is equal to the expected output or the list of elements;
         ProposedSolution = Output;
@@ -350,6 +374,54 @@ public class Puzzle : MonoBehaviour
             (float.TryParse(Variable_01, out _) == float.TryParse(Variable_02, out _)) ||
             (bool.TryParse(Variable_01, out _) == bool.TryParse(Variable_02, out _)) ||
             (Variable_01.StartsWith("\"") && Variable_02.StartsWith("\"") && Variable_01.EndsWith("\"") && Variable_02.EndsWith("\""))) return true;
+        return false;
+    }
+    // Method simulating the behaviour of the Mathematical Operation block;
+    public string MathematicalOperation(string Variable_01, string Variable_02, string Operand)
+    {
+        float Result = 0;
+
+        // Parse the variables to float;
+        float Value_01 = float.Parse(Variable_01);
+        float Value_02 = float.Parse(Variable_02);
+
+        switch (Operand)
+        {
+            case "+":
+                Result = Value_01 + Value_02;
+                break;
+            case "-":
+                Result = Value_01 - Value_02;
+                break;
+            case "*":
+                Result = Value_01 * Value_02;
+                break;
+            case "/":
+                Result = Value_01 / Value_02;
+                break;
+        }
+
+        return Result.ToString(); 
+    }
+    // Method simulating the behaviour of the Mathematical Operation block;
+    public bool ConditionalBlock(string Variable_01, string Variable_02, string Condition)
+    {
+        float Value_01, Value_02;
+
+        switch (Condition)
+        {
+            case "=":
+                return (Variable_01 == Variable_02);
+            case "<":
+                Value_01 = float.Parse(Variable_01);
+                Value_02 = float.Parse(Variable_02);
+                return (Value_01 < Value_02);
+            case ">":
+                Value_01 = float.Parse(Variable_01);
+                Value_02 = float.Parse(Variable_02);
+                return (Value_01 > Value_02);
+        }
+
         return false;
     }
     //####################################################################################################################################################################
