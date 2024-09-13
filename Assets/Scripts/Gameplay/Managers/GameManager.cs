@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public Player Player;
     public GameObject AcademySpawn, WarehouseSpawn;
 
+    // UI Screens;
+    public GameObject DeathScreen;
+
     //####################################################################################################################################################################
     // MENU RELATED
     // Start the game from the first level;
@@ -63,11 +66,17 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level_03");
     }
+
     public void EnterBattle()
     {
         SceneManager.LoadScene("RobotBattle");
         PauseGame();
     }
+    public void DisplayDeathScreen()
+    {
+        DeathScreen.SetActive(true);
+    }
+
     public void ReturnToCity() 
     {
         PreviousSceneName = SceneManager.GetActiveScene().name;
@@ -95,6 +104,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
+
     // Return the journal entry corresponding to the ID;
     public string GetTheoreticalEntry(int EntryID)
     {

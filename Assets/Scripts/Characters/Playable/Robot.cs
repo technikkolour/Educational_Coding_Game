@@ -168,6 +168,6 @@ public class Robot : MonoBehaviour
     // Restart the level if the player dies;
     public void RestartLevel()
     {
-        GameObject.FindObjectOfType<GameManager>().EnterBattle();
+        GameObject.FindObjectOfType<GameManager>().DisplayDeathScreen();
     }
 }
