@@ -151,10 +151,14 @@ public class Robot : MonoBehaviour
                 switch (Block.Type)
                 {
                     case "Attack With Power":
-                        AttackWithPower(float.Parse(Block.Values[0]));
+                        // Validate the values entered by the player;
+                        if (!string.IsNullOrEmpty(Block.Values[0]) && float.TryParse(Block.Values[0], out _))
+                            AttackWithPower(float.Parse(Block.Values[0]));
                         break;
                     case "Move In Direction":
-                        MoveInDirection(StringToVector(Block.Values[3]), float.Parse(Block.Values[0]));
+                        // Validate the values entered by the player;
+                        if (!string.IsNullOrEmpty(Block.Values[0]) && float.TryParse(Block.Values[0], out _))
+                            MoveInDirection(StringToVector(Block.Values[3]), float.Parse(Block.Values[0]));
                         break;
                 }
             }
