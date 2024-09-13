@@ -247,7 +247,7 @@ public class CodeBlock : MonoBehaviour
                     LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 Dropdown.SetActive(true);
-                PositionAndPopulateDropdown(Dropdown, new(){ "+", "-", "*", "/" });
+                PositionAndPopulateDropdown(Dropdown, new(){ " ", "+", "-", "*", "/" });
                 break;
             case "Output":
             case "Attack With Power":            
@@ -263,18 +263,18 @@ public class CodeBlock : MonoBehaviour
                     LastIndex = PositionTextBox(Elements[i], LastIndex);
                 }
                 Dropdown.SetActive(true);
-                PositionAndPopulateDropdown(Dropdown, new() { "=", "<", ">" });
+                PositionAndPopulateDropdown(Dropdown, new() { " ", "=", "<", ">" });
                 break;
             case "Move In Direction":
                 Elements[0].SetActive(true);
                 Dropdown.SetActive(true);
                 PositionTextBox(Elements[0], 0);
-                PositionAndPopulateDropdown(Dropdown, new() { "Up", "Left", "Right" });
+                PositionAndPopulateDropdown(Dropdown, new() { " ", "Up", "Left", "Right" });
                 break;
             case "Assign Key":
                 CanHaveNestedBlocks = true;
                 Dropdown.SetActive(true);
-                PositionAndPopulateDropdown(Dropdown, new() { "Q", "E", "Space" });
+                PositionAndPopulateDropdown(Dropdown, new() { " ", "Q", "E", "Space" });
                 break;
         }
 

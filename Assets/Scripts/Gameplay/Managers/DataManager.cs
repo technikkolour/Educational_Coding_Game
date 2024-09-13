@@ -31,7 +31,7 @@ public class DataManager : MonoBehaviour
 
     // The lists are structured in the order: Prompt, Possible Solutions;
     private readonly Dictionary<int, List<List<string>>> CodeBuilding = new(){
-        { 7, new(){ new(){"I want to add up all of the numbers up to 100. Could you write a function that does that for me?"}, new(){"5001"} } },
+        { 7, new(){ new(){"I want to add up all of the numbers up to 100. Could you write a function that does that for me?"}, new(){"5050"} } },
         { 8, new(){ new(){""}, new(){""} } },
         { 9, new(){ new(){""}, new(){""} } },
         { 999, new(){ new(){ "Here you get to build your own robot to control in the battles! The robot can already move left and right using the same controls as the human character! Your Strength stat is limited to 250." }, new(){ "" } } }

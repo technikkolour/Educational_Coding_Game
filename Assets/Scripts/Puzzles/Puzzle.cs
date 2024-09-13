@@ -84,7 +84,14 @@ public class Puzzle : MonoBehaviour
 
     public bool VerifySolution()
     {
-        return ProposedSolution == Solution;
+        bool Result = ProposedSolution == Solution;
+
+        if (PuzzleType == "CodeBuilding")
+        {
+            ResetCodeBuildingProgress();
+        }
+
+        return Result;
     }
 
     //####################################################################################################################################################################
@@ -251,7 +258,7 @@ public class Puzzle : MonoBehaviour
     }        
 
     // Store the variables in this implementation;
-    private Dictionary<string, string> VariablesAndValues = new();
+    public Dictionary<string, string> VariablesAndValues = new();
     bool ErrorsPresent = false;
 
     // Compute the solution string based on the blocks in the code window;
@@ -309,57 +316,61 @@ public class Puzzle : MonoBehaviour
                     // Verify whether the types match up;
                     // Verify if the variables referenced exist;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
-                    else if (!AreSameType(Block.Values[1], Block.Values[2]) || !AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
-                    else if (!VariablesAndValues.ContainsKey(Block.Values[0]) || !VariablesAndValues.ContainsKey(Block.Values[1]) || !VariablesAndValues.ContainsKey(Block.Values[2])) ErrorsPresent = true;
+                    else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
                     
                     // Compute the result of the operation;
                     if (!ErrorsPresent)
                     {
+                        string Element_01 = VariablesAndValues[Block.Values[0]];
                         string Variable_01 = VariablesAndValues.GetValueOrDefault(Block.Values[1], Block.Values[1]);
                         string Variable_02 = VariablesAndValues.GetValueOrDefault(Block.Values[2], Block.Values[2]);
-                        VariablesAndValues[Block.Values[0]] = MathematicalOperation(Variable_01, Variable_02, Block.Values[3]);
+
+                        if (!AreSameType(Element_01, Variable_01) || !AreSameType(Element_01, Variable_02) || !AreSameType(Variable_01, Variable_02)) ErrorsPresent = true;
+                        else
+                            VariablesAndValues[Block.Values[0]] = MathematicalOperation(Variable_01, Variable_02, Block.Values[3]);
                     }
                     break;
 
-                case "ProposedSolution":
+                case "Output":
                     // Verify whether the variables referenced exist;
-                    Debug.Log(ErrorsPresent);
                     if (string.IsNullOrEmpty(Block.Values[0])) ErrorsPresent = true;
                     else if (!float.TryParse(Block.Values[0], out _) && !(Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\"")) && !VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
-                    Debug.Log(ErrorsPresent);
 
                     // If there are no issues with the code, add the resulting output to the ProposedSolution string;
                     if (!ErrorsPresent)
+                    {
                         if (VariablesAndValues.ContainsKey(Block.Values[0])) ProposedSolution += VariablesAndValues[Block.Values[0]];
-                    else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ProposedSolution += Block.Values[0][1..^1]; 
-                    else ProposedSolution += Block.Values[0];
+                        else if ((Block.Values[0].StartsWith("\"") && Block.Values[0].EndsWith("\""))) ProposedSolution += Block.Values[0][1..^1]; 
+                        else ProposedSolution += Block.Values[0];
+                    }
+
                     break;
 
                 case "If Statement":
                     // Verify whether the types match up and the condition is possible;
                     // Verify whether the variables inside the declaration exist;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1])) ErrorsPresent = true;
-                    else if (!AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
+                    else if (!AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
 
                     // Process the nested blocks;
                     if (!ErrorsPresent)
                     {
                         if (VariablesAndValues.ContainsKey(Block.Values[0]) || VariablesAndValues.ContainsKey(Block.Values[1]))
-                            if (ConditionalBlock(VariablesAndValues[Block.Values[0]], VariablesAndValues[Block.Values[1]], Block.Values[3]) ||
-                                (ConditionalBlock(Block.Values[0], Block.Values[1], Block.Values[3])) ||
-                                (ConditionalBlock(VariablesAndValues[Block.Values[0]], Block.Values[1], Block.Values[3])) ||
-                                ConditionalBlock(Block.Values[0], VariablesAndValues[Block.Values[1]], Block.Values[3]))
                             {
-                                ComputeSolution(Block.NestedBlocks);
-                            }
+                                string Variable_01 = VariablesAndValues.GetValueOrDefault(Block.Values[0], Block.Values[0]);
+                                string Variable_02 = VariablesAndValues.GetValueOrDefault(Block.Values[1], Block.Values[1]);
+
+                                if (ConditionalBlock(Variable_01, Variable_02, Block.Values[3]))
+                                    ComputeSolution(Block.NestedBlocks);
+                        }
                     }
                     break;
 
                 case "For Loop":
                     // Verify whether the variable inside the loop declaration exists;
                     if (string.IsNullOrEmpty(Block.Values[0]) || string.IsNullOrEmpty(Block.Values[1]) || string.IsNullOrEmpty(Block.Values[2])) ErrorsPresent = true;
-                    else if (!AreSameType(Block.Values[0], Block.Values[1]) || !AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
+                    else if (!AreSameType(VariablesAndValues[Block.Values[0]], Block.Values[1]) || !AreSameType(Block.Values[1], Block.Values[2])) ErrorsPresent = true;
 
                     // Process the nested blocks;
                     if (!ErrorsPresent)
@@ -367,18 +378,18 @@ public class Puzzle : MonoBehaviour
                         float Start, End, Step;
                         Start = float.Parse(VariablesAndValues[Block.Values[0]]);
 
-                        if (VariablesAndValues.ContainsKey(Block.Values[1]))
-                            End = float.Parse(VariablesAndValues[Block.Values[1]]);
-                        else End = float.Parse(Block.Values[1]);
-
                         if (VariablesAndValues.ContainsKey(Block.Values[2]))
-                            Step = float.Parse(VariablesAndValues[Block.Values[2]]);
-                        else Step = float.Parse(Block.Values[2]);
+                            End = float.Parse(VariablesAndValues[Block.Values[2]]);
+                        else End = float.Parse(Block.Values[2]);
+
+                        if (VariablesAndValues.ContainsKey(Block.Values[1]))
+                            Step = float.Parse(VariablesAndValues[Block.Values[1]]);
+                        else Step = float.Parse(Block.Values[1]);
 
                         for (float i = Start; i <= End; i += Step)
                         {
                             ComputeSolution(Block.NestedBlocks);
-                            VariablesAndValues[Block.Values[0]] = i.ToString();
+                            VariablesAndValues[Block.Values[0]] = (i + 1).ToString();
                         }
                     }
                     break;
@@ -389,7 +400,7 @@ public class Puzzle : MonoBehaviour
                     else if (!AreSameType(Block.Values[0], Block.Values[1])) ErrorsPresent = true;
                     else if (!VariablesAndValues.ContainsKey(Block.Values[0])) ErrorsPresent = true;
 
-                    int MaxNoIterations = 1000, CurrentIteration = 0;
+                    int MaxNoIterations = 500, CurrentIteration = 0;
 
                     // Process the nested blocks;
                     if (!ErrorsPresent)
@@ -400,7 +411,6 @@ public class Puzzle : MonoBehaviour
                         else
                             while (ConditionalBlock(VariablesAndValues[Block.Values[0]], Block.Values[1], Block.Values[3]) && CurrentIteration++ < MaxNoIterations)
                                     ComputeSolution(Block.NestedBlocks);
-                        
                     }
                     break;
             }
@@ -409,12 +419,13 @@ public class Puzzle : MonoBehaviour
         }
 
         // If there are any error with the code, the solution is reset to an empty set;
-        if (ErrorsPresent)
-        {
-            VariablesAndValues.Clear();
-            ProposedSolution = "";
-            ErrorsPresent = false;
-        }
+        if (ErrorsPresent) ResetCodeBuildingProgress();
+    }
+    public void ResetCodeBuildingProgress()
+    {
+        VariablesAndValues.Clear();
+        ProposedSolution = "";
+        ErrorsPresent = false;
     }
 
     // Helper function for assessing whether the parameters are of the same type;

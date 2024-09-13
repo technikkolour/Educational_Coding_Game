@@ -4644,6 +4644,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   AcademySpawn: {fileID: 0}
   WarehouseSpawn: {fileID: 0}
+  DeathScreen: {fileID: 0}
 --- !u!4 &1751578352
 Transform:
   m_ObjectHideFlags: 0
