@@ -30,11 +30,28 @@ public class Inventory : MonoBehaviour
         Silver.text = Medals[1].ToString();
         Bronze.text = Medals[2].ToString();
 
-        for(int i = 0; i< CurrentInventory.Count; i++)
+        for (int i = 0; i < CurrentInventory.Count; i++)
         {
             GameObject.Find("InventoryEntry_0" + (i + 1)).GetComponentInChildren<TMP_Text>().text = CurrentInventory[i].Name;
             GameObject.Find("InventoryEntry_0" + (i + 1)).GetComponentInChildren<Image>().sprite = CurrentInventory[i].Sprite;
-        }
-            
+        } 
+    }
+
+    // Display the description of the selected item;
+    private Item Item;
+
+    public void GetItem(int Index)
+    {
+        if (Index <= Player.GetInventory().Count - 1)
+            Item = Player.GetInventory()[Index];
+    }
+    public void DisplayDescription()
+    {
+        TMP_Text DescriptionField = GameObject.Find("ItemDescription").GetComponent<TMP_Text>();
+
+        if (Item != null) DescriptionField.text = Item.Description;
+        else DescriptionField.text = "";
+
+        Item = null;
     }
 }
