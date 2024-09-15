@@ -26,7 +26,7 @@ public class Puzzle : MonoBehaviour
     public TMP_Text PromptObject;
     public TMP_Text AttemptsObject;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update;
     void Start()
     {
         DataManager = FindObjectOfType<DataManager>();
@@ -48,7 +48,7 @@ public class Puzzle : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Update is called once per frame;
     void Update()
     {
         if (AttemptsObject != null)
@@ -120,6 +120,7 @@ public class Puzzle : MonoBehaviour
 
     // Store the time limit for the player to answer all the questions in the quiz;
     public float TimeLimit = 300f;
+    public Time StartTime, CurrentTime;
 
     public void QuizMode()
     {

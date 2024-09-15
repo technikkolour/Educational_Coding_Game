@@ -85,7 +85,6 @@ public class Player : MonoBehaviour
                 Time.timeScale = 1.0f;
                 break;
         }
-        
     }
 
     // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;

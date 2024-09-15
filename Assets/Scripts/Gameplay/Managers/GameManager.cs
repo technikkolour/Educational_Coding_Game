@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,15 +13,21 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // Scene management;
     private static string PreviousSceneName;
-    private List<string> TheoreticalCollection = new() { "" };
-
-    // Spawning properties;
-    public Player Player;
-    public GameObject AcademySpawn, WarehouseSpawn;
 
     // UI Screens;
     public GameObject DeathScreen;
+
+    // Journal management;
+    private List<string> TheoreticalCollection = new() { "" };
+
+    // Player spawning properties;
+    public Player Player;
+    public GameObject AcademySpawn, WarehouseSpawn;
+
+    // Progression management;
+    private List<bool> BlockagesCleared = new(Enumerable.Repeat(false, 7));
 
     //####################################################################################################################################################################
     // MENU RELATED
