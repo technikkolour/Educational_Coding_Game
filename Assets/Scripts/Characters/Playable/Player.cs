@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
         // The E key is reserved for interacting;
         if (Input.GetKeyDown(KeyCode.E) && CollidingObject != null) Interact();
 
-        // For testing only, WILL BE REMOVED;
-        if (Input.GetKeyDown(KeyCode.K)) PickUpItem(0);
+        // For testing only;
+        //if (Input.GetKeyDown(KeyCode.K)) PickUpItem(0);
     }
 
     // Called a set number or times, not depenent on framerate;

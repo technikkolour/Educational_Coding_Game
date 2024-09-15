@@ -47,11 +47,14 @@ public class Inventory : MonoBehaviour
     }
     public void DisplayDescription()
     {
+        // Get the text field for the item description;
         TMP_Text DescriptionField = GameObject.Find("ItemDescription").GetComponent<TMP_Text>();
 
+        // If there is an item in the selected slot, display description, if not the description is empty;
         if (Item != null) DescriptionField.text = Item.Description;
         else DescriptionField.text = "";
 
+        // Reset the item so that emoty inventory slots do not display the descriptions of the previous, filled slot;
         Item = null;
     }
 }

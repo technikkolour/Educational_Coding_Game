@@ -407,10 +407,16 @@ public class Puzzle : MonoBehaviour
                     {
                         if (VariablesAndValues.ContainsKey(Block.Values[1]))
                             while (ConditionalBlock(VariablesAndValues[Block.Values[0]], VariablesAndValues[Block.Values[1]], Block.Values[3]) && CurrentIteration++ < MaxNoIterations)
+                            {
                                 ComputeSolution(Block.NestedBlocks);
+                                CurrentIteration++;
+                            }
                         else
                             while (ConditionalBlock(VariablesAndValues[Block.Values[0]], Block.Values[1], Block.Values[3]) && CurrentIteration++ < MaxNoIterations)
-                                    ComputeSolution(Block.NestedBlocks);
+                            {
+                                ComputeSolution(Block.NestedBlocks);
+                                CurrentIteration++;
+                            }
                     }
                     break;
             }
