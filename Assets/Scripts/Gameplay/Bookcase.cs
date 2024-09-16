@@ -5,12 +5,12 @@ public class Bookcase : MonoBehaviour
     public string Contents;
     public int Index;
 
-    private Player Player;
+    private GameManager GameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<Player>();
+        GameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -25,6 +25,6 @@ public class Bookcase : MonoBehaviour
 
 
         // Add the corresponding entry to the journal;
-        Player.FoundEntry(Index);
+        GameManager.FoundEntry(Index);
     }
 }

@@ -7,21 +7,19 @@ public class Inventory : MonoBehaviour
 {
     public TMP_Text Gold, Silver, Bronze;
 
-    private Player Player;
-    private DataManager DataManager;
+    private GameManager GameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<Player>();
-        DataManager = FindObjectOfType<DataManager>();
+        GameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {   
-        List<Item> CurrentInventory = Player.GetInventory();
-        List<int> Medals = Player.GetMedals();
+        List<Item> CurrentInventory = GameManager.GetInventory();
+        List<int> Medals = GameManager.GetMedals();
 
         Gold.text = Medals[0].ToString();
         Silver.text = Medals[1].ToString();
@@ -39,8 +37,8 @@ public class Inventory : MonoBehaviour
 
     public void GetItem(int Index)
     {
-        if (Index <= Player.GetInventory().Count - 1)
-            Item = Player.GetInventory()[Index];
+        if (Index <= GameManager.GetInventory().Count - 1)
+            Item = GameManager.GetInventory()[Index];
     }
     public void DisplayDescription()
     {

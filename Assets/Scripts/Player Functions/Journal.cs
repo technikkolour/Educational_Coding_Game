@@ -34,7 +34,6 @@ public class Journal : MonoBehaviour
     void Start()
     {
         GameManager = FindObjectOfType<GameManager>();
-        Player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -94,9 +93,9 @@ public class Journal : MonoBehaviour
     // Build the content of the player's journal;
     void UpdateEntries()
     {
-        for (int i = 0; i < Player.GetJournalEntriesFound().Count; i++)
+        for (int i = 0; i < GameManager.GetJournalEntriesFound().Count; i++)
         {
-            if (Player.GetJournalEntriesFound()[i] == true && !Entries.Contains(AllEntries[i]))
+            if (GameManager.GetJournalEntriesFound()[i] == true && !Entries.Contains(AllEntries[i]))
             {
                 if (Entries[0][1] == "" && Entries[1][1] == "") Entries.RemoveAt(0);
                 Entries.Insert(Entries.Count - 1, AllEntries[i]);
