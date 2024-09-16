@@ -4,6 +4,7 @@ public class PuzzleSpawner : MonoBehaviour
 {
     public string PuzzleType;
     public int PuzzleID;
+    public int ItemID;
     public int Attempts;
 
     private PuzzleManager PuzzleManager;

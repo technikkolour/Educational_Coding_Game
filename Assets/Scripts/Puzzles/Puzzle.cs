@@ -11,7 +11,7 @@ public class Puzzle : MonoBehaviour
     private string Prompt;
     public string Solution;
     private bool Done = false;
-    private int Prize_ItemID = 0;
+    private int Prize_ItemID;
 
     private DataManager DataManager;
     public string ProposedSolution;
@@ -49,6 +49,7 @@ public class Puzzle : MonoBehaviour
         {
             Spawner = Player.InteractingWith;
             Attempts = Spawner.Attempts;
+            Prize_ItemID = Spawner.ItemID;
         }
     }
 
@@ -62,6 +63,7 @@ public class Puzzle : MonoBehaviour
             ComputeOrder();
     }
 
+    // Get the puzzle's index;
     public int GetID()
     {
         return PuzzleID;
@@ -70,6 +72,16 @@ public class Puzzle : MonoBehaviour
     public string GetPrompt()
     {
         return Prompt;
+    }
+
+    // Getter and setter for the item to be obtained from the puzzle;
+    public int GetItemID()
+    {
+        return Prize_ItemID;
+    }
+    public void SetItemID(int Index)
+    {
+        Prize_ItemID = Index;
     }
 
     // Functions related to the attempts taken to solve;
@@ -86,6 +98,7 @@ public class Puzzle : MonoBehaviour
         Attempts++;
     }
 
+    // Function for marking the puzzle as completed;
     public void SetCompleted()
     {
         Done = true;

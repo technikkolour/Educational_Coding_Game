@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
+    // Properties relating to the puzzle;
     private Player Player;
     private Puzzle CurrentPuzzle;
     private PuzzleSpawner Spawner;
     private GameManager GameManager;
 
-    public GameObject ErrorMessage;
+    // Properties for validating the solution to the puzzle;
+    public GameObject ErrorMessage, SuccessMessage;
     public GameObject PuzzleUI;
     public string ProposedSolution;
 
+    // The prefabs for the different types of puzzles;
     public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_prefab, CodeBuildingUI_Prefab;
 
     // Start is called before the first frame update;
@@ -30,38 +33,56 @@ public class PuzzleManager : MonoBehaviour
 
     public void SubmitSolution()
     {
-        if (!CurrentPuzzle.RobotBuilding)
+        if (CurrentPuzzle != null)
         {
-            if (CurrentPuzzle.PuzzleType == "CodeBuilding")
+            if (!CurrentPuzzle.RobotBuilding)
             {
-                List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
-                CurrentPuzzle.ComputeSolution(PuzzleBlocks);
-            }
+                if (CurrentPuzzle.PuzzleType == "CodeBuilding")
+                {
+                    List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
+                    CurrentPuzzle.ComputeSolution(PuzzleBlocks);
+                }
 
-            if (CurrentPuzzle.VerifySolution())
-            {
-                Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
-                GameManager.SetPuzzleCompleted(CurrentPuzzle.GetID());
+                if (CurrentPuzzle.VerifySolution())
+                {
+                    Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
+                    Player.PickUpItem(CurrentPuzzle.GetItemID());
+                    GameManager.SetPuzzleCompleted(CurrentPuzzle.GetID());
+                    ClosePuzzle();
+                    DisplaySuccessMessage();
+                }
+                else
+                {
+                    CurrentPuzzle.IncreaseAttempts();
+                    ErrorMessage.SetActive(true);
+                    Invoke("RemoveMessage", 5);
+                }
             }
             else
             {
-                CurrentPuzzle.IncreaseAttempts();
-                ErrorMessage.SetActive(true);
-                Invoke("RemoveMessage", 5);
+                List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
+                if (CurrentPuzzle.RobotBuilding) CurrentPuzzle.AssignKeyBindings(PuzzleBlocks);
+                Destroy(GameObject.Find("PuzzleCanvas"));
             }
         }
-        else
-        {
-            List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
-            if (CurrentPuzzle.RobotBuilding) CurrentPuzzle.AssignKeyBindings(PuzzleBlocks);
-            Destroy(GameObject.Find("PuzzleCanvas"));
-        }
+
     }
 
     // Set the error message as inactive;
     private void RemoveMessage()
     {
         ErrorMessage.SetActive(false);
+    }
+
+    // Set the success message as active;
+    public void DisplaySuccessMessage()
+    {
+        SuccessMessage.SetActive(true);
+    }
+    // Set the success message as inactive;
+    public void RemoveSuccessMessage()
+    {
+        SuccessMessage.SetActive(false);
     }
 
     // Instantiate the puzzle depending on the type;
@@ -93,6 +114,7 @@ public class PuzzleManager : MonoBehaviour
         if (PuzzleComponent.Spawner != null && PuzzleComponent.Spawner != null)
         {
             PuzzleComponent.SetAttempts(Spawner.Attempts);
+            PuzzleComponent.SetItemID(Spawner.ItemID);
             PuzzleComponent.PuzzleType = PuzzleType;
             PuzzleComponent.PuzzleID = PuzzleID;
         }
@@ -106,8 +128,12 @@ public class PuzzleManager : MonoBehaviour
     {
         // Store the attempts number inside the spawner;
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
-        Puzzle.SetAttempts(Puzzle.GetAttempts());
 
-        Destroy(Puzzle.gameObject);        
+        if (Puzzle != null)
+        {
+            Puzzle.SetAttempts(Puzzle.GetAttempts());
+            Destroy(Puzzle.gameObject);     
+        }
+  
     }
 }

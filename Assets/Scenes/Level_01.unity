@@ -18619,7 +18619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -18631,6 +18631,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -18644,6 +18648,10 @@ PrefabInstance:
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
+      objectReference: {fileID: 1055498057}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
       objectReference: {fileID: 482115128}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -18651,6 +18659,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -18663,6 +18675,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: RemoveSuccessMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -18675,6 +18691,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PuzzleManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -18683,6 +18703,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 731127807662338428, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1913206356445704244, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -18979,7 +19003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 3
+  ItemID: 0
   Attempts: 0
 --- !u!1001 &587078552
 PrefabInstance:
@@ -19469,6 +19494,10 @@ PrefabInstance:
     - target: {fileID: 1710262819973189115, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: ItemID
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
@@ -20994,6 +21023,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
   m_PrefabInstance: {fileID: 1017909244}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017942758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2664489273757169408, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+  m_PrefabInstance: {fileID: 482115126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1020692341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8428061712534829126, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
@@ -21204,6 +21238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ErrorMessage: {fileID: 482115127}
+  SuccessMessage: {fileID: 1017942758}
   PuzzleUI: {fileID: 482115128}
   ProposedSolution: 
   MultipleChoiceUI_Prefab: {fileID: 8999208116026393977, guid: 974d59089bb37d54cb17feb07ca3c011, type: 3}
@@ -21877,6 +21912,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6178218090099822988, guid: 1b8afba20c247574aab01e998650d18d, type: 3}
   m_PrefabInstance: {fileID: 8935689307894226097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1189902113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+  m_PrefabInstance: {fileID: 2063676953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1192801976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22169,6 +22209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PuzzleType: 
   PuzzleID: 0
+  ItemID: -1
   Attempts: 0
 --- !u!1 &1234582072
 GameObject:
@@ -22534,7 +22575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 2
+  ItemID: 0
   Attempts: 0
 --- !u!1 &1313363777
 GameObject:
@@ -24261,6 +24303,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: ItemID
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -24668,6 +24714,10 @@ PrefabInstance:
     - target: {fileID: 622164200029983960, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: ItemID
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -25307,6 +25357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PuzzleType: 
   PuzzleID: 0
+  ItemID: -1
   Attempts: 0
 --- !u!1001 &1906535373
 PrefabInstance:
@@ -26217,13 +26268,32 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1265177230}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2063676960}
   m_SourcePrefab: {fileID: 100100000, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
 --- !u!4 &2063676954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
   m_PrefabInstance: {fileID: 2063676953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2063676960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189902113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PuzzleType: 
+  PuzzleID: 0
+  ItemID: -1
+  Attempts: 0
 --- !u!1 &2080547100
 GameObject:
   m_ObjectHideFlags: 0
@@ -26726,7 +26796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4271065894663663164, guid: 167c71519ad12884981022e317ab1187, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.38774547
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4271065894663663164, guid: 167c71519ad12884981022e317ab1187, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26796,6 +26866,10 @@ PrefabInstance:
     - target: {fileID: 622164200029983960, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: ItemID
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -27090,7 +27164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 1
+  ItemID: 0
   Attempts: 0
 --- !u!1001 &8967959554952354267
 PrefabInstance:

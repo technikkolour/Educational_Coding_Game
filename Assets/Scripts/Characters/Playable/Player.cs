@@ -137,8 +137,12 @@ public class Player : MonoBehaviour
     // CurrentInventory interaction functions;
     public void PickUpItem(int ItemID)
     {
-        Item Item = DataManager.ReturnItemForIndex(ItemID);
-        if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
+        if (ItemID >= 0)
+        {
+            Item Item = DataManager.ReturnItemForIndex(ItemID);
+            if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
+        }
+
     }
     public void UseItem(int ItemID)
     {
