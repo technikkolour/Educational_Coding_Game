@@ -6,13 +6,7 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Scene management;
+     // Scene management;
     private static string PreviousSceneName;
 
     // UI Screens;
@@ -27,14 +21,11 @@ public class GameManager : MonoBehaviour
     public GameObject AcademySpawn, WarehouseSpawn;
 
     // Progression management;
-    private List<bool> BlockagesCleared = new(Enumerable.Repeat(false, 7));
-    private List<int> Medals = new() { 0, 0, 0 };
-    private List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 16));
-    private List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 11));
-    private List<Item> CurrentInventory = new();
+    private GameProgress GameProgress;
 
     private void Start()
     {
+        GameProgress = GameObject.FindObjectOfType<GameProgress>();
         Player = GameObject.FindObjectOfType<Player>();
         DataManager = GameObject.FindObjectOfType<DataManager>();
     }
@@ -141,34 +132,34 @@ public class GameManager : MonoBehaviour
     // PROGRESSION RELATED
     public bool IsCleared(int Index)
     {
-        return BlockagesCleared[Index];
+        return GameProgress.BlockagesCleared[Index];
     }
     public void ClearBlockage(int Index)
     {
-        BlockagesCleared[Index] = true;
+        GameProgress.BlockagesCleared[Index] = true;
 
     }
 
     // Handle Puzzles;
     public bool IsPuzzleCompleted(int Index)
     {
-        return CompletedPuzzles[Index];
+        return GameProgress.CompletedPuzzles[Index];
     }
     public void CompletedPuzzle(int PuzzleID, int Attempts)
     {
-        CompletedPuzzles[PuzzleID - 1] = true;
+        GameProgress.CompletedPuzzles[PuzzleID - 1] = true;
 
-        if (Attempts <= 3) Medals[Attempts - 1] += 1;
+        if (Attempts <= 3) GameProgress.Medals[Attempts - 1] += 1;
     }
 
     // Handle Journal entries;
     public List<bool> GetJournalEntriesFound()
     {
-        return JournalEntriesFound;
+        return GameProgress.JournalEntriesFound;
     }
     public void FoundEntry(int EntryID)
     {
-        JournalEntriesFound[EntryID - 1] = true;
+        GameProgress.JournalEntriesFound[EntryID - 1] = true;
     }
 
     // Handle Inventory;
@@ -177,21 +168,21 @@ public class GameManager : MonoBehaviour
         if (ItemID >= 0)
         {
             Item Item = DataManager.ReturnItemForIndex(ItemID);
-            if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
+            if (!GameProgress.CurrentInventory.Contains(Item)) GameProgress.CurrentInventory.Add(Item);
         }
 
     }
     public List<int> GetMedals()
     {
-        return Medals;
+        return GameProgress.Medals;
     }
     public List<Item> GetInventory()
     {
-        return CurrentInventory;
+        return GameProgress.CurrentInventory;
     }
     public void UseItem(int ItemID)
     {
-        CurrentInventory.RemoveAt(ItemID);
+        GameProgress.CurrentInventory.RemoveAt(ItemID);
     }
 
 }
