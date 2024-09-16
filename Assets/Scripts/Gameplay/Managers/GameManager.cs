@@ -120,11 +120,18 @@ public class GameManager : MonoBehaviour
 
 
     //####################################################################################################################################################################
-    // MULTIPLAYER
+    // MULTIPLAYER RELATED
     public void EnterMultiplayerLobby()
     {
         SceneManager.LoadScene("MultiplayerLobby");
     }
 
 
+    //####################################################################################################################################################################
+    // PROGRESSION RELATED
+    public void ClearBlockage(int Index)
+    {
+        BlockagesCleared[Index] = true;
+
+    }
 }
