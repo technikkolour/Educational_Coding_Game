@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using TMPro;
-using System;
-using System.Runtime.CompilerServices;
 using System.Linq;
 
 public class Player : MonoBehaviour
