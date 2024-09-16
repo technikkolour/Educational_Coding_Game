@@ -70,20 +70,13 @@ public class Player : MonoBehaviour
 
                 List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
                 string CollidingObjectType = CollidingObjectName[^1];
-
                 if (CollidingObjectType == "Puzzle")
-                {
-                    InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
                     InteractingWith.Spawn();
-                }
                 else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
-
-                Time.timeScale = 0.0f;
                 break;
             case true:
                 InInteraction = false;
                 DialogueUI.SetActive(false);
-                Time.timeScale = 1.0f;
                 break;
         }
     }

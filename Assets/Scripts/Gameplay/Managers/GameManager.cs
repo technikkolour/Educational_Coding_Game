@@ -138,4 +138,13 @@ public class GameManager : MonoBehaviour
         BlockagesCleared[Index] = true;
 
     }
+
+    public bool IsPuzzleCompleted(int Index)
+    {
+        return CompletedPuzzles[Index];
+    }
+    public void SetPuzzleCompleted(int Index)
+    {
+        CompletedPuzzles[Index] = true;
+    }
 }

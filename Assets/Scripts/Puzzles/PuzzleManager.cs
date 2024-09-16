@@ -44,7 +44,7 @@ public class PuzzleManager : MonoBehaviour
             if (CurrentPuzzle.VerifySolution())
             {
                 Player.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
-                CurrentPuzzle.SetCompleted();
+                GameManager.SetPuzzleCompleted(CurrentPuzzle.GetID());
             }
             else
             {
@@ -112,8 +112,5 @@ public class PuzzleManager : MonoBehaviour
         Puzzle.SetAttempts(Puzzle.GetAttempts());
 
         Destroy(Puzzle.gameObject);        
-        
-        // Unpause the game when the puzzle is closed;
-        GameManager.UnpauseGame();
     }
 }

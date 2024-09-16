@@ -38,6 +38,7 @@ public class Puzzle : MonoBehaviour
         switch (PuzzleType)
         {
             case "MultipleChoice":
+            case "Quiz":
                 AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
             case "CodeOrdering":

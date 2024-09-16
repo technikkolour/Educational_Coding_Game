@@ -3446,7 +3446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1913206356445704244, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222525949213278110, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4526918392837882173, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4570,13 +4574,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1323073441}
   m_SourcePrefab: {fileID: 100100000, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
 --- !u!4 &1323073439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
   m_PrefabInstance: {fileID: 1323073438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1323073440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+  m_PrefabInstance: {fileID: 1323073438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1323073441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323073440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PuzzleType: Quiz
+  PuzzleID: 10
+  Attempts: 0
 --- !u!1 &1412446731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5406,7 +5433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141354e5a1340f341826cc59e52d8470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
   DeathScreen: {fileID: 0}
   Player: {fileID: 0}
   AcademySpawn: {fileID: 0}
