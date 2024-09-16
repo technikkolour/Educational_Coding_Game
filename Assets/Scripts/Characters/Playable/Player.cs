@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private UnityEngine.Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
     private Collider2D CollidingObject;
-    private bool inInteraction = false;
+    private bool InInteraction = false;
     private string prompt;
 
     // Managers;
@@ -62,10 +62,10 @@ public class Player : MonoBehaviour
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
     public void Interact() 
     {
-        switch (inInteraction)
+        switch (InInteraction)
         {
             case false:
-                inInteraction = true;
+                InInteraction = true;
                 PromptText.text = prompt;
 
                 List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
                 if (CollidingObjectType == "Puzzle")
                 {
-                    PuzzleSpawner InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
+                    InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
                     InteractingWith.Spawn();
                 }
                 else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
                 Time.timeScale = 0.0f;
                 break;
             case true:
-                inInteraction = false;
+                InInteraction = false;
                 DialogueUI.SetActive(false);
                 Time.timeScale = 1.0f;
                 break;
@@ -111,6 +111,9 @@ public class Player : MonoBehaviour
                 break;
             case "BossBattleTrigger":
                 GameManager.EnterBattle();
+                break;
+            case "Puzzle":
+                InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
                 break;
         }
     }

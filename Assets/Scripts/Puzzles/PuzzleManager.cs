@@ -91,11 +91,13 @@ public class PuzzleManager : MonoBehaviour
         PuzzleUI.SetActive(true);
         Puzzle.transform.SetParent(PuzzleUI.transform);
 
-        if (Puzzle.GetComponent<Puzzle>().Spawner != null)
+        Puzzle PuzzleComponent = Puzzle.GetComponent<Puzzle>();
+
+        if (PuzzleComponent.Spawner != null && PuzzleComponent.Spawner != null)
         {
-            Puzzle.GetComponent<Puzzle>().SetAttempts(Spawner.Attempts);
-            Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
-            Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
+            PuzzleComponent.SetAttempts(Spawner.Attempts);
+            PuzzleComponent.PuzzleType = PuzzleType;
+            PuzzleComponent.PuzzleID = PuzzleID;
         }
 
         // Pause the game when the puzzle is spawned in;
@@ -105,13 +107,13 @@ public class PuzzleManager : MonoBehaviour
     // Remove the puzzle from the scene once it is closed;
     public void ClosePuzzle()
     {
-        // Unpause the game when the puzzle is closed;
-        GameManager.UnpauseGame();
-
         // Store the attempts number inside the spawner;
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
         Puzzle.SetAttempts(Puzzle.GetAttempts());
 
-        Destroy(Puzzle.gameObject);
+        Destroy(Puzzle.gameObject);        
+        
+        // Unpause the game when the puzzle is closed;
+        GameManager.UnpauseGame();
     }
 }

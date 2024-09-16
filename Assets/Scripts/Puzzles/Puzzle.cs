@@ -51,8 +51,11 @@ public class Puzzle : MonoBehaviour
                 break;
         }
 
-        Spawner = Player.InteractingWith;
-        Attempts = Spawner.Attempts;
+        if (Player.InteractingWith != null)
+        {
+            Spawner = Player.InteractingWith;
+            Attempts = Spawner.Attempts;
+        }
     }
 
     // Update is called once per frame;

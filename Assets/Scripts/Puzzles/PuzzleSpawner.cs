@@ -26,10 +26,10 @@ public class PuzzleSpawner : MonoBehaviour
     public void Spawn()
     {
         PuzzleManager.SpawnPuzzle(PuzzleType, PuzzleID);
-
+/*
         Puzzle Puzzle = GameManager.FindObjectOfType<Puzzle>();
 
         if (Puzzle != null)
-            Puzzle.SetAttempts(Attempts);
+            Puzzle.SetAttempts(Attempts);*/
     }
 }
