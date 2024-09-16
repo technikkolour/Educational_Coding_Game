@@ -561,8 +561,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.80121, y: -114.66452}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 78.8, y: -114.66452}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685063983861809810
 MonoBehaviour:
@@ -1198,8 +1198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.80121, y: -39.66452}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 78.8, y: -39.66452}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4744193177990064004
 MonoBehaviour:
@@ -1483,8 +1483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.80121, y: 35.33548}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 78.8, y: 35.33548}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6015389783595461231
 MonoBehaviour:
@@ -1657,8 +1657,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.80121, y: -189.66452}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 78.8, y: -189.66452}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237057940514535735
 MonoBehaviour:
@@ -1841,12 +1841,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea069d860faf4e4e86aed6dff9303e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: MultipleChoice
-  PuzzleID: 1
+  PuzzleType: 
+  PuzzleID: -1
   Solution: 
   ProposedSolution: 
   PromptObject: {fileID: 5007588774976202902}
   AttemptsObject: {fileID: 460106873734937678}
+  Spawner: {fileID: 0}
+  Player: {fileID: 0}
+  TimeLimit: 300
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
   CodeBlockPrefab: {fileID: 0}

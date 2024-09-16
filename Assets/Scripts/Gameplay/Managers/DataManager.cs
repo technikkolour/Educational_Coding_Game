@@ -5,11 +5,11 @@ public class DataManager : MonoBehaviour
 {
     // The lists are structured in the order: Prompt, Options (or Lines of Code), Solution;
     private readonly Dictionary<int, List<List<string>>> MultipleChoice = new(){
-        { 1, new(){ new(){"Would the number 3 be considered an integer?"}, new(){"Yes", "No"}, new(){"Yes"} } },
-        { 2, new(){ new(){""}, new(){""}, new(){""} } }
+        { 1, new(){ new(){"What would you store your age in?"}, new(){"A variable.", "A constant."}, new(){ "A variable." } } },
+        { 2, new(){ new(){"Would the number 3 be considered an integer?"}, new(){"Yes", "No"}, new(){"Yes"} } }
     };
     private readonly Dictionary<int, List<List<string>>> Quiz = new(){
-        { 10, new(){ new(){""}, new(){""}, new(){""} } },
+        { 10, new(){ new(){"What is a variable?"}, new(){"A number", "A value that changes.", "A string."}, new(){"A value that changes."} } },
         { 11, new(){ new(){""}, new(){""}, new(){""} } },
         { 12, new(){ new(){""}, new(){""}, new(){""} } },
         { 13, new(){ new(){""}, new(){""}, new(){""} } },
@@ -98,7 +98,7 @@ public class DataManager : MonoBehaviour
             case int i when (i >= 7 && i <= 9) || i == 999:
                 Puzzle = CodeBuilding[PuzzleID];
                 break;
-            case int i when i >= 10 && i <= 11:
+            case int i when i >= 10 && i <= 16:
                 Puzzle = Quiz[PuzzleID];
                 break;
         }

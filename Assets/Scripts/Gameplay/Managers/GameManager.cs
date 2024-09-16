@@ -22,15 +22,22 @@ public class GameManager : MonoBehaviour
     private List<string> TheoreticalCollection = new() { "" };
 
     // Player spawning properties;
-    public Player Player;
+    private Player Player;
+    private DataManager DataManager;
     public GameObject AcademySpawn, WarehouseSpawn;
 
     // Progression management;
     private List<bool> BlockagesCleared = new(Enumerable.Repeat(false, 7));
     private List<int> Medals = new() { 0, 0, 0 };
-    private List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 10));
+    private List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 16));
     private List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 11));
     private List<Item> CurrentInventory = new();
+
+    private void Start()
+    {
+        Player = GameObject.FindObjectOfType<Player>();
+        DataManager = GameObject.FindObjectOfType<DataManager>();
+    }
 
     //####################################################################################################################################################################
     // MENU RELATED
@@ -132,18 +139,59 @@ public class GameManager : MonoBehaviour
 
     //####################################################################################################################################################################
     // PROGRESSION RELATED
+    public bool IsCleared(int Index)
+    {
+        return BlockagesCleared[Index];
+    }
     public void ClearBlockage(int Index)
     {
         BlockagesCleared[Index] = true;
 
     }
 
+    // Handle Puzzles;
     public bool IsPuzzleCompleted(int Index)
     {
         return CompletedPuzzles[Index];
     }
-    public void SetPuzzleCompleted(int Index)
+    public void CompletedPuzzle(int PuzzleID, int Attempts)
     {
-        CompletedPuzzles[Index] = true;
+        CompletedPuzzles[PuzzleID - 1] = true;
+
+        if (Attempts <= 3) Medals[Attempts - 1] += 1;
     }
+
+    // Handle Journal entries;
+    public List<bool> GetJournalEntriesFound()
+    {
+        return JournalEntriesFound;
+    }
+    public void FoundEntry(int EntryID)
+    {
+        JournalEntriesFound[EntryID - 1] = true;
+    }
+
+    // Handle Inventory;
+    public void PickUpItem(int ItemID)
+    {
+        if (ItemID >= 0)
+        {
+            Item Item = DataManager.ReturnItemForIndex(ItemID);
+            if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
+        }
+
+    }
+    public List<int> GetMedals()
+    {
+        return Medals;
+    }
+    public List<Item> GetInventory()
+    {
+        return CurrentInventory;
+    }
+    public void UseItem(int ItemID)
+    {
+        CurrentInventory.RemoveAt(ItemID);
+    }
+
 }

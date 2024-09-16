@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
     private List<Item> CurrentInventory = new();
 
-    private UnityEngine.Vector2 MovementDirection;
+    private Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
     private Collider2D CollidingObject;
     private bool InInteraction = false;
@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
                 List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
                 string CollidingObjectType = CollidingObjectName[^1];
+
                 if (CollidingObjectType == "Puzzle")
                     InteractingWith.Spawn();
                 else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
     }    
 
 
-    // Journal functions;
+/*    // Journal functions;
     public List<bool> GetJournalEntriesFound()
     {
         return JournalEntriesFound;
@@ -160,5 +161,5 @@ public class Player : MonoBehaviour
         CompletedPuzzles[PuzzleID - 1] = true;
 
         if (attempts <= 3) Medals[attempts - 1] += 1;
-    }
+    }*/
 }

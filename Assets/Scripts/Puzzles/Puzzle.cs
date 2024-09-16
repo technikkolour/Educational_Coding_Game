@@ -28,6 +28,15 @@ public class Puzzle : MonoBehaviour
         DataManager = FindObjectOfType<DataManager>();
         Player = FindObjectOfType<Player>();
 
+        if (Player.InteractingWith != null)
+        {
+            Spawner = Player.InteractingWith;
+            Attempts = Spawner.Attempts;
+            Prize_ItemID = Spawner.ItemID;
+            PuzzleType = Spawner.PuzzleType;
+            PuzzleID = Spawner.PuzzleID;
+        }
+
         switch (PuzzleType)
         {
             case "MultipleChoice":
@@ -45,12 +54,7 @@ public class Puzzle : MonoBehaviour
                 break;
         }
 
-        if (Player.InteractingWith != null)
-        {
-            Spawner = Player.InteractingWith;
-            Attempts = Spawner.Attempts;
-            Prize_ItemID = Spawner.ItemID;
-        }
+
     }
 
     // Update is called once per frame;

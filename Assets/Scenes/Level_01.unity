@@ -21241,6 +21241,7 @@ MonoBehaviour:
   SuccessMessage: {fileID: 1017942758}
   PuzzleUI: {fileID: 482115128}
   ProposedSolution: 
+  Score: 0
   MultipleChoiceUI_Prefab: {fileID: 8999208116026393977, guid: 974d59089bb37d54cb17feb07ca3c011, type: 3}
   CodeOrderingUI_Prefab: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
   ValueUpdatingUI_prefab: {fileID: 3760679442646187765, guid: 30c47f7edcd742c4eb98950c309ebc67, type: 3}
@@ -22241,7 +22242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathScreen: {fileID: 0}
-  Player: {fileID: 8639887794956341277}
   AcademySpawn: {fileID: 1211655867}
   WarehouseSpawn: {fileID: 283973413}
 --- !u!4 &1234582074
@@ -26869,7 +26869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: ItemID
-      value: -1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: PuzzleID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -27075,17 +27079,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
---- !u!114 &8639887794956341277 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7597402654420349048, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
-  m_PrefabInstance: {fileID: 8639887794956341276}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c41d66d4e2b58bc4e8a79a0706d5a145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8935689307894226097
 PrefabInstance:
   m_ObjectHideFlags: 0
