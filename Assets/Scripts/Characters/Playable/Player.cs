@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
 
     public TMP_Text PromptText;
     public GameObject DialogueUI;
+    public PuzzleSpawner InteractingWith;
 
     // Start is called before the first frame update
     void Start()
@@ -72,8 +73,8 @@ public class Player : MonoBehaviour
 
                 if (CollidingObjectType == "Puzzle")
                 {
-                    PuzzleSpawner Spawner = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
-                    Spawner.Spawn();
+                    PuzzleSpawner InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();
+                    InteractingWith.Spawn();
                 }
                 else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
 
@@ -109,7 +110,7 @@ public class Player : MonoBehaviour
                 GameManager.ReturnToCity();
                 break;
             case "BossBattleTrigger":
-                Invoke(nameof(GameManager.EnterBattle), 5);
+                GameManager.EnterBattle();
                 break;
         }
     }
@@ -118,6 +119,7 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         CollidingObject = null;
+        InteractingWith = null;
         prompt = "";
     }    
 
@@ -133,6 +135,7 @@ public class Player : MonoBehaviour
     }
 
 
+    // Medals functions;
     public List<int> GetMedals()
     {
         return Medals;

@@ -14,7 +14,7 @@ public class Puzzle : MonoBehaviour
     public string PuzzleType;
     public int PuzzleID;
 
-    private int Attempts = 1;
+    private int Attempts;
     private string Prompt;
     public string Solution;
     private bool Done = false;
@@ -26,10 +26,14 @@ public class Puzzle : MonoBehaviour
     public TMP_Text PromptObject;
     public TMP_Text AttemptsObject;
 
+    public PuzzleSpawner Spawner;
+    public Player Player;
+
     // Start is called before the first frame update;
     void Start()
     {
         DataManager = FindObjectOfType<DataManager>();
+        Player = FindObjectOfType<Player>();
 
         switch (PuzzleType)
         {
@@ -46,6 +50,9 @@ public class Puzzle : MonoBehaviour
                 AssignValues_CB(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
         }
+
+        Spawner = Player.InteractingWith;
+        Attempts = Spawner.Attempts;
     }
 
     // Update is called once per frame;
@@ -68,11 +75,16 @@ public class Puzzle : MonoBehaviour
         return Prompt;
     }
 
+    // Functions related to the attempts taken to solve;
     public int GetAttempts()
     {
         return Attempts;
     }
-    public void SetAttempts()
+    public void SetAttempts(int CurrentAttempts)
+    {
+        Spawner.Attempts = CurrentAttempts;
+    }
+    public void IncreaseAttempts()
     {
         Attempts++;
     }

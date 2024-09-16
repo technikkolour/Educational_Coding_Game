@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
 {
     private Player Player;
     private Puzzle CurrentPuzzle;
+    private PuzzleSpawner Spawner;
     private GameManager GameManager;
 
     public GameObject ErrorMessage;
@@ -27,6 +28,7 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
         CurrentPuzzle = FindObjectOfType<Puzzle>();
+        Spawner = Player.InteractingWith;
     }
 
     public void SubmitSolution()
@@ -46,9 +48,9 @@ public class PuzzleManager : MonoBehaviour
             }
             else
             {
-                CurrentPuzzle.SetAttempts();
+                CurrentPuzzle.IncreaseAttempts();
                 ErrorMessage.SetActive(true);
-                Invoke(nameof(RemoveMessage), 5);
+                Invoke("RemoveMessage", 5);
             }
         }
         else
@@ -89,8 +91,12 @@ public class PuzzleManager : MonoBehaviour
         PuzzleUI.SetActive(true);
         Puzzle.transform.SetParent(PuzzleUI.transform);
 
-        Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
-        Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
+        if (Puzzle.GetComponent<Puzzle>().Spawner != null)
+        {
+            Puzzle.GetComponent<Puzzle>().SetAttempts(Spawner.Attempts);
+            Puzzle.GetComponent<Puzzle>().PuzzleType = PuzzleType;
+            Puzzle.GetComponent<Puzzle>().PuzzleID = PuzzleID;
+        }
 
         // Pause the game when the puzzle is spawned in;
         GameManager.PauseGame();
@@ -102,7 +108,10 @@ public class PuzzleManager : MonoBehaviour
         // Unpause the game when the puzzle is closed;
         GameManager.UnpauseGame();
 
+        // Store the attempts number inside the spawner;
         Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
+        Puzzle.SetAttempts(Puzzle.GetAttempts());
+
         Destroy(Puzzle.gameObject);
     }
 }

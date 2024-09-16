@@ -6,6 +6,7 @@ public class PuzzleSpawner : MonoBehaviour
 {
     public string PuzzleType;
     public int PuzzleID;
+    public int Attempts;
 
     private PuzzleManager PuzzleManager;
 
@@ -13,6 +14,7 @@ public class PuzzleSpawner : MonoBehaviour
     void Start()
     {
         PuzzleManager = FindObjectOfType<PuzzleManager>();
+        Attempts = 1;
     }
 
     // Update is called once per frame
@@ -24,5 +26,10 @@ public class PuzzleSpawner : MonoBehaviour
     public void Spawn()
     {
         PuzzleManager.SpawnPuzzle(PuzzleType, PuzzleID);
+
+        Puzzle Puzzle = GameManager.FindObjectOfType<Puzzle>();
+
+        if (Puzzle != null)
+            Puzzle.SetAttempts(Attempts);
     }
 }

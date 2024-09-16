@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
 
     // Progression management;
     private List<bool> BlockagesCleared = new(Enumerable.Repeat(false, 7));
+    private List<int> Medals = new() { 0, 0, 0 };
+    private List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 10));
+    private List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 11));
+    private List<Item> CurrentInventory = new();
 
     //####################################################################################################################################################################
     // MENU RELATED
