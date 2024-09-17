@@ -185,4 +185,9 @@ public class GameManager : MonoBehaviour
         GameProgress.CurrentInventory.RemoveAt(ItemID);
     }
 
+    // Handle Robot functionality;
+    public void IncreaseHealth()
+    {
+        GameProgress.RobotHealth += 50f;
+    }
 }

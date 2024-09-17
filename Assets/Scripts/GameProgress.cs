@@ -12,6 +12,7 @@ public class GameProgress : MonoBehaviour
     public List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 16));
     public List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 11));
     public List<Item> CurrentInventory = new();
+    public float RobotHealth = 150f;
 
     private void Awake()
     {

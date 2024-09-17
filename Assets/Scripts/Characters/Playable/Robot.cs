@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public float Health = 150f;
+    public float Health;
     public float Strength = 250f;
     public float Speed = 7f;
 
@@ -21,6 +21,9 @@ public class Robot : MonoBehaviour
     void Start()
     {
         RBComponent = GetComponent<Rigidbody2D>();
+        if (GameObject.FindObjectOfType<GameProgress>() != null)
+            Health = GameObject.FindObjectOfType<GameProgress>().RobotHealth;
+        else Health = 150f;
     }
 
     // Update is called once per frame;
@@ -82,10 +85,6 @@ public class Robot : MonoBehaviour
             Health = 0;
             Invoke(nameof(RestartLevel), 2);
         }
-    }
-    public void IncreaseHealth()
-    {
-        Health += Health + 50f;
     }
 
     // Functions relating to the strength of the robot.
