@@ -24,11 +24,18 @@ public class Blockage : MonoBehaviour
             case int i when i >= 2 && i <= 8:
                 PuzzleSpawner PuzzleSpawner = gameObject.GetComponent<PuzzleSpawner>();
                 if (!PuzzleSpawner.IsActive())
+                {
                     ClearBlockage();
+                    if (gameObject.GetComponent<NPC>() != null) 
+                        gameObject.GetComponent<NPC>().DialoguePhase = 1;
+                }
                 break;
             case 9:
                 if (GameManager.HasItem(0))
+                {
                     ClearBlockage();
+                    gameObject.GetComponent<NPC>().DialoguePhase = 1;
+                }
                 break;
         }
 
@@ -39,16 +46,15 @@ public class Blockage : MonoBehaviour
 
     // This function removes the blockage child game object;
     public void ClearBlockage()
-    {
+    {            
+        GameManager.ClearBlockage(BlockageID);
         if (gameObject.name.Contains("Blockage") || gameObject.name.Contains("Gate"))
         {
-            GameManager.ClearBlockage(BlockageID);
             Destroy(gameObject);
         }
         else
         {
             GameObject Blockage = GameObject.Find(gameObject.name + "_Blockage");
-            GameManager.ClearBlockage(BlockageID);
             Destroy(Blockage);
         }
     }

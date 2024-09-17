@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -11,8 +8,8 @@ public class DialogueManager : MonoBehaviour
     public Dictionary<string, List<List<string>>> Dialogues = new()
     {
         {"Variable", new(){ new(){ "Hi! I’ve never seen you before, you must be new here!",
-                    "My name is Variable, and my brother, Constant, lives just up the road. He hasn’t changed one bit since he was born.",
-                    "You think these names are unusual? Everyone here has names like that, we love computer science so much!",
+                    "My name is Variable, and my brother Constant lives just up the road. He's an odd one, he hasn’t changed one bit since he was born.",
+                    "You think these names are unusual? Everyone here has names like that, we just love computer science so much!",
                     "You probably caught on already, but variables can change their values, some more often than others.", 
                     "You should write that down in your journal so you don’t forget!",
                     "Anyways, if you follow the road to the end you’ll get to Robot-tropolis. Have a safe trip!" } } },
@@ -31,12 +28,14 @@ public class DialogueManager : MonoBehaviour
                     "He is running a robot battle championship right now. I’m sure if you win he will help you get home.",
                     "Good luck!"} } },
 
-        {"Number", new(){ new() {"Hey, kid! My name’s Number and I love numbers!",
-                    "No one is that excited about numbers and maths, eh? I disagree! Numbers are all around us and there’s so many of them!",
+        {"Number", new(){ new() { "Hey, kid! My name’s Number and I love numbers!",
+                    "No one is that excited about numbers and Maths, eh? I disagree! Numbers are all around us and there’s so many of them!",
                     "There are integers and floating point numbers and…",
                     "What do you mean what are those? Kid you’re not the sharpest tool in the shed, are you?",
                     "Integers are whole numbers, like your age. And floats are decimals, like your height (measured in meters, of course)!",
-                    "Now that I’ve told you all of this, how about you solve this one riddle for me!"} } },
+                    "Now that I’ve told you all of this, how about you solve this one riddle for me!"},
+                         new(){ "Yeah, that's right, kid!", 
+                    "Hope you and I now see eye to eye about numbers!" } } },
 
         {"Conditional", new(){ new() { "Hello! If you’re new here I would love to get to know you! My name is Conditional!",
                     "I know, it’s such an interesting name! I don’t know what I would have done if we didn’t have conditional statements in programming…",
@@ -58,13 +57,16 @@ public class DialogueManager : MonoBehaviour
         {"Very Upset Robot", new(){ new(){ "Hello! I am a robot! Beep!",
                     "I apologise, but I cannot let you move past me. Beep!",
                     "Please do not open my control panel and change my code! Bee…" },
-                                    new() { "Okay! You can go past now!" } } },
+                                    new() { "Okay! You can go past me now!" } } },
 
         {"Function", new(){ new(){ "Hey! I’ve never seen ya before, are ya new here? Name’s Function, nice to meet ya!",
                     "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
                     "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!",
                     "Sorry kid!" },
-                            new() { "I see ya got one! Step right in kid!" } } },
+                            new() {"Hey! I’ve never seen ya before, are ya new here? Name’s Function, nice to meet ya!",
+                    "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
+                    "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!", 
+                    "I see ya got one! Step right in kid!" } } },
 
         {"William", new(){ new(){ "Kid, what I saw just now was quite the feat, congratulations!",
                     "What would you like as a prize for winning?",
@@ -84,8 +86,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject DialogueUI;
     private Player Player;
     public TMP_Text DialogueTextBox, CharacterName;
-    public bool InDialogue = false;
-    public bool IsTyping = false;
+    public bool InDialogue = false, IsDialogueComplete = false, IsTyping = false;
 
     private List<string> Lines;
     private float TextSpeed = 0.03f;
@@ -114,26 +115,37 @@ public class DialogueManager : MonoBehaviour
     // Display the lines of dialogue;
     public void StartDialogue(List<string> Lines)
     {
+        // Set the flags;
         InDialogue = true;
-        DialogueUI.SetActive(true);
+        IsDialogueComplete = false;
+
+        // Set the values for displaying the dialogue;
         this.Lines = Lines;
         CharacterName.text = CurrentlySpeaking;
-        CurrentLineIndex = 0;
+        CurrentLineIndex = 0;        
+        DialogueUI.SetActive(true);
     }
     public void DisplayNextLine()
     {
         if (CurrentLineIndex <= Lines.Count - 1)
         {
             CurrentLine = Lines[CurrentLineIndex];
+
+            // Start typing out the text;
             DialogueTextBox.text = "";
             StartCoroutine(TypeOutLine(CurrentLine));
+
+            // Move on to the next line;
             CurrentLineIndex++;
         }
         else
         {
             DialogueUI.SetActive(false);
+
+            // Reset the values;
             CurrentlySpeaking = "";
             InDialogue = false;
+            IsDialogueComplete = true;
 
             if (gameObject.GetComponent<PuzzleSpawner>() == null) Player.FinishedInteraction();
         }

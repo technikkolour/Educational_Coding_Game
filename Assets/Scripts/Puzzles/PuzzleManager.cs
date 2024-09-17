@@ -133,6 +133,7 @@ public class PuzzleManager : MonoBehaviour
         if (Puzzle != null)
         {
             Puzzle.SetAttempts(Puzzle.GetAttempts());
+            Player.FinishedInteraction();
             Destroy(Puzzle.gameObject);     
         }
   

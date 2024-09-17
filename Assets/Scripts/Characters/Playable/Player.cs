@@ -56,36 +56,37 @@ public class Player : MonoBehaviour
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
         string CollidingObjectType = CollidingObjectName[^1];
 
+        InInteraction = true;
+
         if (CollidingObjectType == "Puzzle")
         {
             PuzzleSpawner Spawner = CollidingObject.GetComponent<PuzzleSpawner>();
             
-            if (CollidingObject.GetComponent<NPC>() != null && Spawner.IsActive())
-            {
-                // Get the character's name;
-                string NPCName = CollidingObject.GetComponent<NPC>().Name;
-                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
-
-                InteractingWith.Spawn();
-            }
-            else if (CollidingObject.GetComponent<NPC>() != null && !Spawner.IsActive())
-            {
-                string NPCName = CollidingObject.GetComponent<NPC>().Name;
-                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 1));
-            }
-            else InteractingWith.Spawn();
-        }
-        else if (CollidingObjectType == "Message")
-        {
-            InInteraction = true;
-
             if (CollidingObject.GetComponent<NPC>() != null)
             {
                 // Get the character's name;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
-                
+                int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
+
+                if (!DialogueManager.IsDialogueComplete || !Spawner.IsActive())
+                    DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
+
+                if (DialogueManager.IsDialogueComplete && Spawner.IsActive())
+                    InteractingWith.Spawn();
+            }
+            else if (Spawner != null && Spawner.IsActive())
+                InteractingWith.Spawn();
+        }
+        else if (CollidingObjectType == "Message")
+        {
+            if (CollidingObject.GetComponent<NPC>() != null) 
+            {
+                // Get the character's name;
+                string NPCName = CollidingObject.GetComponent<NPC>().Name;
+                int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
+
                 // Get the corresponding dialogue lines and begin the dialogue;
-                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
+                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
             }
             else if (CollidingObject.GetComponent<Bookcase>() != null)
             {
