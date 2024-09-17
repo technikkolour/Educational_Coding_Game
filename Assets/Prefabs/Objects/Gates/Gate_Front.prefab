@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5343448991420001263}
+  - component: {fileID: 1719047672123357377}
   - component: {fileID: 5068945432295290054}
   - component: {fileID: 622164200029983960}
   - component: {fileID: 4676840880618708062}
-  - component: {fileID: 1719047672123357377}
   m_Layer: 0
   m_Name: Gate_Front
   m_TagString: Untagged
@@ -120,6 +120,23 @@ Transform:
   - {fileID: 37522650563196353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719047672123357377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428061712534829126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PuzzleType: MultipleChoice
+  PuzzleID: 1
+  ItemID: 0
+  Attempts: 0
+  Active: 1
 --- !u!212 &5068945432295290054
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -244,17 +261,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1719047672123357377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8428061712534829126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PuzzleType: MultipleChoice
-  PuzzleID: 1

@@ -132,7 +132,12 @@ public class GameManager : MonoBehaviour
     // PROGRESSION RELATED
     public bool IsCleared(int Index)
     {
+        Debug.Log(GameProgress.BlockagesCleared.Count);
         return GameProgress.BlockagesCleared[Index];
+    }
+    public List<bool> GetClearedBlockages()
+    {
+        return GameProgress.BlockagesCleared;
     }
     public void ClearBlockage(int Index)
     {
@@ -143,7 +148,7 @@ public class GameManager : MonoBehaviour
     // Handle Puzzles;
     public bool IsPuzzleCompleted(int Index)
     {
-        return GameProgress.CompletedPuzzles[Index];
+        return GameProgress.CompletedPuzzles[Index - 1];
     }
     public void CompletedPuzzle(int PuzzleID, int Attempts)
     {

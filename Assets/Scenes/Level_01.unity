@@ -18363,7 +18363,7 @@ MonoBehaviour:
   JournalEntriesFound: 0000000000000000000000
   CurrentInventory: []
   BossesCleared: 000000
-  BlockagesCleared: 00000000000000
+  BlockagesCleared: 00000000000000000000
   CompletedPuzzles: 00000000000000000000000000000000
   RobotHealth: 0
 --- !u!1001 &433938604
@@ -21919,7 +21919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.11
+      value: 17.27
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25549,10 +25549,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 1906268190}
+      addedObject: {fileID: 1906268189}
     - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1906268189}
+      addedObject: {fileID: 1906268190}
   m_SourcePrefab: {fileID: 100100000, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
 --- !u!4 &1906268183 stripped
 Transform:
@@ -26518,10 +26518,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 2063676960}
+      addedObject: {fileID: 2063676966}
     - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 2063676966}
+      addedObject: {fileID: 2063676960}
   m_SourcePrefab: {fileID: 100100000, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
 --- !u!4 &2063676954 stripped
 Transform:

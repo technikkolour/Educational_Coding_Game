@@ -32,6 +32,9 @@ public class Blockage : MonoBehaviour
                 break;
         }
 
+        if (GameManager.GetClearedBlockages().Count < 10)
+            if (GameManager.IsCleared(BlockageID)) ClearBlockage();
+
     }
 
     // This function removes the blockage child game object;
