@@ -9,7 +9,7 @@ public class PuzzleSpawner : MonoBehaviour
 
     private PuzzleManager PuzzleManager;
     private GameManager GameManager;
-    private bool IsActive = true;
+    public bool Active = true;
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +23,16 @@ public class PuzzleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsPuzzleCompleted(PuzzleID)) IsActive = false;
+        if (GameManager.IsPuzzleCompleted(PuzzleID)) Active = false;
     }
 
     public void Spawn()
     {
-        if (IsActive) PuzzleManager.SpawnPuzzle(PuzzleType, PuzzleID);
+        if (Active) PuzzleManager.SpawnPuzzle(PuzzleType, PuzzleID);
+    }
+
+    public bool IsActive()
+    {
+        return Active;
     }
 }

@@ -161,6 +161,10 @@ public class GameManager : MonoBehaviour
     {
         GameProgress.JournalEntriesFound[EntryID - 1] = true;
     }
+    public bool IsEntryFound(int EntryID)
+    {
+        return GameProgress.JournalEntriesFound[EntryID - 1];
+    }
 
     // Handle Inventory;
     public void PickUpItem(int ItemID)
@@ -179,6 +183,11 @@ public class GameManager : MonoBehaviour
     public List<Item> GetInventory()
     {
         return GameProgress.CurrentInventory;
+    }
+    public bool HasItem(int ItemID)
+    {
+        Item Item = DataManager.ReturnItemForIndex(ItemID);
+        return GameProgress.CurrentInventory.Contains(Item);
     }
     public void UseItem(int ItemID)
     {

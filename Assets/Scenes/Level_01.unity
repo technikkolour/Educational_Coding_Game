@@ -1597,6 +1597,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 60, y: 58, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -10, y: 60, z: 0}
     second:
       serializedVersion: 2
@@ -1722,6 +1732,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 0
       m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 60, y: 67, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -17691,9 +17711,9 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 119
     m_Data: {fileID: 11400000, guid: 4f7c3f2460ed2fb469d96dc08dc6faf7, type: 2}
-  - m_RefCount: 16
+  - m_RefCount: 17
     m_Data: {fileID: 11400000, guid: 2b267d8a6037ab54ea19583b434576e9, type: 2}
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: 0654e20a909ec1b4397a2572b280de6c, type: 2}
   - m_RefCount: 27
     m_Data: {fileID: 11400000, guid: dd052f7b7456fad49a8a11f93363708e, type: 2}
@@ -17724,9 +17744,9 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 119
     m_Data: {fileID: -1874050263, guid: 46449bdf0e7335f4cbc610e517b3cf22, type: 3}
-  - m_RefCount: 16
+  - m_RefCount: 17
     m_Data: {fileID: 1948850186, guid: 46449bdf0e7335f4cbc610e517b3cf22, type: 3}
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data: {fileID: 1370449043, guid: 46449bdf0e7335f4cbc610e517b3cf22, type: 3}
   - m_RefCount: 27
     m_Data: {fileID: 186206371, guid: 46449bdf0e7335f4cbc610e517b3cf22, type: 3}
@@ -17755,7 +17775,7 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: -899339391, guid: efa23618b2cce354eb2241ca3294de9d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1683
+  - m_RefCount: 1685
     m_Data:
       e00: 1
       e01: 0
@@ -17774,7 +17794,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1683
+  - m_RefCount: 1685
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -18339,12 +18359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff7ffe54eeea8445a9c1ed43e08f8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockagesCleared: 00000000000000
   Medals: 000000000000000000000000
-  CompletedPuzzles: 00000000000000000000000000000000
   JournalEntriesFound: 0000000000000000000000
   CurrentInventory: []
   BossesCleared: 000000
+  BlockagesCleared: 00000000000000
+  CompletedPuzzles: 00000000000000000000000000000000
   RobotHealth: 0
 --- !u!1001 &433938604
 PrefabInstance:
@@ -18730,7 +18750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1913206356445704244, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2222525949213278110, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_Enabled
@@ -18938,6 +18958,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
   m_PrefabInstance: {fileID: 536111519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &536858082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 536858083}
+  - component: {fileID: 536858084}
+  m_Layer: 0
+  m_Name: Gate_1_Puzzle_Blockage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &536858083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536858082}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.54, y: 2.68, z: 0}
+  m_LocalScale: {x: 0.71428573, y: 0.71428573, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1999144133}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &536858084
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536858082}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 9.113007, y: -0.55669403}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 23.587341, y: 10.40065}
+  m_EdgeRadius: 0
 --- !u!1001 &551094423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19024,6 +19121,7 @@ MonoBehaviour:
   PuzzleID: 3
   ItemID: 0
   Attempts: 0
+  Active: 1
 --- !u!114 &556401668 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6392389684291382944, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
@@ -19208,7 +19306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab30c83c275184a4aa56d401f7dee6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockageID: 8
+  BlockageID: 7
 --- !u!1 &628150748 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5340937240539816550, guid: e1ae2302d66b90b46b895594742a2358, type: 3}
@@ -19452,7 +19550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.036
+      value: 17.77
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19527,6 +19625,10 @@ PrefabInstance:
     - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: ItemID
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: PuzzleID
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
@@ -20130,7 +20232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.78
+      value: 18.994001
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21065,7 +21167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab30c83c275184a4aa56d401f7dee6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockageID: 7
+  BlockageID: 6
 --- !u!1001 &1032930184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21813,7 +21915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.43
+      value: 4.207897
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21971,13 +22073,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4673786196323498727, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230653682554931408, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.73
+      objectReference: {fileID: 0}
     - target: {fileID: 5230653682554931408, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_LocalPosition.z
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5880041623099253480, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.782103
+      value: 12.56
       objectReference: {fileID: 0}
     - target: {fileID: 5880041623099253480, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22257,9 +22367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 3
   ItemID: -1
   Attempts: 0
+  Active: 1
 --- !u!1 &1234582072
 GameObject:
   m_ObjectHideFlags: 0
@@ -22626,6 +22737,7 @@ MonoBehaviour:
   PuzzleID: 2
   ItemID: 0
   Attempts: 0
+  Active: 1
 --- !u!1 &1313363777
 GameObject:
   m_ObjectHideFlags: 0
@@ -24381,6 +24493,10 @@ PrefabInstance:
       propertyPath: ItemID
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: PuzzleID
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -24704,7 +24820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4673786196323498727, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4673786196323498727, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_Sprite
@@ -24724,7 +24840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230653682554931408, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.77
+      value: -2.96
       objectReference: {fileID: 0}
     - target: {fileID: 5230653682554931408, guid: 4c328523c97fef348890e5a1b967809d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24822,6 +24938,10 @@ PrefabInstance:
     - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: ItemID
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: PuzzleID
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -25465,9 +25585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 2
   ItemID: -1
   Attempts: 0
+  Active: 1
 --- !u!1001 &1906535373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25569,7 +25690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.1555305
+      value: 7.8776507
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalScale.y
@@ -25577,7 +25698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7469
+      value: 4.1081
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26398,6 +26519,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       insertIndex: 2
       addedObject: {fileID: 2063676960}
+    - targetCorrespondingSourceObject: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 2063676966}
   m_SourcePrefab: {fileID: 100100000, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
 --- !u!4 &2063676954 stripped
 Transform:
@@ -26417,86 +26541,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: 
-  PuzzleID: 0
+  PuzzleID: 7
   ItemID: -1
   Attempts: 0
---- !u!1 &2080547100
-GameObject:
+  Active: 1
+--- !u!114 &2063676966
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2080547101}
-  - component: {fileID: 2080547102}
-  m_Layer: 0
-  m_Name: Gate_1_Puzzle_Blockage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2080547101
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080547100}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.65, y: 2.68, z: 0}
-  m_LocalScale: {x: 0.71428573, y: 0.71428573, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1999144133}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2080547102
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080547100}
+  m_GameObject: {fileID: 1189902113}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 9.363696, y: -0.64733887}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 21.824743, y: 10.276001}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab30c83c275184a4aa56d401f7dee6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockageID: 8
 --- !u!4 &2082399122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2478453878728779453, guid: 968adc962460c3b44a08939e90b4a9dd, type: 3}
@@ -27076,7 +27137,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2080547101}
+      addedObject: {fileID: 536858083}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8428061712534829126, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       insertIndex: 1
@@ -27300,6 +27361,7 @@ MonoBehaviour:
   PuzzleID: 1
   ItemID: 0
   Attempts: 0
+  Active: 1
 --- !u!1001 &8967959554952354267
 PrefabInstance:
   m_ObjectHideFlags: 0

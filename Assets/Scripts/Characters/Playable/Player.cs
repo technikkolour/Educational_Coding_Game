@@ -58,24 +58,32 @@ public class Player : MonoBehaviour
 
         if (CollidingObjectType == "Puzzle")
         {
-            if (CollidingObject.GetComponent<NPC>() != null)
+            PuzzleSpawner Spawner = CollidingObject.GetComponent<PuzzleSpawner>();
+            
+            if (CollidingObject.GetComponent<NPC>() != null && Spawner.IsActive())
             {
                 // Get the character's name;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
-                // Get the corresponding dialogue lines and begin the dialogue;
                 DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
 
-                if (InInteraction && !DialogueManager.InDialogue) InteractingWith.Spawn();
+                InteractingWith.Spawn();
+            }
+            else if (CollidingObject.GetComponent<NPC>() != null && !Spawner.IsActive())
+            {
+                string NPCName = CollidingObject.GetComponent<NPC>().Name;
+                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 1));
             }
             else InteractingWith.Spawn();
         }
         else if (CollidingObjectType == "Message")
         {
             InInteraction = true;
+
             if (CollidingObject.GetComponent<NPC>() != null)
             {
                 // Get the character's name;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
+                
                 // Get the corresponding dialogue lines and begin the dialogue;
                 DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
             }
