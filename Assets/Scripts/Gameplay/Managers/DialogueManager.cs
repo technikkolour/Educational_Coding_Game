@@ -58,8 +58,7 @@ public class DialogueManager : MonoBehaviour
                     "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
                     "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!",
                     "Sorry kid!" },
-                            new() { "Hey! I’ve never seen ya before, are ya new here? Name’s Function, nice to meet ya!",
-                    "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
+                            new() { "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
                     "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!",
                     "I see ya got one! Step right in kid!" }} },
 
@@ -91,6 +90,18 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    // Display the lines of dialogue;
+    public void DisplayLine(string Line)
+    {
+
+    }
+
+    // Getters for the lines of dialogue and contents of game;
+    // Return the set of lines for the character and the correct dialogue phase;
+    public List<string> GetDialogueLines(string Character, int Index)
+    {
+        return Dialogues[Character][Index];
+    }
     // Return bookcase contents depending on index;
     public string GetBookcaseContents(int Index)
     {

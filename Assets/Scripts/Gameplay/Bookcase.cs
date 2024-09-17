@@ -8,14 +8,14 @@ public class Bookcase : MonoBehaviour
     private GameManager GameManager;
     private DialogueManager DialogueManager;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update;
     void Start()
     {
         GameManager = FindObjectOfType<GameManager>();
         DialogueManager = FindObjectOfType<DialogueManager>();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame;
     void Update()
     {
         
@@ -27,7 +27,7 @@ public class Bookcase : MonoBehaviour
         Contents = DialogueManager.GetBookcaseContents(BookcaseID);
 
         // Display the contents;
-
+        DialogueManager.DisplayLine(Contents);
 
         // Add the corresponding entry to the journal;
         GameManager.FoundEntry(BookcaseID);
