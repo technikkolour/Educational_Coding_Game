@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bookcase : MonoBehaviour
 {
     public string Contents;
-    public int BookcaseID = 0;
+    public int BookcaseID;
 
     private GameManager GameManager;
     private DialogueManager DialogueManager;
@@ -26,10 +27,16 @@ public class Bookcase : MonoBehaviour
         // Get the contents;
         Contents = DialogueManager.GetBookcaseContents(BookcaseID);
 
-        // Display the contents;
-        DialogueManager.DisplayLine(Contents);
-
         // Add the corresponding entry to the journal;
-        GameManager.FoundEntry(BookcaseID);
+        if (BookcaseID != 999)
+            GameManager.FoundEntry(BookcaseID + 1);        
+        
+        // Display the contents;
+        List<string> ContentsList = new()
+        {
+            Contents
+        };
+
+        DialogueManager.StartDialogue(ContentsList);
     }
 }

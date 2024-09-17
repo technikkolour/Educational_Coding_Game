@@ -5,21 +5,15 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
-    // Progress Data;
-    private List<int> Medals = new() { 0, 0, 0 };
-    private List<bool> CompletedPuzzles = new( Enumerable.Repeat(false, 10) );
-    private List<bool> JournalEntriesFound = new( Enumerable.Repeat(false, 11) );
-    private List<Item> CurrentInventory = new();
-
     private Vector2 MovementDirection;
     private Rigidbody2D RBComponent;
     private Collider2D CollidingObject;
     private bool InInteraction = false;
-    private string prompt;
 
     // Managers;
     private DataManager DataManager;
     private GameManager GameManager;
+    private DialogueManager DialogueManager;
 
     public TMP_Text PromptText;
     public GameObject DialogueUI;
@@ -32,6 +26,7 @@ public class Player : MonoBehaviour
 
         DataManager = FindObjectOfType<DataManager>();
         GameManager = FindObjectOfType<GameManager>();
+        DialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     // Update is called once per frame
@@ -42,7 +37,7 @@ public class Player : MonoBehaviour
         MovementDirection.y = Input.GetAxisRaw("Vertical");
 
         // The E key is reserved for interacting;
-        if (Input.GetKeyDown(KeyCode.E) && CollidingObject != null) Interact();
+        if (Input.GetKeyDown(KeyCode.E) && !InInteraction && CollidingObject != null) Interact();
 
         // For testing only;
         //if (Input.GetKeyDown(KeyCode.K)) PickUpItem(0);
@@ -58,24 +53,46 @@ public class Player : MonoBehaviour
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
     public void Interact() 
     {
-        switch (InInteraction)
+        List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
+        string CollidingObjectType = CollidingObjectName[^1];
+
+        if (CollidingObjectType == "Puzzle")
         {
-            case false:
-                InInteraction = true;
-                PromptText.text = prompt;
+            if (CollidingObject.GetComponent<NPC>() != null)
+            {
+                // Get the character's name;
+                string NPCName = CollidingObject.GetComponent<NPC>().Name;
+                // Get the corresponding dialogue lines and begin the dialogue;
+                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
 
-                List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
-                string CollidingObjectType = CollidingObjectName[^1];
-
-                if (CollidingObjectType == "Puzzle")
-                    InteractingWith.Spawn();
-                else if (CollidingObjectType == "Message") DialogueUI.SetActive(true);
-                break;
-            case true:
-                InInteraction = false;
-                DialogueUI.SetActive(false);
-                break;
+                if (InInteraction && !DialogueManager.InDialogue) InteractingWith.Spawn();
+            }
+            else InteractingWith.Spawn();
         }
+        else if (CollidingObjectType == "Message")
+        {
+            InInteraction = true;
+            if (CollidingObject.GetComponent<NPC>() != null)
+            {
+                // Get the character's name;
+                string NPCName = CollidingObject.GetComponent<NPC>().Name;
+                // Get the corresponding dialogue lines and begin the dialogue;
+                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, 0));
+            }
+            else if (CollidingObject.GetComponent<Bookcase>() != null)
+            {
+                // Ge the bookcase the player is interacting with;
+                Bookcase InteractingBookcase = CollidingObject.GetComponent<Bookcase>();
+                // Start the dialogue;
+                InteractingBookcase.Interact();
+            }
+            else InInteraction = false;
+        }
+    }
+
+    public void FinishedInteraction()
+    {
+        InInteraction = false;
     }
 
     // The expected behaviour of the player character when colliding with a trigger, such as an NPC's collision box;
@@ -88,7 +105,6 @@ public class Player : MonoBehaviour
         switch (CollidingObjectType)
         {
             case "Message":
-                prompt = "Hi! You must be new here!";
                 break;
             case "AcademyEntry":
                 GameManager.EnterAcademy();
@@ -113,53 +129,5 @@ public class Player : MonoBehaviour
     {
         CollidingObject = null;
         InteractingWith = null;
-        prompt = "";
     }    
-
-
-/*    // Journal functions;
-    public List<bool> GetJournalEntriesFound()
-    {
-        return JournalEntriesFound;
-    }
-    public void FoundEntry(int EntryID)
-    {
-        JournalEntriesFound[EntryID - 1] = true;
-    }
-
-
-    // Medals functions;
-    public List<int> GetMedals()
-    {
-        return Medals;
-    }
-
-
-    // CurrentInventory interaction functions;
-    public void PickUpItem(int ItemID)
-    {
-        if (ItemID >= 0)
-        {
-            Item Item = DataManager.ReturnItemForIndex(ItemID);
-            if (!CurrentInventory.Contains(Item)) CurrentInventory.Add(Item);
-        }
-
-    }
-    public void UseItem(int ItemID)
-    {
-        CurrentInventory.RemoveAt(ItemID);
-    }
-    public List<Item> GetInventory()
-    {
-        return CurrentInventory;
-    }
-
-
-    // Puzzle completion update function;
-    public void CompletedPuzzle(int PuzzleID, int attempts)
-    {
-        CompletedPuzzles[PuzzleID - 1] = true;
-
-        if (attempts <= 3) Medals[attempts - 1] += 1;
-    }*/
 }

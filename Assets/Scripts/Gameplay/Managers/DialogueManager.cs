@@ -1,6 +1,9 @@
 using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -9,14 +12,16 @@ public class DialogueManager : MonoBehaviour
     {
         {"Variable", new(){ new(){ "Hi! I’ve never seen you before, you must be new here!",
                     "My name is Variable, and my brother, Constant, lives just up the road. He hasn’t changed one bit since he was born.",
-                    "You think these names are unusual?Everyone here has names like that, we love computer science so much!",
-                    "You probably caught on already, but variables can change their values, some more often than others. You should write that down in your journal so you don’t forget!",
+                    "You think these names are unusual? Everyone here has names like that, we love computer science so much!",
+                    "You probably caught on already, but variables can change their values, some more often than others.", 
+                    "You should write that down in your journal so you don’t forget!",
                     "Anyways, if you follow the road to the end you’ll get to Robot-tropolis. Have a safe trip!" } } },
 
         {"Constant", new(){ new(){ "Hi! I’m Constant, it seems you’ve already met my brother!",
                     "He said what? That I have been the same since the day I was born? I think that’s much better than always changing!",
                     "You can probably tell that constants never change their values, unlike variables.",
-                    "Anyway, you should get going towards the city. But before you set off, you should try looking inside my house, there are a lot of books there that might help you make sense of this world!"} } },
+                    "Anyway, you should get going towards the city.",
+                    "But before you set off, you should try looking inside my house, there are a lot of books there that might help you make sense of this world!"} } },
 
         {"Claire", new(){ new(){ "Hi! Welcome to Robot-tropolis! You’re not from around here, are you?",
                     "Do you remember how you got here? No?",
@@ -44,10 +49,11 @@ public class DialogueManager : MonoBehaviour
                     "Where is it? Oh, it’s right behind me, just walk straight on." } } },
 
         {"April", new(){ new(){ "Yo! How's it going? I've never seen you before!",
-                    "I don't really like school and studying is really boring, but robots are just so awesome!"} } },
+                    "I don't really like school and I think studying is really boring, but robots are just so awesome!"} } },
 
-        {"Maria", new(){ new(){ "Hmm... You didn't pass the test. Let's try again." },
-                         new() { "" } } },
+        {"Maria", new(){ new(){ "Oh no... You didn't quite pass the test. Let's try again!" },
+                         new(){ "That's it, you got it! You did such a good job, congratulations!",
+                         "Here is your Robot Licence!"} } },
 
         {"Very Upset Robot", new(){ new(){ "Hello! I am a robot! Beep!",
                     "I apologise, but I cannot let you move past me. Beep!",
@@ -58,9 +64,7 @@ public class DialogueManager : MonoBehaviour
                     "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
                     "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!",
                     "Sorry kid!" },
-                            new() { "I get everything done in this city, ya just gotta give me a call and I’m there! But ya must tell me what ya want me to do beforehand, otherwise I can’t help!",
-                    "At the moment I’m guarding the robot warehouse and I can’t let ya in without a robot licence!",
-                    "I see ya got one! Step right in kid!" }} },
+                            new() { "I see ya got one! Step right in kid!" } } },
 
         {"William", new(){ new(){ "Kid, what I saw just now was quite the feat, congratulations!",
                     "What would you like as a prize for winning?",
@@ -68,38 +72,90 @@ public class DialogueManager : MonoBehaviour
     };
 
     public Dictionary<int, string> BookcaseInformation = new() {
-        { 1, "Strings are used to store text. The value can be anything,such as a name, an address, or even a phone number!" },
-        { 2, "In programming we may need to produce a message that informs us of the current state or the result of the program. This is done with the use of output statements." },
-        { 3, "Integers are used to store whole numbers, like the number of people present in a room." },
-        { 4, "Floats are used to store decimals, such as your height." },
-        { 5, "If statements are used when we would like the program to perform some actions based on one or more conditions." },
-        { 6, "A set of actions is performed as long as a condition is true." },
-        { 7, "For loops are used when we would like a set of actions to be performed every time a value is updated. The starting and final values, as well as the step size, are defined." } };
+        { 2, "Strings are used to store text. The value can be anything, such as a name, an address, or even a phone number!" },
+        { 3, "In programming we may need to produce a message that informs us of the current state or the result of the program. This is done with the use of output statements." },
+        { 4, "Integers are used to store whole numbers, like the number of people present in a room." },
+        { 5, "Floats are used to store decimals, such as your height." },
+        { 8, "If statements are used when we would like the program to perform some actions based on one or more conditions." },
+        { 10, "Inside a while loop, a set of actions is performed as long as a condition is true." },
+        { 9, "For loops are used when we would like a set of actions to be performed every time a value is updated. The starting and final values, as well as the step size, are defined." },
+        { 999, "Hmm... Nothing interesting here."} };
 
-    public Player Player;
+    public GameObject DialogueUI;
+    private Player Player;
+    public TMP_Text DialogueTextBox, CharacterName;
+    public bool InDialogue = false;
+    public bool IsTyping = false;
 
-    // Start is called before the first frame update
+    private List<string> Lines;
+    private float TextSpeed = 0.03f;
+    private int CurrentLineIndex;
+    private string CurrentLine;
+    private string CurrentlySpeaking;
+
+    // Start is called before the first frame update;
     void Start()
     {
-        
+        Player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (InDialogue && Input.GetKeyDown(KeyCode.E))
+        {
+            if (!IsTyping) // Progress dialogue only when not typing
+            {
+                DisplayNextLine();
+            }
+        }
     }
 
     // Display the lines of dialogue;
-    public void DisplayLine(string Line)
+    public void StartDialogue(List<string> Lines)
     {
+        InDialogue = true;
+        DialogueUI.SetActive(true);
+        this.Lines = Lines;
+        CharacterName.text = CurrentlySpeaking;
+        CurrentLineIndex = 0;
+    }
+    public void DisplayNextLine()
+    {
+        if (CurrentLineIndex <= Lines.Count - 1)
+        {
+            CurrentLine = Lines[CurrentLineIndex];
+            DialogueTextBox.text = "";
+            StartCoroutine(TypeOutLine(CurrentLine));
+            CurrentLineIndex++;
+        }
+        else
+        {
+            DialogueUI.SetActive(false);
+            CurrentlySpeaking = "";
+            InDialogue = false;
 
+            if (gameObject.GetComponent<PuzzleSpawner>() == null) Player.FinishedInteraction();
+        }
+    }
+    IEnumerator TypeOutLine(string Line)
+    {
+        IsTyping = true;
+
+        foreach (char Character in Line.ToCharArray())
+        {
+            DialogueTextBox.text += Character;
+            yield return new WaitForSeconds(TextSpeed);
+        }
+
+        IsTyping = false;
     }
 
     // Getters for the lines of dialogue and contents of game;
     // Return the set of lines for the character and the correct dialogue phase;
     public List<string> GetDialogueLines(string Character, int Index)
     {
+        CurrentlySpeaking = Character;
         return Dialogues[Character][Index];
     }
     // Return bookcase contents depending on index;
