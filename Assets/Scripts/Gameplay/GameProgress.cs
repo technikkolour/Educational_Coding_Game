@@ -15,7 +15,7 @@ public class GameProgress : MonoBehaviour
     public List<bool> BossesCleared = new(Enumerable.Repeat(false, 3));    
     public List<bool> BlockagesCleared = new(Enumerable.Repeat(false, 10));    
     public List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 16));
-    public float RobotHealth = 150f;
+    public float RobotHealth;
 
     // Previously loaded scene;
     public string PreviousScene;
@@ -30,6 +30,9 @@ public class GameProgress : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
+        }        
+        
+        RobotHealth = 150f;
     }
+
 }

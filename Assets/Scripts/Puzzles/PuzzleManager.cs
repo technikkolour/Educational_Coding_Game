@@ -86,6 +86,9 @@ public class PuzzleManager : MonoBehaviour
                 {
                     GameManager.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
                     GameManager.PickUpItem(CurrentPuzzle.GetItemID());
+
+                    if (CurrentPuzzle.Spawner.name.Contains("Computer")) GameManager.IncreaseHealth();
+
                     ClosePuzzle();
                     DisplaySuccessMessage();
                 }
@@ -153,7 +156,7 @@ public class PuzzleManager : MonoBehaviour
 
         Puzzle PuzzleComponent = Puzzle.GetComponent<Puzzle>();
 
-        if (PuzzleComponent.Spawner != null)
+        if (PuzzleComponent != null && PuzzleComponent.Spawner != null)
         {
             if (PuzzleComponent.PuzzleType != "Quiz") { }
                 PuzzleComponent.SetAttempts(Spawner.Attempts);

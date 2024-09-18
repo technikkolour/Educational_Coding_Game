@@ -414,6 +414,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 125028249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &122664272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4526918392837882173, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+  m_PrefabInstance: {fileID: 2084253387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &125028248
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +694,14 @@ PrefabInstance:
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027052450041821976, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: m_Size.y
+      value: 10.265013
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027052450041821976, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.54007816
       objectReference: {fileID: 0}
     - target: {fileID: 8127031371175217165, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_Name
@@ -3072,7 +3085,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1892515515}
         m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
         m_MethodName: ClosePuzzle
         m_Mode: 1
@@ -3084,7 +3097,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1544866825}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: UnpauseGame
         m_Mode: 1
@@ -3096,7 +3109,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1892515515}
         m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
         m_MethodName: RemoveSuccessMessage
         m_Mode: 1
@@ -3432,9 +3445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: 
-  PuzzleID: 0
-  ItemID: 0
+  PuzzleType: MultipleChoice
+  PuzzleID: 2
+  ItemID: -1
   Attempts: 0
   Active: 1
 --- !u!1 &763326904
@@ -4541,9 +4554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: 
-  PuzzleID: 0
-  ItemID: 0
+  PuzzleType: MultipleChoice
+  PuzzleID: 1
+  ItemID: -1
   Attempts: 0
   Active: 1
 --- !u!1 &1011617605
@@ -6026,7 +6039,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1892515515}
         m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
         m_MethodName: SubmitSolution
         m_Mode: 1
@@ -7558,7 +7571,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1244054280}
-  m_Father: {fileID: 2084253390}
+  m_Father: {fileID: 122664272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11491,13 +11504,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04477790ba45734bb48fdfe85ee18f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ErrorMessage: {fileID: 0}
-  SuccessMessage: {fileID: 0}
-  PuzzleUI: {fileID: 0}
+  ErrorMessage: {fileID: 230266546}
+  SuccessMessage: {fileID: 1280229173}
+  PuzzleUI: {fileID: 1244054279}
   ProposedSolution: 
   MultipleChoiceUI_Prefab: {fileID: 8999208116026393977, guid: 974d59089bb37d54cb17feb07ca3c011, type: 3}
   CodeOrderingUI_Prefab: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
-  ValueUpdatingUI_Prefab: {fileID: 0}
+  ValueUpdatingUI_Prefab: {fileID: 3760679442646187765, guid: 30c47f7edcd742c4eb98950c309ebc67, type: 3}
   CodeBuildingUI_Prefab: {fileID: 8678298408168539697, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
   TimeLimit: 180
   StartTime: 0
@@ -12015,7 +12028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1913206356445704244, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4526918392837882173, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12084,11 +12097,6 @@ MonoBehaviour:
 --- !u!1 &2084253389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4575204795020505401, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
-  m_PrefabInstance: {fileID: 2084253387}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2084253390 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4526918392837882173, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
   m_PrefabInstance: {fileID: 2084253387}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2092973786

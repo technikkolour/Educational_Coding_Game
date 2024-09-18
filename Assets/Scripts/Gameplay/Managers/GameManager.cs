@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-     // Scene management;
-    private static string PreviousSceneName;
-
     // UI Screens;
     public GameObject DeathScreen;
 
@@ -23,9 +20,13 @@ public class GameManager : MonoBehaviour
     // Progression management;
     private GameProgress GameProgress;
 
+    private void Awake()
+    {
+        GameProgress = FindObjectOfType<GameProgress>(); 
+    }
+
     private void Start()
     {
-        GameProgress = FindObjectOfType<GameProgress>();
         Player = FindObjectOfType<Player>();
         DataManager = FindObjectOfType<DataManager>();
 
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
 
 
     //####################################################################################################################################################################
-    // GAME RELATED
+    // GAME NAVIGATION RELATED
     public void EnterAcademy()
     {
         GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
@@ -136,7 +137,6 @@ public class GameManager : MonoBehaviour
     public void ClearBlockage(int Index)
     {
         GameProgress.BlockagesCleared[Index] = true;
-
     }
 
     // Handle Puzzles;
@@ -173,7 +173,6 @@ public class GameManager : MonoBehaviour
             Item Item = DataManager.ReturnItemForIndex(ItemID);
             if (!GameProgress.CurrentInventory.Contains(Item)) GameProgress.CurrentInventory.Add(Item);
         }
-
     }
     public List<int> GetMedals()
     {
@@ -197,5 +196,19 @@ public class GameManager : MonoBehaviour
     public void IncreaseHealth()
     {
         GameProgress.RobotHealth += 50f;
+    }
+    public float CurrentTotalHealth()
+    {
+        return GameProgress.RobotHealth;
+    }
+
+    // Handle Boss completion;
+    public void DefeatedBoss(int Index)
+    {
+        GameProgress.BossesCleared[Index] = true;
+    }
+    public bool IsDefeated(int Index)
+    {
+        return GameProgress.BossesCleared[Index];
     }
 }

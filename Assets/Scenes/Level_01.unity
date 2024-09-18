@@ -21531,8 +21531,14 @@ MonoBehaviour:
   ProposedSolution: 
   MultipleChoiceUI_Prefab: {fileID: 8999208116026393977, guid: 974d59089bb37d54cb17feb07ca3c011, type: 3}
   CodeOrderingUI_Prefab: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
-  ValueUpdatingUI_prefab: {fileID: 3760679442646187765, guid: 30c47f7edcd742c4eb98950c309ebc67, type: 3}
+  ValueUpdatingUI_Prefab: {fileID: 3760679442646187765, guid: 30c47f7edcd742c4eb98950c309ebc67, type: 3}
   CodeBuildingUI_Prefab: {fileID: 8678298408168539697, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
+  TimeLimit: 180
+  StartTime: 0
+  TimeRemaining: 0
+  InitialID: 10
+  Score: 0
+  Timer: {fileID: 0}
 --- !u!4 &1055498058
 Transform:
   m_ObjectHideFlags: 0

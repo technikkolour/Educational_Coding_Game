@@ -24,8 +24,8 @@ public class Robot : MonoBehaviour
         RBComponent = GetComponent<Rigidbody2D>();
         GameManager = FindObjectOfType<GameManager>();
 
-        if (GameObject.FindObjectOfType<GameProgress>() != null)
-            Health = GameObject.FindObjectOfType<GameProgress>().RobotHealth;
+        if (GameManager != null)
+            Health = GameManager.CurrentTotalHealth();
         else Health = 150f;
     }
 

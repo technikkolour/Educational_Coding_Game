@@ -18,7 +18,7 @@ public class Blockage : MonoBehaviour
         {
             case int i when i >= 0 && i <= 1:
                 // Remove the first two blockages if the correct journal entries are present;
-                if ((GameManager.IsEntryFound(3) && BlockageID == 0) || (GameManager.IsEntryFound(4) && BlockageID == 1)) 
+                if ((GameManager.IsEntryFound(1) && GameManager.IsEntryFound(3) && BlockageID == 0) || (GameManager.IsEntryFound(2) && GameManager.IsEntryFound(4) && BlockageID == 1)) 
                     ClearBlockage();
                 break;
             case int i when i >= 2 && i <= 8:

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Journal : MonoBehaviour
 {
     private Dictionary<int, List<string>> AllEntries = new() {
-        {0, new(){ "Variables", "Variables are values that can change. For example, your age!." } },
+        {0, new(){ "Variables", "Variables are values that can change. For example, your age!" } },
         {1, new(){ "Constants", "Constants are values that cannot change, such as gravity, or your eye colour." } },
         {2, new(){ "String", "Used to store text; a string represents a series of characters. It can be a name, an address, even a phone number!" } },
         {3, new(){ "Output", "The values of variables are hidden after they are initialised and used inside a program. To view their current values we can use output statements." } },
