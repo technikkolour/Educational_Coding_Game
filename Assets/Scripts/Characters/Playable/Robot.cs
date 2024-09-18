@@ -13,6 +13,7 @@ public class Robot : MonoBehaviour
     private Vector2 MovementDirection;
     private Vector2 LastPosition = Vector2.zero;
     private Rigidbody2D RBComponent;
+    private GameManager GameManager;
     private bool SpecialMovementUsed = false;
     private float SpecialMovementDuration = 0f;
     public Dictionary<string, List<CodeBlock>> KeyBindings = new() { { "Q", new() { } }, { "E", new() { } }, { "Space", new() { } } };
@@ -21,6 +22,8 @@ public class Robot : MonoBehaviour
     void Start()
     {
         RBComponent = GetComponent<Rigidbody2D>();
+        GameManager = FindObjectOfType<GameManager>();
+
         if (GameObject.FindObjectOfType<GameProgress>() != null)
             Health = GameObject.FindObjectOfType<GameProgress>().RobotHealth;
         else Health = 150f;
@@ -83,7 +86,8 @@ public class Robot : MonoBehaviour
         if (Health < 0)
         {
             Health = 0;
-            Invoke(nameof(RestartLevel), 2);
+            GameManager.PauseGame();
+            RestartLevel();
         }
     }
 
@@ -166,6 +170,6 @@ public class Robot : MonoBehaviour
     // Restart the level if the player dies;
     public void RestartLevel()
     {
-        GameObject.FindObjectOfType<GameManager>().DisplayDeathScreen();
+        GameManager.DisplayDeathScreen();
     }
 }

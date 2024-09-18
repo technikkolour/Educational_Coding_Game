@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void EnterBattle()
     {
-        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
+/*        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;*/
         SceneManager.LoadScene("RobotBattle");
         PauseGame();
     }

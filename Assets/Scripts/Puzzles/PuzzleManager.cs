@@ -35,7 +35,8 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
         CurrentPuzzle = FindObjectOfType<Puzzle>();
-        Spawner = Player.InteractingWith;
+        if (Player != null)
+            Spawner = Player.InteractingWith;
 
         if (CurrentPuzzle != null && CurrentPuzzle.PuzzleType == "Quiz")
         {            

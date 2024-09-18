@@ -501,7 +501,7 @@ MonoBehaviour:
   CodeBuildingUI_Prefab: {fileID: 8678298408168539697, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
   TimeLimit: 180
   StartTime: 0
-  CurrentTime: 0
+  TimeRemaining: 0
   InitialID: 10
   Score: 0
   Timer: {fileID: 349992753}
@@ -607,58 +607,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
   m_PrefabInstance: {fileID: 143130877}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &173050788
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 173050790}
-  - component: {fileID: 173050789}
-  m_Layer: 0
-  m_Name: GameProgressData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &173050789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173050788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff7ffe54eeea8445a9c1ed43e08f8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Medals: 000000000000000000000000
-  JournalEntriesFound: 0000000000000000000000
-  CurrentInventory: []
-  BossesCleared: 000000
-  BlockagesCleared: 00000000000000000000
-  CompletedPuzzles: 00000000000000000000000000000000
-  RobotHealth: 0
-  PreviousScene: 
---- !u!4 &173050790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173050788}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.93396, y: 19.11737, z: -0.22431946}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187317182
 GameObject:
   m_ObjectHideFlags: 0
@@ -7155,7 +7103,6 @@ SceneRoots:
   - {fileID: 674352271}
   - {fileID: 610690735}
   - {fileID: 1076278672}
-  - {fileID: 173050790}
   - {fileID: 363556680}
   - {fileID: 2079106078}
   - {fileID: 1116693924}

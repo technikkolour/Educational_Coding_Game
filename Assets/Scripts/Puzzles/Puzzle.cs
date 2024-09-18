@@ -28,7 +28,7 @@ public class Puzzle : MonoBehaviour
         DataManager = FindObjectOfType<DataManager>();
         Player = FindObjectOfType<Player>();
 
-        if (Player.InteractingWith != null)
+        if (Player != null && Player.InteractingWith != null)
         {
             Spawner = Player.InteractingWith;
             Attempts = Spawner.Attempts;
