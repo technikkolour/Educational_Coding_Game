@@ -21,6 +21,8 @@ public class GameProgress : MonoBehaviour
     public GameObject AcademySpawn, WarehouseSpawn;
     public GameObject PostBossSpawn_01, PostBossSpawn_02, PostBossSpawn_03;
 
+    public string PreviousScene;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

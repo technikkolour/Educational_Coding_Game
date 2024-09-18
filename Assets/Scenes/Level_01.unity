@@ -18506,8 +18506,8 @@ MonoBehaviour:
   BlockagesCleared: 00000000000000000000
   CompletedPuzzles: 00000000000000000000000000000000
   RobotHealth: 0
-  AcademySpawn: {fileID: 0}
-  WarehouseSpawn: {fileID: 0}
+  AcademySpawn: {fileID: 1211655867}
+  WarehouseSpawn: {fileID: 283973413}
   PostBossSpawn_01: {fileID: 0}
   PostBossSpawn_02: {fileID: 0}
   PostBossSpawn_03: {fileID: 0}
@@ -18672,7 +18672,7 @@ Transform:
   m_GameObject: {fileID: 437933146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.09, y: 49.8, z: -1}
+  m_LocalPosition: {x: -4.3, y: -1.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18964,6 +18964,26 @@ PrefabInstance:
     - target: {fileID: 5393780966367295855, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619534870930373552, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1234582073}
+    - target: {fileID: 7619534870930373552, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151858193892564121, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1234582073}
+    - target: {fileID: 8151858193892564121, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8721977214478088536, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22190,7 +22210,7 @@ Transform:
   m_GameObject: {fileID: 1180152791}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.09, y: 49.8, z: -1}
+  m_LocalPosition: {x: -4.3, y: -1.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22886,8 +22906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: CodeOrdering
-  PuzzleID: 3
+  PuzzleType: ValueUpdate
+  PuzzleID: 6
   ItemID: 0
   Attempts: 0
   Active: 1
@@ -27386,11 +27406,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.09
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 49.8
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.z

@@ -29,12 +29,7 @@ public class GameManager : MonoBehaviour
         Player = FindObjectOfType<Player>();
         DataManager = FindObjectOfType<DataManager>();
 
-        // Save the points for spawning;
-        if (WarehouseSpawn != null ) GameProgress.WarehouseSpawn = WarehouseSpawn;
-        if (AcademySpawn != null) GameProgress.AcademySpawn = AcademySpawn;
-        if (PostBossSpawn_01 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_01;
-        if (PostBossSpawn_02 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_02;
-        if (PostBossSpawn_03 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_03;
+        PlacePlayer();
     }
 
     //####################################################################################################################################################################
@@ -74,16 +69,19 @@ public class GameManager : MonoBehaviour
     // GAME RELATED
     public void EnterAcademy()
     {
+        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Level_02");
     }
 
     public void EnterWarehouse() 
     {
+        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Level_03");
     }
 
     public void EnterBattle()
     {
+        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("RobotBattle");
         PauseGame();
     }
@@ -94,19 +92,22 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToCity() 
     {
-        PreviousSceneName = SceneManager.GetActiveScene().name;
+        GameProgress.PreviousScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Level_01");       
+    }
+    public void PlacePlayer()
+    {
+        if (SceneManager.GetActiveScene().name == "Level_01" && GameProgress.PreviousScene == "Level_02")
+            Player.transform.position = AcademySpawn.transform.position;
+        if (SceneManager.GetActiveScene().name == "Level_01" && GameProgress.PreviousScene == "Level_03")
+            Player.transform.position = WarehouseSpawn.transform.position;
 
-        StartCoroutine(LoadSceneWait("Level_01", () =>
-        {
-            Player = FindObjectOfType<Player>();
-            AcademySpawn = GameObject.Find("AcademySpawn");
-            WarehouseSpawn = GameObject.Find("WarehouseSpawn");
-
-            Debug.Log(PreviousSceneName);
-
-            if (PreviousSceneName == "Level_02") Player.transform.position = AcademySpawn.transform.position;
-            else if (PreviousSceneName == "Level_03") Player.transform.position = WarehouseSpawn.transform.position;
-        }));
+        for (int i = 2; i >= 0; i--)
+            if (SceneManager.GetActiveScene().name == "Level_03" && GameProgress.PreviousScene == "RobotBattle" && GameProgress.BossesCleared[i] == true)
+            {
+                GameObject SpawnLocation = GameObject.Find("PostBossSpawn_0" + i);                
+                Player.transform.position = SpawnLocation.transform.position;
+            }
     }
 
     // When the game is paused, time no longer passes and the player becomes unable to move;
