@@ -609,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2410192
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 7679524562491785304, guid: 1b5ec975debe0db4cb7f0a5f2b8c0b16, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1940,13 +1940,24 @@ Transform:
   m_GameObject: {fileID: 415617520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.440199, y: 0, z: -10}
+  m_LocalPosition: {x: -6.440199, y: -0.8389807, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1287899505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &421228858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6392389684291382944, guid: 0d2980e8167263d499b4dee629b15dd2, type: 3}
+  m_PrefabInstance: {fileID: 2084253387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431283942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,9 +2552,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178b66dff57c0d34f84d293885d1a384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueUI: {fileID: 0}
-  DialogueTextBox: {fileID: 0}
-  CharacterName: {fileID: 0}
+  DialogueUI: {fileID: 2084253389}
+  DialogueTextBox: {fileID: 2084253388}
+  CharacterName: {fileID: 421228858}
   InDialogue: 0
   IsDialogueComplete: 0
   IsTyping: 0
@@ -2718,7 +2729,7 @@ Transform:
   m_GameObject: {fileID: 618777980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.440199, y: 0, z: -10}
+  m_LocalPosition: {x: -6.440199, y: -0.8389807, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10986,7 +10997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2450568805644039202, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: NPC_Message
       objectReference: {fileID: 0}
     - target: {fileID: 4178113184082424116, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_Sprite
@@ -11042,7 +11053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 6205562364407841084, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: m_LocalPosition.z

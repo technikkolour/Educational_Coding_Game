@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
                     "There are integers and floating point numbers and…",
                     "What do you mean what are those? Kid you’re not the sharpest tool in the shed, are you?",
                     "Integers are whole numbers, like your age. And floats are decimals, like your height (measured in meters, of course)!",
-                    "Now that I’ve told you all of this, how about you solve this one riddle for me!"},
+                    "Now that I’ve told you all of this, how about you answer this one question for me!"},
                          new(){ "Yeah, that's right, kid!", 
                     "Hope you and I now see eye to eye about numbers!" } } },
 

@@ -93,11 +93,17 @@ public class Player : MonoBehaviour
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
                 int EntryID = CollidingObject.GetComponent<NPC>().JournalEntryID;
 
-                // Get the corresponding dialogue lines and begin the dialogue;
-                DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
-                LastNPC = NPCName;
-                if (EntryID != -1)
-                    GameManager.FoundEntry(EntryID + 1);
+                if (DialogueManager.IsDialogueComplete && NPCName == "William")
+                    GameManager.EndGame();
+                else
+                {
+                    // Get the corresponding dialogue lines and begin the dialogue;
+                    DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
+                    LastNPC = NPCName;
+                    if (EntryID != -1)
+                        GameManager.FoundEntry(EntryID + 1);
+                }
+
             }
             else if (CollidingObject.GetComponent<Bookcase>() != null)
             {
