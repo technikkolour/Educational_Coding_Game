@@ -140,7 +140,8 @@ public class Player : MonoBehaviour
                 GameManager.ReturnToCity();
                 break;
             case "BossBattleTrigger":
-                GameManager.EnterBattle();
+                if (!GameManager.IsDefeated(int.Parse(CollidingObjectName[^2]) - 1))
+                    GameManager.EnterBattle();
                 break;
             case "Puzzle":
                 InteractingWith = CollidingObject.gameObject.GetComponent<PuzzleSpawner>();

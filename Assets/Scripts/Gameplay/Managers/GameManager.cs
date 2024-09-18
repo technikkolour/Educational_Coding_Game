@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         for (int i = 2; i >= 0; i--)
             if (SceneManager.GetActiveScene().name == "Level_03" && GameProgress.PreviousScene == "RobotBattle" && GameProgress.BossesCleared[i] == true)
             {
-                GameObject SpawnLocation = GameObject.Find("PostBossSpawn_0" + i);                
+                GameObject SpawnLocation = GameObject.Find("PostBossSpawn_0" + (i + 1));                
                 Player.transform.position = SpawnLocation.transform.position;
             }
     }

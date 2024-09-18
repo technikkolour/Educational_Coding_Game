@@ -1706,8 +1706,8 @@ Transform:
   m_GameObject: {fileID: 365188568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.01, y: -4.618119, z: -0.10588741}
-  m_LocalScale: {x: 0.4143, y: 0.5, z: 1}
+  m_LocalPosition: {x: 21.01, y: -4.5451, z: 5}
+  m_LocalScale: {x: 0.4143, y: 0.43295163, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 480470277}
@@ -2008,9 +2008,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431283944}
+  - component: {fileID: 431283945}
   - component: {fileID: 431283943}
   m_Layer: 0
-  m_Name: BossBattleTrigger
+  m_Name: Spot_1_BossBattleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2048,7 +2049,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.515141, y: -0.97831583}
+  m_Offset: {x: 3.4431534, y: -0.97831583}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2059,7 +2060,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.729571, y: 8.152192}
+  m_Size: {x: 8.685749, y: 8.152192}
   m_EdgeRadius: 0
 --- !u!4 &431283944
 Transform:
@@ -2076,6 +2077,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 480470277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431283945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431283942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e0cb97488b2614d9b59c98cea2b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigegrIndex: 0
 --- !u!1 &463918309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,8 +4424,8 @@ Transform:
   m_GameObject: {fileID: 901831804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.57, y: -4.618119, z: -0.10588741}
-  m_LocalScale: {x: 0.4143, y: 0.5, z: 1}
+  m_LocalPosition: {x: 4.57, y: -4.5328, z: 5}
+  m_LocalScale: {x: 0.4143, y: 0.4266442, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 480470277}
@@ -6152,8 +6166,8 @@ Transform:
   m_GameObject: {fileID: 1466815603}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.64, y: -4.618119, z: -0.10588741}
-  m_LocalScale: {x: 0.4143, y: 0.5, z: 1}
+  m_LocalPosition: {x: -12.64, y: -4.5375, z: 5}
+  m_LocalScale: {x: 0.4143, y: 0.42622185, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 480470277}
@@ -7671,7 +7685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.9836
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7679,7 +7693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.1367
       objectReference: {fileID: 0}
     - target: {fileID: 2826859863153608723, guid: a1a1e92821348da4d8b268cd9914b054, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11862,9 +11876,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1988366730}
+  - component: {fileID: 1988366731}
   - component: {fileID: 1988366729}
   m_Layer: 0
-  m_Name: BossBattleTrigger
+  m_Name: Spot_3_BossBattleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11902,7 +11917,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.2971153, y: -1.3408406}
+  m_Offset: {x: 2.3178425, y: -1.3408403}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11913,7 +11928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.223858, y: 8.141287}
+  m_Size: {x: 8.692917, y: 8.141287}
   m_EdgeRadius: 0
 --- !u!4 &1988366730
 Transform:
@@ -11930,6 +11945,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 480470277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988366731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988366728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e0cb97488b2614d9b59c98cea2b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigegrIndex: 2
 --- !u!1 &2031956361
 GameObject:
   m_ObjectHideFlags: 0
@@ -12153,9 +12181,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125293793}
+  - component: {fileID: 2125293794}
   - component: {fileID: 2125293792}
   m_Layer: 0
-  m_Name: BossBattleTrigger
+  m_Name: Spot_2_BossBattleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12193,7 +12222,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.1905546, y: -0.924454}
+  m_Offset: {x: 2.1986012, y: -0.92445374}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12204,7 +12233,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.584494, y: 8.153532}
+  m_Size: {x: 8.695693, y: 8.153532}
   m_EdgeRadius: 0
 --- !u!4 &2125293793
 Transform:
@@ -12221,6 +12250,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 480470277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125293794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125293791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e0cb97488b2614d9b59c98cea2b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrigegrIndex: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

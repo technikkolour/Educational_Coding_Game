@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     private GameManager GameManager;
+    private BattleUIUpdater UIUpdater;
 
     public List<GameObject> Bosses;
 
@@ -12,7 +13,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {        
         GameManager = FindObjectOfType<GameManager>();
-
+        UIUpdater = FindObjectOfType<BattleUIUpdater>();
     }
 
     // Update is called once per frame;
@@ -27,6 +28,7 @@ public class BattleManager : MonoBehaviour
             {
                 BossActive = true;
                 Bosses[i].SetActive(true);
+                UIUpdater.Target = Bosses[i];
             }
         }
     }

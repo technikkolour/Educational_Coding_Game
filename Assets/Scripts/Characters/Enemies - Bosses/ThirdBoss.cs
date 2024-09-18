@@ -38,6 +38,7 @@ public class ThirdBoss : Enemy
                 MoveToPlayer();
                 break;
             case State.Dead:
+                EnemyDied();
                 break;
         }
     }
@@ -180,12 +181,23 @@ public class ThirdBoss : Enemy
 
         if (Health < 0)
         {
+            Health = 0;
+
             // Unfreeze the rotation of the game object around the Z axis;
             // Rotation is frozen at the start of the game to ensure that the enemy sprite does not begin spinning while moving towards the player, or falls over after attacks;
             gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
             ChangeState(State.Dead);
         }
         else ChangeState(State.Idle);
+    }
+
+    // When the enemy dies load back into the Warehouse and mark boss as cleared;
+    public void EnemyDied()
+    {
+        GameManager GameManager = GameObject.FindObjectOfType<GameManager>();
+
+        GameManager.DefeatedBoss(2);
+        GameManager.EnterWarehouse();
     }
 
     // Check if the enemy has landed;

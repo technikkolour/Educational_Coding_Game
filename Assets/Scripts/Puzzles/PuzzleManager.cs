@@ -103,6 +103,7 @@ public class PuzzleManager : MonoBehaviour
             {
                 List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
                 if (CurrentPuzzle.RobotBuilding) CurrentPuzzle.AssignKeyBindings(PuzzleBlocks);
+                GameManager.UnpauseGame();
                 Destroy(GameObject.Find("PuzzleCanvas"));
             }
         }
