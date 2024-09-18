@@ -559,7 +559,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -206.64429, y: -68.9223}
-  m_SizeDelta: {x: 500, y: 50}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6013180086763664731
 CanvasRenderer:
@@ -3238,8 +3238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 302}
-  m_SizeDelta: {x: 1250, y: 50}
+  m_AnchoredPosition: {x: 0, y: 274.4}
+  m_SizeDelta: {x: 1250, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3356382648629346825
 CanvasRenderer:
@@ -3332,7 +3332,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -0.5819092, z: 0, w: -68.20654}
+  m_margin: {x: 0, y: -0.5819092, z: 0, w: 0.24224854}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4618,7 +4618,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 188.55243, y: -41}
-  m_SizeDelta: {x: 710.08, y: 498.9063}
+  m_SizeDelta: {x: 710.08, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2850736134903309483
 CanvasRenderer:
@@ -5273,6 +5273,8 @@ MonoBehaviour:
   ProposedSolution: 
   PromptObject: {fileID: 3640160695262509515}
   AttemptsObject: {fileID: 2575503248942858449}
+  Spawner: {fileID: 0}
+  Player: {fileID: 0}
   TimeLimit: 300
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}

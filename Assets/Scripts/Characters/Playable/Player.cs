@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private bool InInteraction = false;
 
     // Managers;
-    private DataManager DataManager;
     private GameManager GameManager;
     private DialogueManager DialogueManager;
 
@@ -24,7 +23,6 @@ public class Player : MonoBehaviour
     {
         RBComponent = GetComponent<Rigidbody2D>();
 
-        DataManager = FindObjectOfType<DataManager>();
         GameManager = FindObjectOfType<GameManager>();
         DialogueManager = FindObjectOfType<DialogueManager>();
     }
@@ -64,13 +62,15 @@ public class Player : MonoBehaviour
             
             if (CollidingObject.GetComponent<NPC>() != null)
             {
-                // Get the character's name;
+                // Get the character's name and the stage of the dialogue;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
 
+                // If the dialogue has not completed or the spawner no longer works, display the dialogue;
                 if (!DialogueManager.IsDialogueComplete || !Spawner.IsActive())
                     DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
 
+                // If the dialogue has concluded, spawn the puzzle;
                 if (DialogueManager.IsDialogueComplete && Spawner.IsActive())
                     InteractingWith.Spawn();
             }
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         {
             if (CollidingObject.GetComponent<NPC>() != null) 
             {
-                // Get the character's name;
+                // Get the character's name and the stage of the dialogue;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
 

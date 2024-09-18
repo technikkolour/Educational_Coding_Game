@@ -215,7 +215,7 @@ public class Puzzle : MonoBehaviour
         // Force TMP to update;
         // Otherwise the text isn't fully loaded and the code doesn't function properly;
         CodeBodyText.ForceMeshUpdate();
-        int UnderscoreIndex = CodeBodyText.text.IndexOf("_________");
+        int UnderscoreIndex = CodeBodyText.text.IndexOf("_______");
 
         if (UnderscoreIndex != -1)
         {

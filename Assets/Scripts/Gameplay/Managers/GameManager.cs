@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,15 +18,23 @@ public class GameManager : MonoBehaviour
     private Player Player;
     private DataManager DataManager;
     public GameObject AcademySpawn, WarehouseSpawn;
+    public GameObject PostBossSpawn_01, PostBossSpawn_02, PostBossSpawn_03;
 
     // Progression management;
     private GameProgress GameProgress;
 
     private void Start()
     {
-        GameProgress = GameObject.FindObjectOfType<GameProgress>();
-        Player = GameObject.FindObjectOfType<Player>();
-        DataManager = GameObject.FindObjectOfType<DataManager>();
+        GameProgress = FindObjectOfType<GameProgress>();
+        Player = FindObjectOfType<Player>();
+        DataManager = FindObjectOfType<DataManager>();
+
+        // Save the points for spawning;
+        if (WarehouseSpawn != null ) GameProgress.WarehouseSpawn = WarehouseSpawn;
+        if (AcademySpawn != null) GameProgress.AcademySpawn = AcademySpawn;
+        if (PostBossSpawn_01 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_01;
+        if (PostBossSpawn_02 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_02;
+        if (PostBossSpawn_03 != null) GameProgress.PostBossSpawn_01 = PostBossSpawn_03;
     }
 
     //####################################################################################################################################################################
