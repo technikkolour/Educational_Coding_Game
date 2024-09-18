@@ -6,30 +6,37 @@ public class BattleManager : MonoBehaviour
 {
     private GameManager GameManager;
     private BattleUIUpdater UIUpdater;
+    private bool BossActive;
 
-    public List<GameObject> Bosses;
+    public List<GameObject> Bosses;        
 
     // Start is called before the first frame update;
     void Start()
     {        
         GameManager = FindObjectOfType<GameManager>();
         UIUpdater = FindObjectOfType<BattleUIUpdater>();
+
+        BossActive = false;
     }
 
     // Update is called once per frame;
     void Update()
     {
-        bool BossActive = false;
-
         for (int i = 0; i < 3; i++)
         {
-            if (GameManager.IsDefeated(i) || BossActive) Bosses[i].SetActive(false);
-            else
+            if (!BossActive)
             {
-                BossActive = true;
-                Bosses[i].SetActive(true);
-                UIUpdater.Target = Bosses[i];
+                if (GameManager.IsDefeated(i) && Bosses[i] != null) Destroy(Bosses[i]);
+                else
+                {
+                    BossActive = true;
+                    Bosses[i].SetActive(true);
+
+                    UIUpdater.Target = Bosses[i];
+                    UIUpdater.SetInitialValue(Bosses[i].GetComponent<Enemy>().Health);
+                }
             }
+
         }
     }
 }

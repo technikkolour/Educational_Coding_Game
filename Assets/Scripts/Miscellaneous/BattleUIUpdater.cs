@@ -7,7 +7,7 @@ public class BattleUIUpdater : MonoBehaviour
 
     private float CurrentValue;
     private float InitialValue;
-    private float MaxDimension;
+    public float MaxDimension;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +32,17 @@ public class BattleUIUpdater : MonoBehaviour
 
         // Depending on the Target GameObject, select the necessary value;
         if (Target.GetComponent<Robot>() != null && gameObject.name.Contains("Health"))
-            Value = Target.GetComponent<Robot>().Health;
+                    Value = Target.GetComponent<Robot>().Health;
         
         else if (Target.GetComponent<Robot>() != null && gameObject.name.Contains("Strength")) Value = Target.GetComponent<Robot>().Strength;
         else if (Target.GetComponent<Enemy>() != null) Value = Target.GetComponent<Enemy>().Health;
 
         return Value;
+    }
+
+    // Set the initial health bar value;
+    public void SetInitialValue(float Value)
+    {
+        InitialValue = Value;
     }
 }
