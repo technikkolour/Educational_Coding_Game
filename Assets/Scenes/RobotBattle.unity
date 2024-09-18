@@ -1296,6 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1099711155}
+  MaxDimension: 0
 --- !u!1 &349692162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,6 +3417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1294686502}
+  MaxDimension: 0
 --- !u!1 &814634120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5344,6 +5346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1294686502}
+  MaxDimension: 0
 --- !u!1 &1179141143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,58 +5616,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190768115}
   m_CullTransparentMesh: 1
---- !u!1 &1195987501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1195987503}
-  - component: {fileID: 1195987502}
-  m_Layer: 0
-  m_Name: GameProgressData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1195987502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195987501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff7ffe54eeea8445a9c1ed43e08f8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Medals: 000000000000000000000000
-  JournalEntriesFound: 0000000000000000000000
-  CurrentInventory: []
-  BossesCleared: 000000
-  BlockagesCleared: 00000000000000000000
-  CompletedPuzzles: 00000000000000000000000000000000
-  RobotHealth: 0
-  PreviousScene: 
---- !u!4 &1195987503
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195987501}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.93396, y: 19.11737, z: -0.22431946}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200447805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9275,7 +9226,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1288830410}
   - {fileID: 952151789}
-  - {fileID: 1195987503}
   - {fileID: 1021268431}
   - {fileID: 103606169}
   - {fileID: 1855160157}

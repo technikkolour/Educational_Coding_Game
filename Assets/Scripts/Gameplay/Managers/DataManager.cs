@@ -5,14 +5,14 @@ public class DataManager : MonoBehaviour
 {
     // The lists are structured in the order: Prompt, Options (or Lines of Code), Solution;
     private readonly Dictionary<int, List<List<string>>> MultipleChoice = new(){
-        { 1, new(){ new(){"What would you store your age in?"}, new(){"A variable.", "A constant."}, new(){ "A variable." } } },
+        { 1, new(){ new(){"How would you store your age?"}, new(){"As a variable.", "As a constant."}, new(){ "As a variable." } } },
         { 2, new(){ new(){"Would the number 3 be considered an integer?"}, new(){"Yes", "No"}, new(){"Yes"} } }
     };
     private readonly Dictionary<int, List<List<string>>> Quiz = new(){
         { 10, new(){ new(){"What is a variable?"}, new(){"A number", "A value that changes.", "A string."}, new(){"A value that changes."} } },
         { 11, new(){ new(){"How many values can a boolean have?"}, new(){"Just one.", "An infinite amount.", "Just two."}, new(){ "Just two." } } },
         { 12, new(){ new(){"What should I use if I would like to see the final result of a program?"}, new(){"An output block.", "A declarative block."}, new(){ "An output block." } } },
-        { 13, new(){ new(){"If you would like to keep track of your teacher's name, what would you store it as?"}, new(){"An integer.", "An list of characters.", "A string.", "A boolean."}, new(){"A string."} } },
+        { 13, new(){ new(){"If you would like to keep track of your favourite teacher's name, what would you store it as?"}, new(){"An integer.", "An list of characters.", "A string.", "A boolean."}, new(){"A string."} } },
         { 14, new(){ new(){"Is a variable the opposite of a constant?"}, new(){"True", "False"}, new(){"True"} } },
         { 15, new(){ new(){"Select the correct line of code."}, new(){"integer x = 12.5", "float x = false", "string = \"Hello!\""}, new(){ "string = \"Hello!\"" } } },
         { 16, new(){ new(){"What is absolutely necessary in a while loop?"}, new(){"A condition.", "An output statement.", "An if statement."}, new(){ "A condition." } } }

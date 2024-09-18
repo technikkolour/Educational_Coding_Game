@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !InInteraction && CollidingObject != null) Interact();
 
         // For testing only;
-        //if (Input.GetKeyDown(KeyCode.K)) PickUpItem(0);
+        if (Input.GetKeyDown(KeyCode.K)) GameManager.PickUpItem(0);
     }
 
     // Called a set number or times, not depenent on framerate;

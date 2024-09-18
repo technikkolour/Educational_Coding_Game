@@ -3303,8 +3303,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 30
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: -5
   m_wordSpacing: 0
@@ -5275,7 +5275,7 @@ MonoBehaviour:
   AttemptsObject: {fileID: 2575503248942858449}
   Spawner: {fileID: 0}
   Player: {fileID: 0}
-  TimeLimit: 300
+  Options: []
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
   CodeBlockPrefab: {fileID: 8220588178936213256, guid: f39c5669c75eddf448624c555698ac3e, type: 3}
