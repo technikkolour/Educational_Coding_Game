@@ -23,7 +23,13 @@ public class PuzzleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsPuzzleCompleted(PuzzleID)) Active = false;
+        if (GameManager.IsPuzzleCompleted(PuzzleID))
+        {
+            Active = false;
+
+            if (gameObject.GetComponent<NPC>() != null)
+                gameObject.GetComponent<NPC>().DialoguePhase = 1;
+        }
     }
 
     public void Spawn()
