@@ -40,7 +40,6 @@ public class Puzzle : MonoBehaviour
         switch (PuzzleType)
         {
             case "MultipleChoice":
-            case "Quiz":
                 AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
             case "CodeOrdering":
@@ -53,8 +52,6 @@ public class Puzzle : MonoBehaviour
                 AssignValues_CB(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
         }
-
-
     }
 
     // Update is called once per frame;
@@ -143,18 +140,6 @@ public class Puzzle : MonoBehaviour
     }
     //####################################################################################################################################################################
     // Multiple Choice - QUIZ Mode;
-
-    // Store the time limit for the player to answer all the questions in the quiz;
-    public float TimeLimit = 300f;
-    public Time StartTime, CurrentTime;
-
-    public void QuizMode()
-    {
-        for (int i = 0;i < 4;i++)
-        {
-            AssignValues_MC(DataManager.ReturnPuzzleDetails(i));
-        }
-    }
 
     //####################################################################################################################################################################
     // Code Line Ordering;

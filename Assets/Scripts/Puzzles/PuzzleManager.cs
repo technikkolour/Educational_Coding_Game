@@ -13,7 +13,6 @@ public class PuzzleManager : MonoBehaviour
     public GameObject ErrorMessage, SuccessMessage;
     public GameObject PuzzleUI;
     public string ProposedSolution;
-    public int Score = 0;
 
     // The prefabs for the different types of puzzles;
     public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_prefab, CodeBuildingUI_Prefab;
@@ -43,6 +42,7 @@ public class PuzzleManager : MonoBehaviour
                     List<CodeBlock> PuzzleBlocks = CurrentPuzzle.GenerateBlockList();
                     CurrentPuzzle.ComputeSolution(PuzzleBlocks);
                 }
+
                 if (CurrentPuzzle.VerifySolution())
                 {
                     GameManager.CompletedPuzzle(CurrentPuzzle.GetID(), CurrentPuzzle.GetAttempts());
@@ -56,7 +56,6 @@ public class PuzzleManager : MonoBehaviour
                     ErrorMessage.SetActive(true);
                     Invoke("RemoveMessage", 5);
                 }
-                
             }
             else
             {

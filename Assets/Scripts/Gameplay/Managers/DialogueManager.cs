@@ -50,9 +50,11 @@ public class DialogueManager : MonoBehaviour
         {"April", new(){ new(){ "Yo! How's it going? I've never seen you before!",
                     "I don't really like school and I think studying is really boring, but robots are just so awesome!"} } },
 
-        {"Maria", new(){ new(){ "Oh no... You didn't quite pass the test. Let's try again!" },
+        {"Maria", new(){ new(){ "Oh, hello! Are you here to get your Robot Licence?", 
+                    "To earn it you will need to pass a short test.",
+                    "Well, let's give it a shot then!" },
                          new(){ "That's it, you got it! You did such a good job, congratulations!",
-                         "Here is your Robot Licence!"} } },
+                    "Here is your Robot Licence!"} } },
 
         {"Very Upset Robot", new(){ new(){ "Hello! I am a robot! Beep!",
                     "I apologise, but I cannot let you move past me. Beep!",

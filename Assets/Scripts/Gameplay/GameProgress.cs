@@ -17,10 +17,7 @@ public class GameProgress : MonoBehaviour
     public List<bool> CompletedPuzzles = new(Enumerable.Repeat(false, 16));
     public float RobotHealth = 150f;
 
-    // Spawning locations;
-    public GameObject AcademySpawn, WarehouseSpawn;
-    public GameObject PostBossSpawn_01, PostBossSpawn_02, PostBossSpawn_03;
-
+    // Previously loaded scene;
     public string PreviousScene;
 
     private void Awake()

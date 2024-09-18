@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     }
 
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
+    private string LastNPC = "";
+
     public void Interact() 
     {
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
@@ -67,11 +69,14 @@ public class Player : MonoBehaviour
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
 
                 // If the dialogue has not completed or the spawner no longer works, display the dialogue;
-                if (!DialogueManager.IsDialogueComplete || !Spawner.IsActive())
+                if (!DialogueManager.IsDialogueComplete || !Spawner.IsActive() || LastNPC != NPCName)
+                {
                     DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
-
+                    LastNPC = NPCName;
+                }
+                    
                 // If the dialogue has concluded, spawn the puzzle;
-                if (DialogueManager.IsDialogueComplete && Spawner.IsActive())
+                if (DialogueManager.IsDialogueComplete && Spawner.IsActive() && LastNPC == NPCName)
                     InteractingWith.Spawn();
             }
             else if (Spawner != null && Spawner.IsActive())
@@ -79,7 +84,7 @@ public class Player : MonoBehaviour
         }
         else if (CollidingObjectType == "Message")
         {
-            if (CollidingObject.GetComponent<NPC>() != null) 
+            if (CollidingObject.GetComponent<NPC>() != null)
             {
                 // Get the character's name and the stage of the dialogue;
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
@@ -87,6 +92,7 @@ public class Player : MonoBehaviour
 
                 // Get the corresponding dialogue lines and begin the dialogue;
                 DialogueManager.StartDialogue(DialogueManager.GetDialogueLines(NPCName, NPCDialoguePhase));
+                LastNPC = NPCName;
             }
             else if (CollidingObject.GetComponent<Bookcase>() != null)
             {
@@ -95,7 +101,11 @@ public class Player : MonoBehaviour
                 // Start the dialogue;
                 InteractingBookcase.Interact();
             }
-            else InInteraction = false;
+            else
+            {
+                DialogueManager.IsDialogueComplete = false;
+                InInteraction = false;
+            }
         }
     }
 

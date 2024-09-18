@@ -49,20 +49,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    private IEnumerator LoadSceneWait(string SceneName, System.Action OnSceneLoaded)
-    {
-        AsyncOperation AsyncLoadLevel = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
-
-
-        while (!AsyncLoadLevel.isDone)
-        {
-            yield return null;
-        }
-
-        yield return new WaitForEndOfFrame();
-
-        OnSceneLoaded?.Invoke();
-    }
 
 
     //####################################################################################################################################################################

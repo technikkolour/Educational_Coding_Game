@@ -5,7 +5,6 @@ public class NPC : MonoBehaviour
     public string Name;
 
     // Functionality properties;
-    public bool HasPuzzle;
     public bool AddsJournalEntry;
     public int DialoguePhase;
 
