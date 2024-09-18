@@ -499,12 +499,12 @@ MonoBehaviour:
   CodeOrderingUI_Prefab: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
   ValueUpdatingUI_Prefab: {fileID: 0}
   CodeBuildingUI_Prefab: {fileID: 8678298408168539697, guid: 373f7f2d3df1ca84da5b5b8465162f9d, type: 3}
-  TimeLimit: 0
+  TimeLimit: 180
   StartTime: 0
   CurrentTime: 0
   InitialID: 10
-  CurrentID: 0
   Score: 0
+  Timer: {fileID: 349992753}
 --- !u!1001 &143130877
 PrefabInstance:
   m_ObjectHideFlags: 0

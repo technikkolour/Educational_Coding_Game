@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
@@ -18,9 +19,10 @@ public class PuzzleManager : MonoBehaviour
     public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_Prefab, CodeBuildingUI_Prefab;
 
     // Quiz properties;
-    public float TimeLimit, StartTime, CurrentTime;
+    public float TimeLimit = 180f, StartTime = 0f, TimeRemaining;
     public int InitialID = 10;
     public int Score = 0;
+    public TMP_Text Timer;
 
     // Start is called before the first frame update;
     void Start()
@@ -34,6 +36,20 @@ public class PuzzleManager : MonoBehaviour
     {
         CurrentPuzzle = FindObjectOfType<Puzzle>();
         Spawner = Player.InteractingWith;
+
+        if (CurrentPuzzle != null && CurrentPuzzle.PuzzleType == "Quiz")
+        {            
+            TimeRemaining = TimeLimit - (Time.unscaledTime - StartTime);
+            DisplayTime();
+
+            if (TimeRemaining <= 0)
+            {
+                ClosePuzzle();    
+                Timer.transform.parent.gameObject.SetActive(false);
+                QuizCompleted();
+            }
+
+        }
     }
 
     public void SubmitSolution()
@@ -55,6 +71,7 @@ public class PuzzleManager : MonoBehaviour
                     SpawnPuzzle("Quiz", CurrentID);
                 }
                 else QuizCompleted();
+                
             }
             else if (!CurrentPuzzle.RobotBuilding)
             {
@@ -113,8 +130,11 @@ public class PuzzleManager : MonoBehaviour
         switch (PuzzleType)
         {
             case "MultipleChoice":
+                Puzzle = Instantiate(MultipleChoiceUI_Prefab);
+                break;
             case "Quiz":
                 Puzzle = Instantiate(MultipleChoiceUI_Prefab);
+                if (StartTime == 0f) StartTime = Time.unscaledTime;
                 break;
             case "CodeOrdering":
                 Puzzle = Instantiate(CodeOrderingUI_Prefab);
@@ -182,7 +202,13 @@ public class PuzzleManager : MonoBehaviour
             SuccessMessage.SetActive(true);
             Score = 0;
         }
+    }
 
+    public void DisplayTime()
+    {
+        int Minutes = Mathf.FloorToInt(TimeRemaining / 60f);
+        int Seconds = Mathf.FloorToInt(TimeRemaining - Minutes * 60);
 
+        Timer.text = string.Format("{0:0}:{1:00}", Minutes, Seconds);
     }
 }

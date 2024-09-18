@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ThirdBoss : Enemy
 {
+    private SpriteRenderer SpriteRenderer;
+
     public List<Attack> Attacks;
 
     private int ChanceOfHeavyAttack = 35;

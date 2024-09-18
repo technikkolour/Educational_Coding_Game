@@ -4,6 +4,7 @@ using UnityEngine;
 public class FirstBoss : Enemy
 {
     public List<Attack> Attacks;
+    private SpriteRenderer SpriteRenderer;
 
     // Start is called before the first frame update
     void Start()

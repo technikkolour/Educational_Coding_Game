@@ -8,8 +8,6 @@ public class NPC : MonoBehaviour
     public int JournalEntryID;
     public int DialoguePhase;
 
-    private GameProgress GameProgress;
-
     // Start is called before the first frame update
     void Start()
     {
