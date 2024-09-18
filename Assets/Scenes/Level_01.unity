@@ -18506,11 +18506,7 @@ MonoBehaviour:
   BlockagesCleared: 00000000000000000000
   CompletedPuzzles: 00000000000000000000000000000000
   RobotHealth: 0
-  AcademySpawn: {fileID: 1211655867}
-  WarehouseSpawn: {fileID: 283973413}
-  PostBossSpawn_01: {fileID: 0}
-  PostBossSpawn_02: {fileID: 0}
-  PostBossSpawn_03: {fileID: 0}
+  PreviousScene: 
 --- !u!1001 &433938604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21533,7 +21529,6 @@ MonoBehaviour:
   SuccessMessage: {fileID: 1017942758}
   PuzzleUI: {fileID: 482115128}
   ProposedSolution: 
-  Score: 0
   MultipleChoiceUI_Prefab: {fileID: 8999208116026393977, guid: 974d59089bb37d54cb17feb07ca3c011, type: 3}
   CodeOrderingUI_Prefab: {fileID: 2707994956340884484, guid: 8348351ad0a115f4abc2d67aed7d25e3, type: 3}
   ValueUpdatingUI_prefab: {fileID: 3760679442646187765, guid: 30c47f7edcd742c4eb98950c309ebc67, type: 3}
@@ -21826,6 +21821,10 @@ PrefabInstance:
     - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: HasPuzzle
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      propertyPath: JournalEntryID
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23070,6 +23069,10 @@ PrefabInstance:
     - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: Name
       value: Constant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      propertyPath: JournalEntryID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: AddsJournalEntry
@@ -25740,6 +25743,10 @@ PrefabInstance:
     - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: HasPuzzle
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      propertyPath: JournalEntryID
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -40,6 +40,7 @@ public class Puzzle : MonoBehaviour
         switch (PuzzleType)
         {
             case "MultipleChoice":
+            case "Quiz":
                 AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
                 break;
             case "CodeOrdering":
@@ -62,6 +63,13 @@ public class Puzzle : MonoBehaviour
 
         if (PuzzleType == "CodeOrdering")
             ComputeOrder();
+
+        if (PuzzleType == "Quiz")
+        {
+            ResetOptions();
+            AssignValues_MC(DataManager.ReturnPuzzleDetails(PuzzleID));
+        }
+
     }
 
     // Get the puzzle's index;
@@ -140,6 +148,12 @@ public class Puzzle : MonoBehaviour
     }
     //####################################################################################################################################################################
     // Multiple Choice - QUIZ Mode;
+    public List<GameObject> Options = new();
+    public void ResetOptions()
+    {
+        for (int i = 0;i < 4;i++)
+            Options[i].SetActive(true);
+    }
 
     //####################################################################################################################################################################
     // Code Line Ordering;

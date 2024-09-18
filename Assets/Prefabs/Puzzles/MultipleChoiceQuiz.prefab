@@ -1849,11 +1849,11 @@ MonoBehaviour:
   AttemptsObject: {fileID: 460106873734937678}
   Spawner: {fileID: 0}
   Player: {fileID: 0}
-  TimeLimit: 300
-  StartTime: 0
-  Score: 0
-  QuizFinished: 0
-  QuestionID: 10
+  Options:
+  - {fileID: 7787614588991170643}
+  - {fileID: 5472330771811512521}
+  - {fileID: 1147603719230009218}
+  - {fileID: 8182778186057059960}
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
   CodeBlockPrefab: {fileID: 0}

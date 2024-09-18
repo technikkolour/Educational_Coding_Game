@@ -10,12 +10,12 @@ public class DataManager : MonoBehaviour
     };
     private readonly Dictionary<int, List<List<string>>> Quiz = new(){
         { 10, new(){ new(){"What is a variable?"}, new(){"A number", "A value that changes.", "A string."}, new(){"A value that changes."} } },
-        { 11, new(){ new(){""}, new(){""}, new(){""} } },
-        { 12, new(){ new(){""}, new(){""}, new(){""} } },
-        { 13, new(){ new(){""}, new(){""}, new(){""} } },
-        { 14, new(){ new(){""}, new(){""}, new(){""} } },
-        { 15, new(){ new(){""}, new(){""}, new(){""} } },
-        { 16, new(){ new(){""}, new(){""}, new(){""} } }
+        { 11, new(){ new(){"How many values can a boolean have?"}, new(){"Just one.", "An infinite amount.", "Just two."}, new(){ "Just two." } } },
+        { 12, new(){ new(){"What should I use if I would like to see the final result of a program?"}, new(){"An output block.", "A declarative block."}, new(){ "An output block." } } },
+        { 13, new(){ new(){"If you would like to keep track of your teacher's name, what would you store it as?"}, new(){"An integer.", "An list of characters.", "A string.", "A boolean."}, new(){"A string."} } },
+        { 14, new(){ new(){"Is a variable the opposite of a constant?"}, new(){"True", "False"}, new(){"True"} } },
+        { 15, new(){ new(){"Select the correct line of code."}, new(){"integer x = 12.5", "float x = false", "string = \"Hello!\""}, new(){ "string = \"Hello!\"" } } },
+        { 16, new(){ new(){"What is absolutely necessary in a while loop?"}, new(){"A condition.", "An output statement.", "An if statement."}, new(){ "A condition." } } }
     };
     private readonly Dictionary<int, List<List<string>>> CodeOrdering = new(){
         { 3, new(){ new(){"Hmm, the code for the gate doesn't work... I think changing the order of the lines will fix it."}, new(){ "for values of x increasing by 1, up to 5", "move 25 cm", "integer x = 1"}, new(){"312"} } }

@@ -5,7 +5,7 @@ public class NPC : MonoBehaviour
     public string Name;
 
     // Functionality properties;
-    public bool AddsJournalEntry;
+    public int JournalEntryID;
     public int DialoguePhase;
 
     // Start is called before the first frame update

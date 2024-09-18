@@ -15,7 +15,12 @@ public class PuzzleManager : MonoBehaviour
     public string ProposedSolution;
 
     // The prefabs for the different types of puzzles;
-    public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_prefab, CodeBuildingUI_Prefab;
+    public GameObject MultipleChoiceUI_Prefab, CodeOrderingUI_Prefab, ValueUpdatingUI_Prefab, CodeBuildingUI_Prefab;
+
+    // Quiz properties;
+    public float TimeLimit, StartTime, CurrentTime;
+    public int InitialID = 10;
+    public int Score = 0;
 
     // Start is called before the first frame update;
     void Start()
@@ -35,7 +40,23 @@ public class PuzzleManager : MonoBehaviour
     {
         if (CurrentPuzzle != null)
         {
-            if (!CurrentPuzzle.RobotBuilding)
+            if (CurrentPuzzle.PuzzleType == "Quiz")
+            {
+                if (CurrentPuzzle.VerifySolution()) 
+                    Score++;
+
+                int CurrentID = CurrentPuzzle.PuzzleID + 1;
+                Player.InteractingWith = null;
+
+                ClosePuzzle();
+
+                if (CurrentID <= 16)
+                {
+                    SpawnPuzzle("Quiz", CurrentID);
+                }
+                else QuizCompleted();
+            }
+            else if (!CurrentPuzzle.RobotBuilding)
             {
                 if (CurrentPuzzle.PuzzleType == "CodeBuilding")
                 {
@@ -99,7 +120,7 @@ public class PuzzleManager : MonoBehaviour
                 Puzzle = Instantiate(CodeOrderingUI_Prefab);
                 break;
             case "ValueUpdate":
-                Puzzle = Instantiate(ValueUpdatingUI_prefab);
+                Puzzle = Instantiate(ValueUpdatingUI_Prefab);
                 break;
             case "CodeBuilding":
                 Puzzle = Instantiate(CodeBuildingUI_Prefab);
@@ -111,13 +132,14 @@ public class PuzzleManager : MonoBehaviour
 
         Puzzle PuzzleComponent = Puzzle.GetComponent<Puzzle>();
 
-        if (PuzzleComponent.Spawner != null && PuzzleComponent.Spawner != null)
+        if (PuzzleComponent.Spawner != null)
         {
-            PuzzleComponent.SetAttempts(Spawner.Attempts);
+            if (PuzzleComponent.PuzzleType != "Quiz") { }
+                PuzzleComponent.SetAttempts(Spawner.Attempts);
             PuzzleComponent.SetItemID(Spawner.ItemID);
-            PuzzleComponent.PuzzleType = PuzzleType;
-            PuzzleComponent.PuzzleID = PuzzleID;
         }
+        PuzzleComponent.PuzzleType = PuzzleType;
+        PuzzleComponent.PuzzleID = PuzzleID;
 
         // Pause the game when the puzzle is spawned in;
         GameManager.PauseGame();
@@ -127,14 +149,40 @@ public class PuzzleManager : MonoBehaviour
     public void ClosePuzzle()
     {
         // Store the attempts number inside the spawner;
-        Puzzle Puzzle = GameObject.FindObjectOfType<Puzzle>();
+        Puzzle Puzzle = FindObjectOfType<Puzzle>();
 
         if (Puzzle != null)
         {
-            Puzzle.SetAttempts(Puzzle.GetAttempts());
+            if (!(Puzzle.PuzzleType == "Quiz"))
+                Puzzle.SetAttempts(Puzzle.GetAttempts());
             Player.FinishedInteraction();
             Destroy(Puzzle.gameObject);     
         }
-  
+    }
+
+    private void QuizCompleted()
+    {
+        if (Score >= 5)
+        {            
+            // Set the dialogue phase for the NPC spawner;
+            PuzzleSpawner NPC = GameObject.FindObjectOfType<PuzzleSpawner>();
+            NPC.gameObject.GetComponent<NPC>().DialoguePhase = 1;
+
+            // Mark the puzzle as completed and get the Robot Licence;
+            GameManager.CompletedPuzzle(InitialID, 4);
+            GameManager.PickUpItem(NPC.ItemID);    
+
+            Player.FinishedInteraction();
+
+            PuzzleUI.SetActive(false);
+            GameManager.UnpauseGame();
+        }
+        else if (Score < 5)
+        {
+            SuccessMessage.SetActive(true);
+            Score = 0;
+        }
+
+
     }
 }
