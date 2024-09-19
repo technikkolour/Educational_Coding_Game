@@ -97,10 +97,6 @@ public class Player : MonoBehaviour
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
                 int EntryID = CollidingObject.GetComponent<NPC>().JournalEntryID;
 
-                Debug.Log("Dialogue State: IsComplete = " + DialogueManager.IsDialogueComplete);
-                Debug.Log("Current NPC: " + NPCName);
-                Debug.Log("Current Phase: " + NPCDialoguePhase);
-
                 if (DialogueManager.IsDialogueComplete && NPCName == "William")
                     GameManager.EndGame();
                 else

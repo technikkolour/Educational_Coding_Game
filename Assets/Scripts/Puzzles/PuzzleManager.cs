@@ -20,7 +20,7 @@ public class PuzzleManager : MonoBehaviour
 
     // Quiz properties;
     public float TimeLimit = 180f, StartTime = 0f, TimeRemaining;
-    public int InitialID = 10;
+    public int InitialID = 13;
     public int Score = 0;
     public TMP_Text Timer;
 
@@ -190,7 +190,7 @@ public class PuzzleManager : MonoBehaviour
         if (Score >= 5)
         {            
             // Set the dialogue phase for the NPC spawner;
-            PuzzleSpawner NPC = GameObject.FindObjectOfType<PuzzleSpawner>();
+            PuzzleSpawner NPC = FindObjectOfType<PuzzleSpawner>();
             NPC.gameObject.GetComponent<NPC>().DialoguePhase = 1;
 
             // Mark the puzzle as completed and get the Robot Licence;
