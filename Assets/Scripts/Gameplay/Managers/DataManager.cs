@@ -89,19 +89,19 @@ public class DataManager : MonoBehaviour
 
         switch (PuzzleID)
         {
-            case int i when i >= 1 && i <= 2:
+            case int i when i >= 1 && i <= 3:
                 Puzzle = MultipleChoice[PuzzleID];
                 break;
-            case int i when i == 3:
+            case int i when i >= 4 && i <= 5:
                 Puzzle = CodeOrdering[PuzzleID];
                 break;
-            case int i when i >= 4 && i <= 6:
+            case int i when i >= 6 && i <= 9:
                 Puzzle = ValueUpdate[PuzzleID];
                 break;
-            case int i when (i >= 7 && i <= 9) || i == 999:
+            case int i when (i >= 10 && i <= 12) || i == 999:
                 Puzzle = CodeBuilding[PuzzleID];
                 break;
-            case int i when i >= 10 && i <= 16:
+            case int i when i >= 13 && i <= 19:
                 Puzzle = Quiz[PuzzleID];
                 break;
         }

@@ -515,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 2254672341381879323}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -463, y: 304, z: 1.337435}
+  m_LocalPosition: {x: -422, y: 304, z: 1.337435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -710,7 +710,7 @@ MonoBehaviour:
   AttemptsObject: {fileID: 8718216220013102243}
   Spawner: {fileID: 0}
   Player: {fileID: 0}
-  TimeLimit: 300
+  Options: []
   CodeBodyText: {fileID: 0}
   ValueInputField: {fileID: 0}
   CodeBlockPrefab: {fileID: 0}
