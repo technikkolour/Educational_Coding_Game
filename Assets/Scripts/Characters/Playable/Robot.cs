@@ -4,7 +4,7 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public float Health;
-    public float Strength = 100f;
+    public float Strength = 250f;
     public float Speed = 7f;
 
     public Attack AttackPrefab;
@@ -98,10 +98,10 @@ public class Robot : MonoBehaviour
     }
     private void RegenerateStrength()
     {
-        Strength = (2*Strength + .5f) / 2.0f;
+        Strength = (2*Strength + 2.5f) / 2.0f;
 
-        // Cap the strength at 100;
-        if (Strength > 100) Strength = 100;
+        // Cap the strength at 250;
+        if (Strength > 250) Strength = 250;
     }
 
     // Robot Building Blocks;
@@ -111,7 +111,7 @@ public class Robot : MonoBehaviour
         // Check that the character has enough strength to use the attack;
         // In the event that they do not, do nothing;
 
-        if (Power >= 100) Power = 100;
+        if (Power >= 250) Power = 250;
 
         if (Strength >= Power)
         {

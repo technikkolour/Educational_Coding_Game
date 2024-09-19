@@ -17,7 +17,8 @@ public class Journal : MonoBehaviour
         {8, new(){ "For", "A set of actions is performed for every time a value is updated. The starting and final values, as well as the step size, are defined." } },
         {9, new(){ "While", "A set of actions is performed as long as a condition is true." } },
         {10, new(){ "Functions", "They are independent portions of code. They can be used to tell the program to perform a set of actions at any point." } },
-        {11, new(){ "", "" } } };
+        {11, new(){ "Nested Statements", "Pieces of code that are executed inside other functions, such as the contents of a loop." } },
+        {12, new(){ "", "" } } };
     private List<List<string>> Entries = new() { new() { "", "" }, new() { "", "" } };
 
     public TMP_Text LeftTitle, RightTitle;

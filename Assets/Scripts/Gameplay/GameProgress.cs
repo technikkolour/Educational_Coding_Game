@@ -8,7 +8,7 @@ public class GameProgress : MonoBehaviour
 
     // Inventory and journal progression;
     public List<int> Medals = new() { 0, 0, 0 };
-    public List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 11));
+    public List<bool> JournalEntriesFound = new(Enumerable.Repeat(false, 13));
     public List<Item> CurrentInventory = new();
 
     // Game progression;

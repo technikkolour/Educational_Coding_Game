@@ -44,8 +44,12 @@ public class DialogueManager : MonoBehaviour
                     "My favourite conditional function is actually “if”! I love the word itself, I use it so much when speaking, I’m not sure if you’ve noticed!",
                     "Well, I should get going! If I didn’t have so much to do I would have sat here and chatted for longer. See you!"} } },
 
-        {"Rob", new(){ new(){ "Hi!! Are you here for the Robot Academy? You don’t need to do anything special to enrol, just enter the school!",
-                    "Where is it? Oh, it’s right behind me, just walk straight on." } } },
+        {"Rob", new(){ new(){ "Hi! How's it going, lil' dude? I was just trying to figure out whether I should write a song about nested statements.", 
+                    "Whoa, you've never heard of them? They're basically just statements that are executed as part of other statements, like the contents of while loops.", 
+                    "So, what brings you here, anyways?",
+                    "Oh, you're looking for the Robot Academy? You don’t need to do anything special to enrol, just enter the school!",
+                    "Where is it? Oh, it’s right behind me, just walk straight on.", 
+                    "Anyway, see ya, kid!" } } },
 
         {"April", new(){ new(){ "Yo! How's it going? I've never seen you before!",
                     "I don't really like school and I think studying is really boring, but robots are just so awesome!"} } },
