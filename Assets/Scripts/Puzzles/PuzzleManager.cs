@@ -96,7 +96,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     CurrentPuzzle.IncreaseAttempts();
                     ErrorMessage.SetActive(true);
-                    Invoke("RemoveMessage", 5);
+                    Invoke("RemoveMessage", 2);
                 }
             }
             else

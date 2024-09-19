@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !InInteraction && CollidingObject != null) Interact();
 
         // For testing only;
-/*        if (Input.GetKeyDown(KeyCode.K)) GameManager.PickUpItem(0);*/
+        if (Input.GetKeyDown(KeyCode.K)) GameManager.PickUpItem(0);
     }
 
     // Called a set number or times, not depenent on framerate;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         if (CollidingObjectType == "Puzzle")
         {
             PuzzleSpawner Spawner = CollidingObject.GetComponent<PuzzleSpawner>();
-            
+
             if (CollidingObject.GetComponent<NPC>() != null)
             {
                 // Get the character's name and the stage of the dialogue;
@@ -80,13 +80,18 @@ public class Player : MonoBehaviour
                     if (EntryID != -1)
                         GameManager.FoundEntry(EntryID + 1);
                 }
-                    
+
                 // If the dialogue has concluded, spawn the puzzle;
                 if (DialogueManager.IsDialogueComplete && Spawner.IsActive() && LastNPC == NPCName)
                     InteractingWith.Spawn();
             }
             else if (Spawner != null && Spawner.IsActive())
                 InteractingWith.Spawn();
+            else
+            {
+                DialogueManager.IsDialogueComplete = false;
+                InInteraction = false;
+            }
         }
         else if (CollidingObjectType == "Message")
         {
@@ -121,6 +126,11 @@ public class Player : MonoBehaviour
                 DialogueManager.IsDialogueComplete = false;
                 InInteraction = false;
             }
+        }
+        else
+        {
+            DialogueManager.IsDialogueComplete = false;
+            InInteraction = false;
         }
     }
 

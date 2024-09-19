@@ -4370,7 +4370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8026254431872893648
 Transform:
   m_ObjectHideFlags: 0
@@ -5618,7 +5618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Esc to return to the game...
+  m_text: Press I to return to the game...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66a7a76feab7071428fbfaa1f25b62c3, type: 2}
   m_sharedMaterial: {fileID: 3628033038817089495, guid: 66a7a76feab7071428fbfaa1f25b62c3, type: 2}

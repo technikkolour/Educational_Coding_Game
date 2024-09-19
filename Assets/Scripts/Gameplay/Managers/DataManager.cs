@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+
+
     // The lists are structured in the order: Prompt, Options (or Lines of Code), Solution;
     private readonly Dictionary<int, List<List<string>>> MultipleChoice = new(){
         { 1, new(){ new(){"How would you store your age?"}, new(){"As a variable.", "As a constant."}, new(){ "As a variable." } } },
