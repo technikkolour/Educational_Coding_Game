@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -191,9 +192,31 @@ public class GameManager : MonoBehaviour
         if (ItemID >= 0)
         {
             Item Item = DataManager.ReturnItemForIndex(ItemID);
-            if (!GameProgress.CurrentInventory.Contains(Item)) GameProgress.CurrentInventory.Add(Item);
+            if (!HasItem(ItemID)) GameProgress.CurrentInventory.Add(Item);
         }
+    }    
+    public bool HasItem(int ItemID)
+    {            
+        bool Contains = false;
+
+        if (ItemID >= 0)
+        {
+            Item Item = DataManager.ReturnItemForIndex(ItemID);
+
+            foreach (Item InvItem in GameProgress.CurrentInventory)
+            {
+                Contains = false;
+                if (Item.ItemID == InvItem.ItemID) Contains = true;
+            }
+        }
+
+        return Contains;
     }
+    public void UseItem(int ItemID)
+    {
+        GameProgress.CurrentInventory.RemoveAt(ItemID);
+    }
+
     public List<int> GetMedals()
     {
         return GameProgress.Medals;
@@ -202,15 +225,7 @@ public class GameManager : MonoBehaviour
     {
         return GameProgress.CurrentInventory;
     }
-    public bool HasItem(int ItemID)
-    {
-        Item Item = DataManager.ReturnItemForIndex(ItemID);
-        return GameProgress.CurrentInventory.Contains(Item);
-    }
-    public void UseItem(int ItemID)
-    {
-        GameProgress.CurrentInventory.RemoveAt(ItemID);
-    }
+
 
     // Handle Robot functionality;
     public void IncreaseHealth()
