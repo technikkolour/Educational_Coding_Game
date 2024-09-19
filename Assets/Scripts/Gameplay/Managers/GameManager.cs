@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // UI Screens;
     public GameObject DeathScreen;
+    public GameObject ButtonPromptsCanvas;
 
     // Journal management;
     private List<string> TheoreticalCollection = new() { "" };
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
         DataManager = FindObjectOfType<DataManager>();
 
         PlacePlayer();
+
+        if (SceneManager.GetActiveScene().name == "Level_01" && GameProgress.PreviousScene == "")
+        {
+            DisplayPrompts();
+            Invoke("HidePrompts", 5);
+        }
     }
 
     //####################################################################################################################################################################
@@ -118,6 +125,15 @@ public class GameManager : MonoBehaviour
         return TheoreticalCollection[EntryID];
     }
 
+    // Functions for handling button prompts;
+    public void DisplayPrompts()
+    {
+        ButtonPromptsCanvas.SetActive(true);
+    }
+    public void HidePrompts()
+    {
+        ButtonPromptsCanvas.SetActive(false);
+    }
 
     //####################################################################################################################################################################
     // MULTIPLAYER RELATED
