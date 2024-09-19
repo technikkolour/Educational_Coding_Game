@@ -38,7 +38,7 @@ public class DataManager : MonoBehaviour
         { 10, new(){ new(){"Please write a program that compares two numbers a = 10, b = 32, and outputs whether a is greater than b."}, new(){"false"} } },
         { 11, new(){ new(){"Please write a function that adds up the numbers from 1 to 100 and prints out the result."}, new(){"5050"} } },
         { 12, new(){ new(){"Please write a program that computes the average of the numbers between 11 and 27."}, new(){"19"} } },
-        { 999, new(){ new(){ "Here you get to build your own robot to control in the battles! The robot can already move left and right using the same controls as the human character! Your Strength stat is limited to 250." }, new(){ "" } } }
+        { 999, new(){ new(){ "Here you get to build your own robot to control in the battles! The robot can already move left and right using the same controls as the human character! \nYour Strength stat is limited to 150. \nTo nest a block into another press the up key once." }, new(){ "" } } }
     };
 
     // Code Building Blocks;

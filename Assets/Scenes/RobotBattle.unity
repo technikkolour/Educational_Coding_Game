@@ -8251,7 +8251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8834599933396363163, guid: fa0774d6432203f4fb25704037c202ad, type: 3}
       propertyPath: Strength
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8834599933396363163, guid: fa0774d6432203f4fb25704037c202ad, type: 3}
       propertyPath: AttackPrefab

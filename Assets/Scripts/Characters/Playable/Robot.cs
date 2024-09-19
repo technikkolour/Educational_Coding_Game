@@ -32,7 +32,7 @@ public class Robot : MonoBehaviour
     // Update is called once per frame;
     void Update()
     {
-        if (Strength < 100f) RegenerateStrength();
+        if (Strength < 150f) RegenerateStrength();
 
         // Key bindings;
         if (Input.GetKeyDown(KeyCode.Q))
@@ -100,8 +100,8 @@ public class Robot : MonoBehaviour
     {
         Strength = (2*Strength + 2.5f) / 2.0f;
 
-        // Cap the strength at 250;
-        if (Strength > 250) Strength = 250;
+        // Cap the strength at 150;
+        if (Strength > 150) Strength = 150;
     }
 
     // Robot Building Blocks;
@@ -111,7 +111,7 @@ public class Robot : MonoBehaviour
         // Check that the character has enough strength to use the attack;
         // In the event that they do not, do nothing;
 
-        if (Power >= 250) Power = 250;
+        if (Power >= 150) Power = 150;
 
         if (Strength >= Power)
         {
