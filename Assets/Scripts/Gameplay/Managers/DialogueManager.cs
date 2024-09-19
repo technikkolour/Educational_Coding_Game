@@ -86,12 +86,12 @@ public class DialogueManager : MonoBehaviour
 
     public Dictionary<int, List<string>> CutsceneText = new()
     {
-        { 0, new(){ "Hi! Your name is Bill, you like wrestling, and you were born in 1995. You were getting ready to watch your favourite show on TV...", 
+        { 0, new(){ "Hi! Your name is Bill, you're 9 and you like wrestling. You were getting ready to watch your favourite show on TV...", 
             "... when you suddenly got transported to a bizarre world, full of interesting technology.", 
             "Your job now is to find your way back home... Quickly! Before you miss your show!" } },
-        { 1, new(){ "You say bye to William before getting into a stange looking machine.", 
+        { 1, new(){ "You say bye to William before getting into a strange looking machine.", 
             "You blink once and, before you know it, you are back home, in your bedroom.", 
-            "And look, you didn't actually miss your show!" } }
+            "And your show is just now starting!" } }
     };
 
     public GameObject DialogueUI;
@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InDialogue && Input.GetKeyDown(KeyCode.E))
+        if (InDialogue && Input.GetKeyUp(KeyCode.E))
         {
             if (!IsTyping) // Progress dialogue only when not typing
             {
@@ -126,15 +126,17 @@ public class DialogueManager : MonoBehaviour
     // Display the lines of dialogue;
     public void StartDialogue(List<string> Lines)
     {
-        // Set the flags;
-        InDialogue = true;
-        IsDialogueComplete = false;
+            // Set the flags;
+            InDialogue = true;
+            IsDialogueComplete = false;
 
-        // Set the values for displaying the dialogue;
-        this.Lines = Lines;
-        CharacterName.text = CurrentlySpeaking;
-        CurrentLineIndex = 0;        
-        DialogueUI.SetActive(true);
+            // Set the values for displaying the dialogue;
+            this.Lines = Lines;
+            CharacterName.text = CurrentlySpeaking;
+            CurrentLineIndex = 0;        
+            DialogueUI.SetActive(true);
+
+            DisplayNextLine();
     }
     public void DisplayNextLine()
     {

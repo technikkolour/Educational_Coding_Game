@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private DialogueManager DialogueManager;
 
     public TMP_Text PromptText;
-    public GameObject DialogueUI;
     public PuzzleSpawner InteractingWith;
 
     // Start is called before the first frame update
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !InInteraction && CollidingObject != null) Interact();
 
         // For testing only;
-        if (Input.GetKeyDown(KeyCode.K)) GameManager.PickUpItem(0);
+/*        if (Input.GetKeyDown(KeyCode.K)) GameManager.PickUpItem(0);*/
     }
 
     // Called a set number or times, not depenent on framerate;
@@ -52,9 +51,9 @@ public class Player : MonoBehaviour
             RBComponent.MovePosition(RBComponent.position + speed * Time.fixedDeltaTime * MovementDirection);
     }
 
-    // Defines the behaviour of the player character when interacting with various objects and NPCs;
     private string LastNPC = "";
 
+    // Defines the behaviour of the player character when interacting with various objects and NPCs;
     public void Interact() 
     {
         List<string> CollidingObjectName = new(CollidingObject.name.Split("_"));
@@ -97,6 +96,10 @@ public class Player : MonoBehaviour
                 string NPCName = CollidingObject.GetComponent<NPC>().Name;
                 int NPCDialoguePhase = CollidingObject.GetComponent<NPC>().DialoguePhase;
                 int EntryID = CollidingObject.GetComponent<NPC>().JournalEntryID;
+
+                Debug.Log("Dialogue State: IsComplete = " + DialogueManager.IsDialogueComplete);
+                Debug.Log("Current NPC: " + NPCName);
+                Debug.Log("Current Phase: " + NPCDialoguePhase);
 
                 if (DialogueManager.IsDialogueComplete && NPCName == "William")
                     GameManager.EndGame();
