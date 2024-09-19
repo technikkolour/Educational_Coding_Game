@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     // Return to the main menu; current game progress is lost;
     public void ReturnToMenu() 
     {
+        UnpauseGame();
         SceneManager.LoadScene("MainMenu");
     }
     public void EndGame()
