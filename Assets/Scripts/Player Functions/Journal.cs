@@ -10,15 +10,14 @@ public class Journal : MonoBehaviour
         {1, new(){ "Constants", "Constants are values that cannot change, such as gravity, or your eye colour." } },
         {2, new(){ "String", "Used to store text; a string represents a series of characters. It can be a name, an address, even a phone number!" } },
         {3, new(){ "Output", "The values of variables are hidden after they are initialised and used inside a program. To view their current values we can use output statements." } },
-        {4, new(){ "Integer", "Used to store whole numbers, like the number of people present in a room." } },
-        {5, new(){ "Float", "Used to store decimals, such as your height." } },
-        {6, new(){ "Boolean", "Used to store true or false values." } },
-        {7, new(){ "Arrays", "They can store multiple values of the same type together. For example, they can be used for storing a student's grades (floats) or a list of the students enrolled in a class (strings)." } },
-        {8, new(){ "If Statements", "Used to perform some actions based on one or more conditions." } },
-        {9, new(){ "For", "A set of actions is performed for every time a value is updated. The starting and final values, as well as the step size, are defined." } },
-        {10, new(){ "While", "A set of actions is performed as long as a condition is true." } },
-        {11, new(){ "Functions", "They are independent portions of code. They can be used to tell the program to perform a set of actions at any point." } },
-        {12, new(){ "", "" } } };
+        {4, new(){ "Integers and Floats", "Integeers are used to store whole numbers, like the number of people present in a room.\nFloats are used to store decimals, such as your height." } },
+        {5, new(){ "Boolean", "Used to store true or false values." } },
+        {6, new(){ "Arrays", "They can store multiple values of the same type together. For example, they can be used for storing a student's grades (floats) or a list of the students enrolled in a class (strings)." } },
+        {7, new(){ "If Statements", "Used to perform some actions based on one or more conditions." } },
+        {8, new(){ "For", "A set of actions is performed for every time a value is updated. The starting and final values, as well as the step size, are defined." } },
+        {9, new(){ "While", "A set of actions is performed as long as a condition is true." } },
+        {10, new(){ "Functions", "They are independent portions of code. They can be used to tell the program to perform a set of actions at any point." } },
+        {11, new(){ "", "" } } };
     private List<List<string>> Entries = new() { new() { "", "" }, new() { "", "" } };
 
     public TMP_Text LeftTitle, RightTitle;

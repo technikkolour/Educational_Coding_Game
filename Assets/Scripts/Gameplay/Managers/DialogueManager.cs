@@ -78,12 +78,21 @@ public class DialogueManager : MonoBehaviour
     public Dictionary<int, string> BookcaseInformation = new() {
         { 2, "Strings are used to store text. The value can be anything, such as a name, an address, or even a phone number!" },
         { 3, "In programming we may need to produce a message that informs us of the current state or the result of the program. This is done with the use of output statements." },
-        { 4, "Integers are used to store whole numbers, like the number of people present in a room." },
-        { 5, "Floats are used to store decimals, such as your height." },
-        { 8, "If statements are used when we would like the program to perform some actions based on one or more conditions." },
-        { 10, "Inside a while loop, a set of actions is performed as long as a condition is true." },
-        { 9, "For loops are used when we would like a set of actions to be performed every time a value is updated. The starting and final values, as well as the step size, are defined." },
+        { 6, "Arrays are a great way of storing multiple values of the same type, such as the names of all of your pets, together." },        
+        { 5, "Booleans can either be true or false. They are crucial for the functionality of conditional statements." },
+        { 9, "Inside a while loop, a set of actions is performed as long as a condition is true." },
+        { 8, "For loops are used when we would like a set of actions to be performed every time a value is updated. The starting and final values, as well as the step size, are defined." },
         { 999, "Hmm... Nothing interesting here."} };
+
+    public Dictionary<int, List<string>> CutsceneText = new()
+    {
+        { 0, new(){ "Hi! Your name is Bill, you like wrestling, and you were born in 1995. You were getting ready to watch your favourite show on TV...", 
+            "... when you suddenly got transported to a bizarre world, full of interesting technology.", 
+            "Your job now is to find your way back home... Quickly! Before you miss your show!" } },
+        { 1, new(){ "You say bye to William before getting into a stange looking machine.", 
+            "You blink once and, before you know it, you are back home, in your bedroom.", 
+            "And look, you didn't actually miss your show!" } }
+    };
 
     public GameObject DialogueUI;
     private Player Player;

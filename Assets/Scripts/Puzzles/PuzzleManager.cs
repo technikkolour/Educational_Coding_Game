@@ -67,7 +67,7 @@ public class PuzzleManager : MonoBehaviour
 
                 ClosePuzzle();
 
-                if (CurrentID <= 16)
+                if (CurrentID <= 19)
                 {
                     SpawnPuzzle("Quiz", CurrentID);
                 }

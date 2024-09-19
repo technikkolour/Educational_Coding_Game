@@ -19390,9 +19390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: 
-  PuzzleID: 3
-  ItemID: 0
+  PuzzleType: CodeBuilding
+  PuzzleID: 10
+  ItemID: 3
   Attempts: 0
   Active: 1
 --- !u!114 &556401668 stripped
@@ -19901,7 +19901,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: PuzzleID
-      value: 5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: PuzzleType
+      value: MultipleChoice
       objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
@@ -20844,6 +20848,10 @@ PrefabInstance:
     - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
       propertyPath: Name
       value: Conditional
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      propertyPath: JournalEntryID
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21806,8 +21814,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1185535729}
   - {fileID: 1312105726}
+  - {fileID: 1185535729}
   - {fileID: 551094424}
   m_Father: {fileID: 658983884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22955,7 +22963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178218090099822988, guid: 1b8afba20c247574aab01e998650d18d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.38
+      value: -4.27
       objectReference: {fileID: 0}
     - target: {fileID: 6178218090099822988, guid: 1b8afba20c247574aab01e998650d18d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22991,7 +22999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8660799777058828058, guid: 1b8afba20c247574aab01e998650d18d, type: 3}
       propertyPath: m_Name
-      value: Chest_02_Puzzle
+      value: Chest_01_Puzzle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23024,8 +23032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: ValueUpdate
-  PuzzleID: 6
-  ItemID: 0
+  PuzzleID: 7
+  ItemID: 1
   Attempts: 0
   Active: 1
 --- !u!1 &1313363777
@@ -23930,7 +23938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Contents: 
-  BookcaseID: 4
+  BookcaseID: 6
 --- !u!1001 &1522825921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24793,7 +24801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: PuzzleID
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
+      propertyPath: PuzzleType
+      value: CodeOrdering
       objectReference: {fileID: 0}
     - target: {fileID: 5068945432295290054, guid: da0dbaf3d0540d945b5449910ef64367, type: 3}
       propertyPath: m_Color.b
@@ -25259,7 +25271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: PuzzleID
-      value: 4
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: PuzzleType
+      value: ValueUpdate
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -25911,7 +25927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: MultipleChoice
-  PuzzleID: 2
+  PuzzleID: 1
   ItemID: -1
   Attempts: 0
   Active: 1
@@ -26682,6 +26698,10 @@ PrefabInstance:
       propertyPath: Name
       value: Function
       objectReference: {fileID: 0}
+    - target: {fileID: 7470136503323864431, guid: e364a37fcbe33de44be7b6ab248a0cd3, type: 3}
+      propertyPath: JournalEntryID
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -26866,8 +26886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: 
-  PuzzleID: 7
+  PuzzleType: ValueUpdate
+  PuzzleID: 8
   ItemID: -1
   Attempts: 0
   Active: 1
@@ -26902,7 +26922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Contents: 
-  BookcaseID: 10
+  BookcaseID: 9
 --- !u!1001 &2087550546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27404,7 +27424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: PuzzleID
-      value: 1
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719047672123357377, guid: ba010176515d88c44b20225a10e46ede, type: 3}
+      propertyPath: PuzzleType
+      value: ValueUpdate
       objectReference: {fileID: 0}
     - target: {fileID: 5343448991420001263, guid: ba010176515d88c44b20225a10e46ede, type: 3}
       propertyPath: m_LocalScale.x
@@ -27660,7 +27684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8660799777058828058, guid: 1b8afba20c247574aab01e998650d18d, type: 3}
       propertyPath: m_Name
-      value: Chest_01_Puzzle
+      value: Chest_02_Puzzle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27687,9 +27711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00addddc8078cb44b7150f7dc51f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PuzzleType: CodeBuilding
-  PuzzleID: 7
-  ItemID: 0
+  PuzzleType: CodeOrdering
+  PuzzleID: 4
+  ItemID: 2
   Attempts: 0
   Active: 1
 --- !u!1001 &8967959554952354267

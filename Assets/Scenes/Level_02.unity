@@ -5259,7 +5259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PuzzleType: Quiz
-  PuzzleID: 10
+  PuzzleID: 13
   ItemID: 0
   Attempts: 0
   Active: 1
