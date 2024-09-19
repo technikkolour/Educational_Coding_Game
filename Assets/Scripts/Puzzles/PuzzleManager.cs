@@ -195,7 +195,7 @@ public class PuzzleManager : MonoBehaviour
 
             // Mark the puzzle as completed and get the Robot Licence;
             GameManager.CompletedPuzzle(InitialID, 4);
-            GameManager.PickUpItem(NPC.ItemID);    
+            GameManager.PickUpItem(NPC.ItemID);
 
             Player.FinishedInteraction();
 

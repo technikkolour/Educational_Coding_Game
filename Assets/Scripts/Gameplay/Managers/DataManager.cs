@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         { 14, new(){ new(){"How many values can a boolean have?"}, new(){"Just one.", "An infinite amount.", "Just two."}, new(){ "Just two." } } },
         { 15, new(){ new(){"What should I use if I would like to see the final result of a program?"}, new(){"An output block.", "A declarative block."}, new(){ "An output block." } } },
         { 16, new(){ new(){"If you would like to keep track of your favourite teacher's name, what would you store it as?"}, new(){"An integer.", "An list of characters.", "A string.", "A boolean."}, new(){"A string."} } },
-        { 17, new(){ new(){"Is a variable the opposite of a constant?"}, new(){"True", "False"}, new(){"True"} } },
+        { 17, new(){ new(){"Is a variable the opposite of a constant?"}, new(){"Yes", "No"}, new(){"True"} } },
         { 18, new(){ new(){"Select the correct line of code."}, new(){"integer x = 12.5", "float x = false", "string = \"Hello!\""}, new(){ "string = \"Hello!\"" } } },
         { 19, new(){ new(){"What is absolutely necessary in a while loop?"}, new(){"A condition.", "An output statement.", "An if statement."}, new(){ "A condition." } } }
     };
@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
         { 6, new(){ new(){"The gate to the city is locked. Maybe setting its value to unlocked will help me get through."}, new(){"gate = ' _________ '"}, new(){"unlocked"} } },
         { 7, new(){ new(){"This chest seems to be locked. Maybe changing a value in the code will open it..."}, new(){ "if 'chest is unlocked' = _________ \n    open" }, new(){"true"} } },
         { 8, new(){ new(){"This robot seems to have been programmed not to let anyone move past it. I should change its code."}, new(){ "if 'humans are not allowed' = _______ \n    let them past" }, new(){ "false" } } },
-        { 9, new(){ new(){"This automated gate seems like it's fully functional. I should have a deeper look at the code..."}, new(){ "if 'gate can open' = true \n    _______ 35 cm" }, new(){""} } }
+        { 9, new(){ new(){"This automated gate seems like it's fully functional. I should have a deeper look at the code..."}, new(){ "if 'gate can open' = true \n    _______" }, new(){"open"} } }
     };
 
     // The lists are structured in the order: Prompt, Possible Solutions;
