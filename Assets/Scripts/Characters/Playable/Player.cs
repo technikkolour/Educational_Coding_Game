@@ -30,8 +30,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Includes both WASD and arrow key inputs;
-        MovementDirection.x = Input.GetAxisRaw("Horizontal");
-        MovementDirection.y = Input.GetAxisRaw("Vertical");
+        if (!InInteraction)
+        {
+            MovementDirection.x = Input.GetAxisRaw("Horizontal");
+            MovementDirection.y = Input.GetAxisRaw("Vertical");
+        }
 
         // The E key is reserved for interacting;
         if (Input.GetKeyDown(KeyCode.E) && !InInteraction && CollidingObject != null) Interact();
@@ -44,7 +47,9 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         float speed = 7;
-        RBComponent.MovePosition(RBComponent.position + speed * Time.fixedDeltaTime * MovementDirection);
+
+        if(!InInteraction)
+            RBComponent.MovePosition(RBComponent.position + speed * Time.fixedDeltaTime * MovementDirection);
     }
 
     // Defines the behaviour of the player character when interacting with various objects and NPCs;
